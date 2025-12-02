@@ -200,6 +200,61 @@ ul {
     transform: translateX(4px);
 }
 
+/* OPTICORE Style Button */
+.btn-opticore {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    padding: 4px;
+    padding-left: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.03);
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.btn-opticore:hover {
+    border-color: rgba(139, 92, 246, 0.5);
+    background: rgba(139, 92, 246, 0.08);
+}
+
+.btn-opticore .btn-text {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--text-white);
+    text-transform: uppercase;
+    padding-right: 15px;
+}
+
+.btn-opticore .btn-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.btn-opticore .btn-icon svg {
+    width: 16px;
+    height: 16px;
+    color: var(--text-white);
+    transition: transform 0.3s ease;
+}
+
+.btn-opticore:hover .btn-icon {
+    background: var(--accent-purple);
+}
+
+.btn-opticore:hover .btn-icon svg {
+    transform: translateX(2px);
+}
+
 .btn-icon {
     width: 48px;
     height: 48px;
@@ -794,13 +849,20 @@ body::before {
 }
 
 /* ========================================
-   PROCESS SECTION
+   PROCESS SECTION - OPTICORE STYLE
 ======================================== */
 .process {
     position: relative;
     padding: 120px 50px;
     background: var(--bg-section);
     z-index: 2;
+}
+
+.process-wrapper {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 60px;
+    align-items: start;
 }
 
 .process-timeline {
@@ -810,40 +872,91 @@ body::before {
 }
 
 .process-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 40px;
-    padding: 40px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: grid;
+    grid-template-columns: 50px 120px 1fr 300px;
+    align-items: center;
+    gap: 30px;
+    padding: 35px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .process-step:last-child {
     border-bottom: none;
 }
 
-.step-number {
-    font-size: 48px;
+.step-index {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-gray);
+    letter-spacing: 1px;
+}
+
+.step-code {
+    font-size: clamp(36px, 5vw, 56px);
     font-weight: 700;
-    color: rgba(139, 92, 246, 0.3);
-    min-width: 100px;
+    color: var(--text-white);
+    letter-spacing: -2px;
+    line-height: 1;
+}
+
+.step-line {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.step-line::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Gradient line for active/highlighted step */
+.process-step.highlighted .step-line {
+    background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+    height: 2px;
+}
+
+.process-step.highlighted .step-line::after {
+    background: var(--accent-pink);
+    box-shadow: 0 0 10px var(--accent-pink);
 }
 
 .step-content {
-    flex: 1;
+    text-align: right;
 }
 
 .step-title {
-    font-size: 22px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 500;
     color: var(--text-white);
-    margin-bottom: 12px;
+    margin-bottom: 6px;
 }
 
 .step-description {
-    font-size: 14px;
-    line-height: 1.8;
+    font-size: 12px;
+    line-height: 1.6;
     color: var(--text-gray);
-    max-width: 500px;
+}
+
+/* Process 3D blob area */
+.process-visual {
+    position: relative;
+    width: 300px;
+    height: 400px;
+}
+
+/* Center button in process section */
+.process-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
 }
 
 /* ========================================
@@ -1201,6 +1314,15 @@ body::before {
         grid-column: span 1;
     }
 
+    .process-step {
+        grid-template-columns: 40px 100px 1fr 200px;
+        gap: 20px;
+    }
+
+    .step-code {
+        font-size: 40px;
+    }
+
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1235,13 +1357,25 @@ body::before {
     }
 
     .process-step {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         gap: 15px;
+        text-align: left;
     }
 
-    .step-number {
-        font-size: 36px;
-        min-width: auto;
+    .step-index {
+        display: none;
+    }
+
+    .step-code {
+        font-size: 32px;
+    }
+
+    .step-line {
+        display: none;
+    }
+
+    .step-content {
+        text-align: left;
     }
 
     .stats-grid {
