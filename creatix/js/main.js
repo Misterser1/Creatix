@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initFormSubmit();
     initChat();
     initDnaHelix();
+    initAboutSlider();
+    initProcessTabs();
 });
 
 /**
@@ -499,4 +501,140 @@ function initDnaHelix() {
             ease: 'back.out(1.7)'
         });
     }
+}
+
+/**
+ * About section slider with auto-play
+ */
+function initAboutSlider() {
+    const slides = document.querySelectorAll('.about-slide');
+    const prevBtn = document.getElementById('about-prev');
+    const nextBtn = document.getElementById('about-next');
+    const progressBar = document.getElementById('slider-progress-bar');
+    const currentNum = document.querySelector('.slide-num.current');
+
+    if (!slides.length || !prevBtn || !nextBtn) return;
+
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+    const autoPlayInterval = 8000; // 8 seconds
+    let autoPlayTimer = null;
+    let progressTimer = null;
+    let progressValue = 0;
+
+    function goToSlide(index) {
+        // Remove active class from current slide
+        slides[currentSlide].classList.remove('active');
+        slides[currentSlide].classList.add('prev');
+
+        // Update current slide index
+        currentSlide = index;
+        if (currentSlide >= totalSlides) currentSlide = 0;
+        if (currentSlide < 0) currentSlide = totalSlides - 1;
+
+        // Remove prev class and add active to new slide
+        slides.forEach(slide => slide.classList.remove('prev'));
+        slides[currentSlide].classList.add('active');
+
+        // Update slide number
+        if (currentNum) {
+            currentNum.textContent = String(currentSlide + 1).padStart(2, '0');
+        }
+
+        // Reset progress
+        resetProgress();
+    }
+
+    function nextSlide() {
+        goToSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+        goToSlide(currentSlide - 1);
+    }
+
+    function resetProgress() {
+        progressValue = 0;
+        if (progressBar) {
+            progressBar.style.width = '0%';
+        }
+    }
+
+    function startAutoPlay() {
+        stopAutoPlay();
+
+        // Progress animation
+        progressTimer = setInterval(() => {
+            progressValue += 100 / (autoPlayInterval / 100);
+            if (progressBar) {
+                progressBar.style.width = `${Math.min(progressValue, 100)}%`;
+            }
+        }, 100);
+
+        // Auto switch
+        autoPlayTimer = setTimeout(() => {
+            nextSlide();
+            startAutoPlay();
+        }, autoPlayInterval);
+    }
+
+    function stopAutoPlay() {
+        if (autoPlayTimer) {
+            clearTimeout(autoPlayTimer);
+            autoPlayTimer = null;
+        }
+        if (progressTimer) {
+            clearInterval(progressTimer);
+            progressTimer = null;
+        }
+    }
+
+    // Event listeners
+    prevBtn.addEventListener('click', () => {
+        prevSlide();
+        startAutoPlay(); // Restart auto-play after manual navigation
+    });
+
+    nextBtn.addEventListener('click', () => {
+        nextSlide();
+        startAutoPlay(); // Restart auto-play after manual navigation
+    });
+
+    // Start auto-play
+    startAutoPlay();
+
+    // Pause on hover (optional)
+    const slider = document.getElementById('about-slider');
+    if (slider) {
+        slider.addEventListener('mouseenter', stopAutoPlay);
+        slider.addEventListener('mouseleave', startAutoPlay);
+    }
+}
+
+/**
+ * Process section tabs
+ */
+function initProcessTabs() {
+    const tabs = document.querySelectorAll('.process-tab');
+    const panels = document.querySelectorAll('.process-panel');
+
+    if (!tabs.length || !panels.length) return;
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const targetPanel = tab.getAttribute('data-tab');
+
+            // Update active tab
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            // Update active panel
+            panels.forEach(panel => {
+                panel.classList.remove('active');
+                if (panel.getAttribute('data-panel') === targetPanel) {
+                    panel.classList.add('active');
+                }
+            });
+        });
+    });
 }
