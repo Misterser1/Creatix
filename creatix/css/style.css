@@ -518,7 +518,7 @@ ul {
 
 .about-slides {
     position: relative;
-    min-height: 280px;
+    min-height: 340px;
 }
 
 .about-slide {
@@ -565,6 +565,10 @@ ul {
     line-height: 1.9;
     color: rgba(255, 255, 255, 0.75);
     margin-bottom: 0;
+}
+
+.about-cta {
+    margin-top: 30px;
 }
 
 /* Slider Navigation */
@@ -1088,36 +1092,57 @@ body::before {
     color: var(--text-white);
 }
 
-/* Process Tabs */
-.process-tabs {
+/* Process Tabs - Glass Morphism */
+.process-tabs-wrapper {
     display: flex;
     justify-content: center;
-    gap: 10px;
     margin-bottom: 60px;
-    flex-wrap: wrap;
+}
+
+.process-tabs {
+    display: flex;
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 6px;
+    backdrop-filter: blur(10px);
+}
+
+.process-tabs-indicator {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    height: calc(100% - 12px);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(236, 72, 153, 0.25));
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
 }
 
 .process-tab {
-    padding: 12px 28px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 30px;
+    padding: 14px 30px;
+    background: none;
+    border: none;
+    border-radius: 12px;
     color: var(--text-gray);
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    transition: var(--transition);
+    transition: color 0.3s;
+    font-family: inherit;
+    position: relative;
+    z-index: 2;
 }
 
 .process-tab:hover {
-    background: rgba(255, 255, 255, 0.1);
     color: var(--text-white);
 }
 
 .process-tab.active {
-    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
-    border-color: transparent;
-    color: white;
+    color: var(--text-white);
 }
 
 /* Process Content */
@@ -1206,16 +1231,16 @@ body::before {
 }
 
 .step-title {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 500;
     color: var(--text-white);
     margin-bottom: 6px;
 }
 
 .step-desc {
-    font-size: 14px;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.6);
+    font-size: 15px;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.75);
 }
 
 /* Center button in process section */
@@ -1242,12 +1267,22 @@ body::before {
     }
 
     .process-tabs {
-        gap: 8px;
+        flex-wrap: wrap;
+        border-radius: 12px;
+    }
+
+    .process-tabs-indicator {
+        display: none;
     }
 
     .process-tab {
-        padding: 10px 20px;
+        padding: 12px 20px;
         font-size: 13px;
+    }
+
+    .process-tab.active {
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3));
+        border-radius: 10px;
     }
 }
 

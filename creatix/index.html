@@ -164,6 +164,14 @@
                         предпринимателей изнутри и предлагаем комплексный подход:
                         аудит процессов, рекомендации и внедрение решений.
                     </p>
+                    <a href="#contact" class="btn-opticore about-cta">
+                        <span class="btn-text">Обсудить проект</span>
+                        <span class="btn-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </a>
                 </div>
                 <!-- Slide 2: Что делаем -->
                 <div class="about-slide" data-slide="1">
@@ -176,6 +184,14 @@
                         для автоматизации продаж, ERP для управления бизнес-процессами,
                         ИИ агентов и чат-ботов, веб-приложения любой сложности.
                     </p>
+                    <a href="#contact" class="btn-opticore about-cta">
+                        <span class="btn-text">Обсудить проект</span>
+                        <span class="btn-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </a>
                 </div>
             </div>
 
@@ -210,12 +226,15 @@
                 <h2 class="process-title">Наш процесс разработки</h2>
             </div>
 
-            <!-- Process Tabs -->
-            <div class="process-tabs" id="process-tabs">
-                <button class="process-tab active" data-tab="sites">Сайты</button>
-                <button class="process-tab" data-tab="apps">Приложения</button>
-                <button class="process-tab" data-tab="ai">ИИ агенты</button>
-                <button class="process-tab" data-tab="consulting">Консалтинг</button>
+            <!-- Process Tabs - Glass Morphism -->
+            <div class="process-tabs-wrapper">
+                <div class="process-tabs" id="process-tabs">
+                    <div class="process-tabs-indicator" id="tabs-indicator"></div>
+                    <button class="process-tab active" data-tab="sites">Сайты</button>
+                    <button class="process-tab" data-tab="apps">Приложения</button>
+                    <button class="process-tab" data-tab="ai">ИИ агенты</button>
+                    <button class="process-tab" data-tab="consulting">Консалтинг</button>
+                </div>
             </div>
 
             <!-- Process Content -->
@@ -227,40 +246,56 @@
                             <div class="step-number">01</div>
                             <div class="step-line"></div>
                             <div class="step-info">
-                                <h3 class="step-title">Бриф и аналитика</h3>
-                                <p class="step-desc">Изучаем бизнес, конкурентов, целевую аудиторию</p>
+                                <h3 class="step-title">Цель проекта</h3>
+                                <p class="step-desc">Определяем тип сайта (лендинг, визитка, магазин) и бизнес-задачи: продажи через рекламу, имиджевое присутствие, сбор заявок</p>
                             </div>
                         </div>
                         <div class="process-step">
                             <div class="step-number">02</div>
                             <div class="step-line"></div>
                             <div class="step-info">
-                                <h3 class="step-title">Дизайн и прототип</h3>
-                                <p class="step-desc">UX/UI дизайн, интерактивный прототип</p>
+                                <h3 class="step-title">Анализ конкурентов</h3>
+                                <p class="step-desc">Исследуем рынок: что работает у лидеров ниши, слабые и сильные стороны конкурентов, находим точки роста</p>
                             </div>
                         </div>
                         <div class="process-step">
                             <div class="step-number">03</div>
                             <div class="step-line"></div>
                             <div class="step-info">
-                                <h3 class="step-title">Разработка</h3>
-                                <p class="step-desc">Вёрстка, программирование, интеграции</p>
+                                <h3 class="step-title">Заполнение брифа</h3>
+                                <p class="step-desc">Фиксируем структуру, контент, пожелания по дизайну. Собираем материалы: тексты, фото, логотипы</p>
                             </div>
                         </div>
                         <div class="process-step">
                             <div class="step-number">04</div>
                             <div class="step-line"></div>
                             <div class="step-info">
-                                <h3 class="step-title">Тестирование</h3>
-                                <p class="step-desc">Проверка на всех устройствах и браузерах</p>
+                                <h3 class="step-title">Согласование функционала</h3>
+                                <p class="step-desc">Определяем формы связи, интеграции (CRM, аналитика, оплата), функции админки и возможности ИИ-автоматизации</p>
                             </div>
                         </div>
                         <div class="process-step">
                             <div class="step-number">05</div>
                             <div class="step-line"></div>
                             <div class="step-info">
-                                <h3 class="step-title">Запуск и поддержка</h3>
-                                <p class="step-desc">Размещение на хостинге, техподдержка</p>
+                                <h3 class="step-title">Разработка</h3>
+                                <p class="step-desc">Создаём пилотную версию → согласование → полная разработка. Вёрстка, программирование, наполнение контентом</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">06</div>
+                            <div class="step-line"></div>
+                            <div class="step-info">
+                                <h3 class="step-title">Тестирование и сдача</h3>
+                                <p class="step-desc">Проверка на всех устройствах и браузерах, исправление замечаний, демонстрация и приёмка заказчиком</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">07</div>
+                            <div class="step-line"></div>
+                            <div class="step-info">
+                                <h3 class="step-title">Паспорт проекта</h3>
+                                <p class="step-desc">Передаём все доступы, техническую документацию и инструкцию по управлению сайтом</p>
                             </div>
                         </div>
                     </div>

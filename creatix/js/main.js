@@ -612,14 +612,28 @@ function initAboutSlider() {
 }
 
 /**
- * Process section tabs
+ * Process section tabs with Glass Morphism indicator
  */
 function initProcessTabs() {
     const tabs = document.querySelectorAll('.process-tab');
     const panels = document.querySelectorAll('.process-panel');
+    const indicator = document.getElementById('tabs-indicator');
 
     if (!tabs.length || !panels.length) return;
 
+    // Update indicator position
+    function updateIndicator() {
+        const activeTab = document.querySelector('.process-tab.active');
+        if (activeTab && indicator) {
+            indicator.style.width = activeTab.offsetWidth + 'px';
+            indicator.style.left = activeTab.offsetLeft + 'px';
+        }
+    }
+
+    // Initial indicator position
+    setTimeout(updateIndicator, 100);
+
+    // Tab click handler
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             const targetPanel = tab.getAttribute('data-tab');
@@ -627,6 +641,9 @@ function initProcessTabs() {
             // Update active tab
             tabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
+
+            // Update indicator
+            updateIndicator();
 
             // Update active panel
             panels.forEach(panel => {
@@ -637,4 +654,7 @@ function initProcessTabs() {
             });
         });
     });
+
+    // Update on resize
+    window.addEventListener('resize', updateIndicator);
 }

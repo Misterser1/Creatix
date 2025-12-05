@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - 5 вариантов табов</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-section: #08080c;
+            --text-white: #ffffff;
+            --text-gray: #6b6b7b;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --accent-blue: #3b82f6;
+            --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #3b82f6 100%);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .variant {
+            max-width: 900px;
+            margin: 0 auto 80px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+        }
+
+        .variant-title {
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: var(--accent-purple);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .variant-num {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 8px;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 15px;
+            font-weight: 600;
+        }
+
+        /* ========================================
+           ВАРИАНТ 1: UNDERLINE GRADIENT
+        ======================================== */
+        .tabs-v1 {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            position: relative;
+        }
+
+        .tabs-v1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .tab-v1 {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 10px 0;
+            position: relative;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .tab-v1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 3px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tab-v1:hover {
+            color: var(--text-white);
+        }
+
+        .tab-v1.active {
+            color: var(--text-white);
+        }
+
+        .tab-v1.active::after {
+            width: 100%;
+        }
+
+        /* ========================================
+           ВАРИАНТ 2: GLOW PILLS
+        ======================================== */
+        .tabs-v2 {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .tab-v2 {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-gray);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 14px 28px;
+            border-radius: 50px;
+            transition: var(--transition);
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tab-v2 .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-gray);
+            transition: var(--transition);
+        }
+
+        .tab-v2:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-white);
+        }
+
+        .tab-v2.active {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border-color: transparent;
+            color: white;
+            box-shadow:
+                0 0 30px rgba(139, 92, 246, 0.4),
+                0 0 60px rgba(236, 72, 153, 0.2);
+        }
+
+        .tab-v2.active .dot {
+            background: white;
+            box-shadow: 0 0 10px white;
+        }
+
+        /* ========================================
+           ВАРИАНТ 3: GLASS MORPHISM
+        ======================================== */
+        .tabs-v3-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .tabs-v3 {
+            display: flex;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 6px;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .tabs-v3-indicator {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            height: calc(100% - 12px);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .tab-v3 {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 12px 28px;
+            border-radius: 12px;
+            transition: color 0.3s;
+            font-family: inherit;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tab-v3:hover {
+            color: var(--text-white);
+        }
+
+        .tab-v3.active {
+            color: var(--text-white);
+        }
+
+        /* ========================================
+           ВАРИАНТ 4: GRADIENT BORDER
+        ======================================== */
+        .tabs-v4 {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .tab-v4 {
+            background: transparent;
+            border: none;
+            color: var(--text-gray);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 14px 28px;
+            border-radius: 12px;
+            transition: var(--transition);
+            font-family: inherit;
+            position: relative;
+        }
+
+        .tab-v4::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink), var(--accent-blue));
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tab-v4:hover {
+            color: var(--text-white);
+        }
+
+        .tab-v4:hover::before {
+            opacity: 0.5;
+        }
+
+        .tab-v4.active {
+            color: var(--text-white);
+        }
+
+        .tab-v4.active::before {
+            opacity: 1;
+        }
+
+        /* ========================================
+           ВАРИАНТ 5: FLOATING INDICATOR
+        ======================================== */
+        .tabs-v5 {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            position: relative;
+        }
+
+        .tabs-v5-indicator {
+            position: absolute;
+            top: -20px;
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--accent-purple);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .tab-v5 {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 10px 5px;
+            transition: var(--transition);
+            font-family: inherit;
+            position: relative;
+        }
+
+        .tab-v5:hover {
+            color: var(--text-white);
+        }
+
+        .tab-v5.active {
+            color: var(--text-white);
+        }
+
+        /* Контент для демонстрации */
+        .demo-content {
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        .vote-section {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+            border-radius: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .vote-section h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .vote-section p {
+            color: var(--text-gray);
+        }
+    </style>
+</head>
+<body>
+    <h1 class="page-title">5 вариантов дизайна табов</h1>
+
+    <!-- Вариант 1 -->
+    <div class="variant">
+        <div class="variant-title"><span class="variant-num">1</span>UNDERLINE GRADIENT</div>
+        <div class="tabs-v1">
+            <button class="tab-v1 active">Сайты</button>
+            <button class="tab-v1">Приложения</button>
+            <button class="tab-v1">ИИ агенты</button>
+            <button class="tab-v1">Консалтинг</button>
+        </div>
+        <div class="demo-content">Минималистичный стиль с градиентной линией</div>
+    </div>
+
+    <!-- Вариант 2 -->
+    <div class="variant">
+        <div class="variant-title"><span class="variant-num">2</span>GLOW PILLS</div>
+        <div class="tabs-v2">
+            <button class="tab-v2 active"><span class="dot"></span>Сайты</button>
+            <button class="tab-v2"><span class="dot"></span>Приложения</button>
+            <button class="tab-v2"><span class="dot"></span>ИИ агенты</button>
+            <button class="tab-v2"><span class="dot"></span>Консалтинг</button>
+        </div>
+        <div class="demo-content">Светящиеся таблетки с эффектом glow</div>
+    </div>
+
+    <!-- Вариант 3 -->
+    <div class="variant">
+        <div class="variant-title"><span class="variant-num">3</span>GLASS MORPHISM</div>
+        <div class="tabs-v3-wrapper">
+            <div class="tabs-v3">
+                <div class="tabs-v3-indicator" id="v3-indicator"></div>
+                <button class="tab-v3 active">Сайты</button>
+                <button class="tab-v3">Приложения</button>
+                <button class="tab-v3">ИИ агенты</button>
+                <button class="tab-v3">Консалтинг</button>
+            </div>
+        </div>
+        <div class="demo-content">Стеклянный контейнер с плавающим индикатором</div>
+    </div>
+
+    <!-- Вариант 4 -->
+    <div class="variant">
+        <div class="variant-title"><span class="variant-num">4</span>GRADIENT BORDER</div>
+        <div class="tabs-v4">
+            <button class="tab-v4 active">Сайты</button>
+            <button class="tab-v4">Приложения</button>
+            <button class="tab-v4">ИИ агенты</button>
+            <button class="tab-v4">Консалтинг</button>
+        </div>
+        <div class="demo-content">Градиентная обводка активного таба</div>
+    </div>
+
+    <!-- Вариант 5 -->
+    <div class="variant">
+        <div class="variant-title"><span class="variant-num">5</span>FLOATING INDICATOR</div>
+        <div class="tabs-v5">
+            <div class="tabs-v5-indicator" id="v5-indicator"></div>
+            <button class="tab-v5 active">Сайты</button>
+            <button class="tab-v5">Приложения</button>
+            <button class="tab-v5">ИИ агенты</button>
+            <button class="tab-v5">Консалтинг</button>
+        </div>
+        <div class="demo-content">Плавающая точка-индикатор над табом</div>
+    </div>
+
+    <div class="vote-section">
+        <h2>Какой вариант нравится?</h2>
+        <p>Кликай на табы, чтобы проверить анимации</p>
+    </div>
+
+    <script>
+        // Вариант 1: Underline
+        document.querySelectorAll('.tabs-v1 .tab-v1').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tabs-v1 .tab-v1').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+
+        // Вариант 2: Glow Pills
+        document.querySelectorAll('.tabs-v2 .tab-v2').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tabs-v2 .tab-v2').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+
+        // Вариант 3: Glass Morphism
+        const v3Tabs = document.querySelectorAll('.tabs-v3 .tab-v3');
+        const v3Indicator = document.getElementById('v3-indicator');
+
+        function updateV3Indicator() {
+            const activeTab = document.querySelector('.tabs-v3 .tab-v3.active');
+            if (activeTab && v3Indicator) {
+                v3Indicator.style.width = activeTab.offsetWidth + 'px';
+                v3Indicator.style.left = (activeTab.offsetLeft) + 'px';
+            }
+        }
+
+        v3Tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                v3Tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                updateV3Indicator();
+            });
+        });
+
+        // Initial position
+        setTimeout(updateV3Indicator, 100);
+
+        // Вариант 4: Gradient Border
+        document.querySelectorAll('.tabs-v4 .tab-v4').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tabs-v4 .tab-v4').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+
+        // Вариант 5: Floating Indicator
+        const v5Tabs = document.querySelectorAll('.tabs-v5 .tab-v5');
+        const v5Indicator = document.getElementById('v5-indicator');
+
+        function updateV5Indicator() {
+            const activeTab = document.querySelector('.tabs-v5 .tab-v5.active');
+            if (activeTab && v5Indicator) {
+                const tabRect = activeTab.getBoundingClientRect();
+                const containerRect = activeTab.parentElement.getBoundingClientRect();
+                v5Indicator.style.left = (activeTab.offsetLeft + activeTab.offsetWidth / 2 - 5) + 'px';
+            }
+        }
+
+        v5Tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                v5Tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                updateV5Indicator();
+            });
+        });
+
+        // Initial position
+        setTimeout(updateV5Indicator, 100);
+
+        // Recalculate on resize
+        window.addEventListener('resize', () => {
+            updateV3Indicator();
+            updateV5Indicator();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - Анимации этапов (по смыслу)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-section: #0d0d14;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --accent-blue: #3b82f6;
+            --text-white: #ffffff;
+            --text-gray: rgba(255, 255, 255, 0.6);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 60px;
+            font-size: 16px;
+        }
+
+        .demo-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg-section);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 40px;
+        }
+
+        /* Demo Step */
+        .demo-step {
+            display: grid;
+            grid-template-columns: 60px 1fr 120px;
+            align-items: center;
+            gap: 25px;
+            padding: 30px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 16px;
+            margin-bottom: 5px;
+        }
+
+        .demo-step:last-child {
+            border-bottom: none;
+        }
+
+        .demo-step:hover {
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        .step-number {
+            font-size: 32px;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-white);
+        }
+
+        .step-info {
+            text-align: left;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-white);
+            margin-bottom: 6px;
+        }
+
+        .step-desc {
+            font-size: 15px;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        /* Animation Container */
+        .step-animation {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* ========================================
+           01 - ЦЕЛЬ ПРОЕКТА (Target/Bullseye)
+        ======================================== */
+        .anim-target {
+            width: 70px;
+            height: 70px;
+            position: relative;
+        }
+
+        .target-ring {
+            position: absolute;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.4s ease;
+        }
+
+        .target-ring-1 { width: 70px; height: 70px; }
+        .target-ring-2 { width: 50px; height: 50px; }
+        .target-ring-3 { width: 30px; height: 30px; }
+
+        .target-center {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.3;
+            transition: all 0.4s ease;
+        }
+
+        .target-arrow {
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-pink));
+            top: 50%;
+            right: 50%;
+            transform: translateY(-50%) rotate(-45deg);
+            transform-origin: right center;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .target-arrow::after {
+            content: '';
+            position: absolute;
+            right: -2px;
+            top: -4px;
+            border: 5px solid transparent;
+            border-left: 8px solid var(--accent-pink);
+            transform: rotate(0deg);
+        }
+
+        .demo-step:hover .target-ring {
+            border-color: var(--accent-purple);
+        }
+
+        .demo-step:hover .target-ring-1 { animation: targetPulse 1.5s ease-out infinite; }
+        .demo-step:hover .target-ring-2 { animation: targetPulse 1.5s ease-out infinite 0.2s; }
+        .demo-step:hover .target-ring-3 { animation: targetPulse 1.5s ease-out infinite 0.4s; }
+
+        .demo-step:hover .target-center {
+            opacity: 1;
+            box-shadow: 0 0 20px var(--accent-pink);
+        }
+
+        .demo-step:hover .target-arrow {
+            opacity: 1;
+            animation: arrowHit 0.6s ease-out forwards;
+        }
+
+        @keyframes targetPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.5; }
+        }
+
+        @keyframes arrowHit {
+            0% { right: 100%; }
+            100% { right: 50%; }
+        }
+
+        /* ========================================
+           02 - АНАЛИЗ КОНКУРЕНТОВ (Chart/Bars)
+        ======================================== */
+        .anim-chart {
+            width: 70px;
+            height: 60px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .chart-bar {
+            width: 14px;
+            background: linear-gradient(180deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 4px 4px 0 0;
+            opacity: 0.3;
+            transition: all 0.4s ease;
+        }
+
+        .chart-bar-1 { height: 25px; }
+        .chart-bar-2 { height: 40px; }
+        .chart-bar-3 { height: 55px; }
+        .chart-bar-4 { height: 35px; }
+
+        .demo-step:hover .chart-bar {
+            opacity: 1;
+        }
+
+        .demo-step:hover .chart-bar-1 { animation: barGrow 0.6s ease-out forwards; }
+        .demo-step:hover .chart-bar-2 { animation: barGrow 0.6s ease-out 0.1s forwards; }
+        .demo-step:hover .chart-bar-3 { animation: barGrow 0.6s ease-out 0.2s forwards; }
+        .demo-step:hover .chart-bar-4 { animation: barGrow 0.6s ease-out 0.3s forwards; }
+
+        @keyframes barGrow {
+            0% { transform: scaleY(0); transform-origin: bottom; }
+            100% { transform: scaleY(1); transform-origin: bottom; box-shadow: 0 0 15px rgba(139, 92, 246, 0.5); }
+        }
+
+        /* ========================================
+           03 - ЗАПОЛНЕНИЕ БРИФА (Checklist)
+        ======================================== */
+        .anim-brief {
+            width: 60px;
+            height: 70px;
+            position: relative;
+        }
+
+        .brief-doc {
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 8px;
+            padding: 10px 8px;
+            transition: all 0.4s ease;
+        }
+
+        .brief-line {
+            height: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            margin-bottom: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brief-line::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+            transition: width 0.4s ease;
+        }
+
+        .demo-step:hover .brief-doc {
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+        }
+
+        .demo-step:hover .brief-line-1::after { width: 100%; transition-delay: 0.1s; }
+        .demo-step:hover .brief-line-2::after { width: 80%; transition-delay: 0.2s; }
+        .demo-step:hover .brief-line-3::after { width: 100%; transition-delay: 0.3s; }
+        .demo-step:hover .brief-line-4::after { width: 60%; transition-delay: 0.4s; }
+        .demo-step:hover .brief-line-5::after { width: 90%; transition-delay: 0.5s; }
+
+        /* ========================================
+           04 - СОГЛАСОВАНИЕ ФУНКЦИОНАЛА (Gears)
+        ======================================== */
+        .anim-gears {
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+
+        .gear {
+            position: absolute;
+            border: 3px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+        }
+
+        .gear::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30%;
+            height: 30%;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 50%;
+            opacity: 0.3;
+            transition: opacity 0.4s ease;
+        }
+
+        .gear-1 {
+            width: 45px;
+            height: 45px;
+            top: 5px;
+            left: 5px;
+        }
+
+        .gear-2 {
+            width: 35px;
+            height: 35px;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .gear-teeth {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(139, 92, 246, 0.3);
+            border-radius: 2px;
+            transition: background 0.4s ease;
+        }
+
+        .demo-step:hover .gear {
+            border-color: var(--accent-purple);
+        }
+
+        .demo-step:hover .gear::before {
+            opacity: 1;
+        }
+
+        .demo-step:hover .gear-1 {
+            animation: rotateCW 3s linear infinite;
+        }
+
+        .demo-step:hover .gear-2 {
+            animation: rotateCCW 2s linear infinite;
+        }
+
+        @keyframes rotateCW {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rotateCCW {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+        }
+
+        /* ========================================
+           05 - РАЗРАБОТКА (Code Brackets)
+        ======================================== */
+        .anim-code {
+            width: 80px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 28px;
+            font-weight: 300;
+        }
+
+        .code-bracket {
+            color: rgba(139, 92, 246, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .code-slash {
+            width: 2px;
+            height: 30px;
+            background: rgba(236, 72, 153, 0.3);
+            transform: rotate(15deg);
+            transition: all 0.4s ease;
+        }
+
+        .demo-step:hover .code-bracket {
+            color: var(--accent-purple);
+            text-shadow: 0 0 20px var(--accent-purple);
+        }
+
+        .demo-step:hover .code-bracket-left {
+            animation: bracketLeft 0.5s ease-out forwards;
+        }
+
+        .demo-step:hover .code-bracket-right {
+            animation: bracketRight 0.5s ease-out forwards;
+        }
+
+        .demo-step:hover .code-slash {
+            background: var(--accent-pink);
+            box-shadow: 0 0 15px var(--accent-pink);
+            animation: slashPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes bracketLeft {
+            0% { transform: translateX(10px); opacity: 0.3; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes bracketRight {
+            0% { transform: translateX(-10px); opacity: 0.3; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slashPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* ========================================
+           06 - ТЕСТИРОВАНИЕ (Checkmark)
+        ======================================== */
+        .anim-check {
+            width: 70px;
+            height: 70px;
+            position: relative;
+        }
+
+        .check-circle {
+            width: 100%;
+            height: 100%;
+            border: 3px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+        }
+
+        .check-mark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 20px;
+        }
+
+        .check-mark::before,
+        .check-mark::after {
+            content: '';
+            position: absolute;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 2px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .check-mark::before {
+            width: 3px;
+            height: 12px;
+            bottom: 0;
+            left: 5px;
+            transform: rotate(-45deg);
+            transform-origin: bottom left;
+        }
+
+        .check-mark::after {
+            width: 3px;
+            height: 22px;
+            bottom: 0;
+            left: 12px;
+            transform: rotate(45deg);
+            transform-origin: bottom left;
+        }
+
+        .demo-step:hover .check-circle {
+            border-color: #10b981;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .demo-step:hover .check-mark::before {
+            opacity: 1;
+            animation: checkShort 0.3s ease-out 0.2s forwards;
+        }
+
+        .demo-step:hover .check-mark::after {
+            opacity: 1;
+            animation: checkLong 0.3s ease-out 0.4s forwards;
+        }
+
+        @keyframes checkShort {
+            0% { height: 0; }
+            100% { height: 12px; }
+        }
+
+        @keyframes checkLong {
+            0% { height: 0; }
+            100% { height: 22px; }
+        }
+
+        /* ========================================
+           07 - ПАСПОРТ ПРОЕКТА (Folder/Document)
+        ======================================== */
+        .anim-passport {
+            width: 70px;
+            height: 60px;
+            position: relative;
+        }
+
+        .passport-folder {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .passport-back {
+            position: absolute;
+            width: 100%;
+            height: 90%;
+            bottom: 0;
+            background: rgba(139, 92, 246, 0.2);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 0 8px 8px 8px;
+            transition: all 0.4s ease;
+        }
+
+        .passport-tab {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 35%;
+            height: 15px;
+            background: rgba(139, 92, 246, 0.2);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-bottom: none;
+            border-radius: 6px 6px 0 0;
+            transition: all 0.4s ease;
+        }
+
+        .passport-doc {
+            position: absolute;
+            width: 50px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .passport-doc::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 6px;
+            right: 6px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 6px 0 rgba(255, 255, 255, 0.3), 0 12px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .demo-step:hover .passport-back,
+        .demo-step:hover .passport-tab {
+            border-color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.3);
+        }
+
+        .demo-step:hover .passport-doc {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        .demo-step:hover .passport-folder {
+            animation: folderGlow 1.5s ease-in-out infinite;
+        }
+
+        @keyframes folderGlow {
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(139, 92, 246, 0.3)); }
+            50% { filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.6)); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Анимации этапов (по смыслу)</h1>
+    <p class="subtitle">Каждая анимация отображает суть этапа. Наведите мышку для просмотра.</p>
+
+    <div class="demo-container">
+        <!-- Step 1: Цель проекта -->
+        <div class="demo-step">
+            <div class="step-number">01</div>
+            <div class="step-info">
+                <div class="step-title">Цель проекта</div>
+                <div class="step-desc">Определяем тип сайта и бизнес-задачи</div>
+            </div>
+            <div class="step-animation">
+                <div class="anim-target">
+                    <div class="target-ring target-ring-1"></div>
+                    <div class="target-ring target-ring-2"></div>
+                    <div class="target-ring target-ring-3"></div>
+                    <div class="target-center"></div>
+                    <div class="target-arrow"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Анализ конкурентов -->
+        <div class="demo-step">
+            <div class="step-number">02</div>
+            <div class="step-info">
+                <div class="step-title">Анализ конкурентов</div>
+                <div class="step-desc">Исследуем рынок, слабые и сильные стороны</div>
+            </div>
+            <div class="step-animation">
+                <div class="anim-chart">
+                    <div class="chart-bar chart-bar-1"></div>
+                    <div class="chart-bar chart-bar-2"></div>
+                    <div class="chart-bar chart-bar-3"></div>
+                    <div class="chart-bar chart-bar-4"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Заполнение брифа -->
+        <div class="demo-step">
+            <div class="step-number">03</div>
+            <div class="step-info">
+                <div class="step-title">Заполнение брифа</div>
+                <div class="step-desc">Фиксируем структуру и собираем материалы</div>
+            </div>
+            <div class="step-animation">
+                <div class="anim-brief">
+                    <div class="brief-doc">
+                        <div class="brief-line brief-line-1"></div>
+                        <div class="brief-line brief-line-2"></div>
+                        <div class="brief-line brief-line-3"></div>
+                        <div class="brief-line brief-line-4"></div>
+                        <div class="brief-line brief-line-5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Согласование функционала -->
+        <div class="demo-step">
+            <div class="step-number">04</div>
+            <div class="step-info">
+                <div class="step-title">Согласование функционала</div>
+                <div class="step-desc">Определяем интеграции и функции</div>
+            </div>
+            <div class="step-animation">
+                <div class="anim-gears">
+                    <div class="gear gear-1"></div>
+                    <div class="gear gear-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5: Разработка -->
+        <div class="demo-step">
+            <div class="step-number">05</div>
+            <div class="step-info">
+                <div class="step-title">Разработка</div>
+                <div class="step-desc">Вёрстка, программирование, контент</div>
+            </div>
+            <div class="step-animation">
+                <div class="anim-code">
+                    <span class="code-bracket code-bracket-left">&lt;</span>
+                    <div class="code-slash"></div>
+                    <span class="code-bracket code-bracket-right">&gt;</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 6: Тестирование и сдача -->
+        <div class="demo-step">
+            <div class="step-number">06</div>
+            <div class="step-info">
+                <div class="step-title">Тестирование и сдача</div>
+                <div class="step-desc">Проверка и приёмка заказчиком</div>
+            </div>
+            <div class="step-animation">
+                <div class="anim-check">
+                    <div class="check-circle"></div>
+                    <div class="check-mark"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 7: Паспорт проекта -->
+        <div class="demo-step">
+            <div class="step-number">07</div>
+            <div class="step-info">
+                <div class="step-title">Паспорт проекта</div>
+                <div class="step-desc">Доступы, документация, инструкция</div>
+            </div>
+            <div class="step-animation">
+                <div class="anim-passport">
+                    <div class="passport-folder">
+                        <div class="passport-tab"></div>
+                        <div class="passport-back"></div>
+                        <div class="passport-doc"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
