@@ -127,38 +127,6 @@ function initScrollAnimations() {
         duration: 1
     });
 
-    gsap.from('.about .btn-outline-light', {
-        scrollTrigger: {
-            trigger: '.about',
-            start: 'top 50%'
-        },
-        y: 20,
-        opacity: 0,
-        duration: 0.8
-    });
-
-    // Background text parallax
-    gsap.to('.about-bg-text', {
-        scrollTrigger: {
-            trigger: '.about',
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1
-        },
-        x: 100,
-        ease: 'none'
-    });
-
-    // Page indicator animation
-    gsap.from('.page-indicator', {
-        scrollTrigger: {
-            trigger: '.about',
-            start: 'top 60%'
-        },
-        x: 50,
-        opacity: 0,
-        duration: 1
-    });
 
     // Services section
     gsap.from('.services .section-header', {
@@ -205,7 +173,7 @@ function initScrollAnimations() {
     });
 
     // Process section
-    gsap.from('.process .section-header', {
+    gsap.from('.process-header', {
         scrollTrigger: {
             trigger: '.process',
             start: 'top 80%'
@@ -215,16 +183,6 @@ function initScrollAnimations() {
         duration: 1
     });
 
-    gsap.from('.process-step', {
-        scrollTrigger: {
-            trigger: '.process-timeline',
-            start: 'top 80%'
-        },
-        x: -50,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2
-    });
 
     // Contact section
     gsap.from('.contact-info', {
@@ -412,29 +370,47 @@ function initFormSubmit() {
  */
 function initChat() {
     const chatToggle = document.getElementById('chat-toggle');
+    const chatFab = document.getElementById('chat-fab');
     const chatWidget = document.getElementById('chat-widget');
     const chatClose = document.getElementById('chat-close');
     const chatForm = document.getElementById('chat-form');
     const chatInput = document.getElementById('chat-input');
     const chatMessages = document.getElementById('chat-messages');
 
-    if (!chatToggle || !chatWidget) return;
+    if (!chatWidget) return;
 
-    // Toggle chat
-    chatToggle.addEventListener('click', () => {
+    // Function to open chat
+    function openChat() {
         chatWidget.classList.add('active');
-        chatInput.focus();
-    });
+        if (chatFab) chatFab.style.display = 'none';
+        if (chatInput) chatInput.focus();
+    }
 
-    // Close chat
-    chatClose.addEventListener('click', () => {
+    // Toggle chat from original button
+    if (chatToggle) {
+        chatToggle.addEventListener('click', openChat);
+    }
+
+    // Toggle chat from FAB button
+    if (chatFab) {
+        chatFab.addEventListener('click', openChat);
+    }
+
+    // Function to close chat
+    function closeChat() {
         chatWidget.classList.remove('active');
-    });
+        if (chatFab) chatFab.style.display = 'flex';
+    }
+
+    // Close chat button
+    if (chatClose) {
+        chatClose.addEventListener('click', closeChat);
+    }
 
     // Close on escape
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && chatWidget.classList.contains('active')) {
-            chatWidget.classList.remove('active');
+            closeChat();
         }
     });
 

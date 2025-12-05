@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - Иконки контактов</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-darker: #050508;
+            --text-white: #ffffff;
+            --text-gray: #6b6b7b;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 60px;
+        }
+
+        .variant {
+            margin-bottom: 80px;
+            padding: 40px;
+            background: var(--bg-darker);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .variant-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .variant-number {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .variant-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .variant-desc {
+            color: var(--text-gray);
+            font-size: 14px;
+            margin-left: auto;
+        }
+
+        .demo-row {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+        }
+
+        .demo-label {
+            color: var(--text-gray);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 120px;
+        }
+
+        .demo-icons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* ========================================
+           ВАРИАНТ 1: MINIMAL OUTLINE
+        ======================================== */
+        .v1-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-gray);
+        }
+
+        .v1-icon:hover {
+            border-color: var(--accent-purple);
+            color: var(--text-white);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .v1-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .v1-fab {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: var(--bg-darker);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-gray);
+            position: relative;
+        }
+
+        .v1-fab:hover {
+            border-color: var(--accent-purple);
+            color: var(--text-white);
+            transform: scale(1.05);
+        }
+
+        .v1-fab svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        /* ========================================
+           ВАРИАНТ 2: GRADIENT GLOW
+        ======================================== */
+        .v2-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(var(--bg-darker), var(--bg-darker)) padding-box,
+                        linear-gradient(135deg, var(--accent-purple), var(--accent-pink)) border-box;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-white);
+        }
+
+        .v2-icon:hover {
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
+            transform: scale(1.05);
+        }
+
+        .v2-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .v2-fab {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(var(--bg-darker), var(--bg-darker)) padding-box,
+                        linear-gradient(135deg, var(--accent-purple), var(--accent-pink)) border-box;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-white);
+            position: relative;
+            animation: v2pulse 2s ease-in-out infinite;
+        }
+
+        .v2-fab:hover {
+            animation: none;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+            transform: scale(1.1);
+        }
+
+        @keyframes v2pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(139, 92, 246, 0); }
+        }
+
+        .v2-fab svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* ========================================
+           ВАРИАНТ 3: GLASS MORPHISM
+        ======================================== */
+        .v3-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-gray);
+        }
+
+        .v3-icon:hover {
+            background: rgba(139, 92, 246, 0.15);
+            border-color: rgba(139, 92, 246, 0.3);
+            color: var(--text-white);
+            transform: translateY(-2px);
+        }
+
+        .v3-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .v3-fab {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: rgba(139, 92, 246, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-white);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .v3-fab:hover {
+            background: rgba(139, 92, 246, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.3);
+        }
+
+        .v3-fab svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* ========================================
+           ВАРИАНТ 4: PILL STYLE
+        ======================================== */
+        .v4-icon {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-gray);
+            font-size: 13px;
+        }
+
+        .v4-icon:hover {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.3);
+            color: var(--text-white);
+        }
+
+        .v4-icon svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .v4-fab {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--bg-darker);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--accent-purple);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5),
+                        0 2px 10px rgba(139, 92, 246, 0.2);
+        }
+
+        .v4-fab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6),
+                        0 5px 20px rgba(139, 92, 246, 0.4);
+            color: var(--text-white);
+        }
+
+        .v4-fab svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* ========================================
+           ВАРИАНТ 5: ICON ONLY ACCENT
+        ======================================== */
+        .v5-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-gray);
+            background: transparent;
+            border: none;
+        }
+
+        .v5-icon:hover {
+            color: var(--accent-purple);
+            transform: scale(1.15);
+        }
+
+        .v5-icon:hover svg {
+            filter: drop-shadow(0 0 8px var(--accent-purple));
+        }
+
+        .v5-icon svg {
+            width: 22px;
+            height: 22px;
+            transition: all 0.3s ease;
+        }
+
+        .v5-fab {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .v5-fab:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 8px 35px rgba(139, 92, 246, 0.6);
+        }
+
+        .v5-fab svg {
+            width: 26px;
+            height: 26px;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 6px 12px;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            font-size: 11px;
+            border-radius: 6px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            margin-bottom: 8px;
+        }
+
+        .tooltip:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Selection highlight */
+        .variant:hover {
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .fab-preview {
+            margin-left: auto;
+            padding-left: 40px;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Иконки контактов</h1>
+    <p class="subtitle">Выберите стиль для навигации (телефон + почта) и плавающей кнопки чата</p>
+
+    <!-- Вариант 1: Minimal Outline -->
+    <div class="variant">
+        <div class="variant-header">
+            <div class="variant-number">1</div>
+            <div class="variant-title">Minimal Outline</div>
+            <div class="variant-desc">Тонкая обводка, минималистичный стиль</div>
+        </div>
+        <div class="demo-row">
+            <div class="demo-label">Навигация</div>
+            <div class="demo-icons">
+                <a href="tel:+79001234567" class="v1-icon tooltip" data-tooltip="Позвонить">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                </a>
+                <a href="mailto:info@creatix.ru" class="v1-icon tooltip" data-tooltip="Написать">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="fab-preview">
+                <div class="demo-label" style="margin-bottom: 10px;">Плавающая кнопка</div>
+                <button class="v1-fab tooltip" data-tooltip="Открыть чат">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Вариант 2: Gradient Glow -->
+    <div class="variant">
+        <div class="variant-header">
+            <div class="variant-number">2</div>
+            <div class="variant-title">Gradient Glow</div>
+            <div class="variant-desc">Градиентная обводка + свечение при hover</div>
+        </div>
+        <div class="demo-row">
+            <div class="demo-label">Навигация</div>
+            <div class="demo-icons">
+                <a href="tel:+79001234567" class="v2-icon tooltip" data-tooltip="Позвонить">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                </a>
+                <a href="mailto:info@creatix.ru" class="v2-icon tooltip" data-tooltip="Написать">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="fab-preview">
+                <div class="demo-label" style="margin-bottom: 10px;">Плавающая кнопка</div>
+                <button class="v2-fab tooltip" data-tooltip="Открыть чат">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Вариант 3: Glass Morphism -->
+    <div class="variant">
+        <div class="variant-header">
+            <div class="variant-number">3</div>
+            <div class="variant-title">Glass Morphism</div>
+            <div class="variant-desc">Стеклянный эффект с blur</div>
+        </div>
+        <div class="demo-row">
+            <div class="demo-label">Навигация</div>
+            <div class="demo-icons">
+                <a href="tel:+79001234567" class="v3-icon tooltip" data-tooltip="Позвонить">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                </a>
+                <a href="mailto:info@creatix.ru" class="v3-icon tooltip" data-tooltip="Написать">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="fab-preview">
+                <div class="demo-label" style="margin-bottom: 10px;">Плавающая кнопка</div>
+                <button class="v3-fab tooltip" data-tooltip="Открыть чат">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Вариант 4: Pill Style -->
+    <div class="variant">
+        <div class="variant-header">
+            <div class="variant-number">4</div>
+            <div class="variant-title">Pill Style</div>
+            <div class="variant-desc">Иконка + текст в капсуле</div>
+        </div>
+        <div class="demo-row">
+            <div class="demo-label">Навигация</div>
+            <div class="demo-icons">
+                <a href="tel:+79001234567" class="v4-icon tooltip" data-tooltip="Позвонить">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    <span>+7 900 123-45-67</span>
+                </a>
+                <a href="mailto:info@creatix.ru" class="v4-icon tooltip" data-tooltip="Написать">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    <span>info@creatix.ru</span>
+                </a>
+            </div>
+            <div class="fab-preview">
+                <div class="demo-label" style="margin-bottom: 10px;">Плавающая кнопка</div>
+                <button class="v4-fab tooltip" data-tooltip="Открыть чат">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Вариант 5: Icon Only Accent -->
+    <div class="variant">
+        <div class="variant-header">
+            <div class="variant-number">5</div>
+            <div class="variant-title">Icon Only Accent</div>
+            <div class="variant-desc">Только иконка + градиентная FAB</div>
+        </div>
+        <div class="demo-row">
+            <div class="demo-label">Навигация</div>
+            <div class="demo-icons">
+                <a href="tel:+79001234567" class="v5-icon tooltip" data-tooltip="Позвонить">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                </a>
+                <a href="mailto:info@creatix.ru" class="v5-icon tooltip" data-tooltip="Написать">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="fab-preview">
+                <div class="demo-label" style="margin-bottom: 10px;">Плавающая кнопка</div>
+                <button class="v5-fab tooltip" data-tooltip="Открыть чат">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
