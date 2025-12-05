@@ -10,7 +10,11 @@ class OrganicBlobs {
         this.renderer = null;
         this.blobs = [];
         this.mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+        this.mouseVelocity = { x: 0, y: 0 };  // Для эффекта пинания
+        this.lastMouse = { x: 0, y: 0 };
         this.time = 0;
+        this.scrollY = 0;
+        this.targetScrollY = 0;  // Для плавного скролла
 
         this.init();
     }
@@ -34,9 +38,9 @@ class OrganicBlobs {
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        // Create organic flame-like blobs
-        this.createTopFlameBlob();
-        this.createBottomFlameBlob();
+        // Create organic flame-like blobs that flow down the page
+        this.createMainBlob();      // Основной справа
+        this.createSecondBlob();    // Вторичный слева
 
         this.addLights();
 
@@ -233,9 +237,9 @@ class OrganicBlobs {
         `;
     }
 
-    createTopFlameBlob() {
-        // Use higher subdivision for smoother deformation
-        const geometry = new THREE.IcosahedronGeometry(2.0, 128);
+    createMainBlob() {
+        // Основной блоб справа вверху
+        const geometry = new THREE.IcosahedronGeometry(2.2, 128);
 
         const material = new THREE.ShaderMaterial({
             vertexShader: this.getVertexShader(),
@@ -250,21 +254,21 @@ class OrganicBlobs {
         });
 
         const blob = new THREE.Mesh(geometry, material);
-        blob.position.set(3.2, 0.5, -1.2);
+        blob.position.set(3.0, 0.8, -1.2);
         blob.rotation.set(0.5, 0.4, -0.3);
-        blob.scale.set(1.0, 1.5, 0.85);
+        blob.scale.set(1.0, 1.6, 0.85);
 
         this.scene.add(blob);
         this.blobs.push({
             mesh: blob,
-            basePos: { x: 3.2, y: 0.5, z: -1.2 },
+            basePos: { x: 3.0, y: 0.8, z: -1.2 },
             baseRot: { x: 0.5, y: 0.4, z: -0.3 },
-            speed: 1,
-            section: 'hero'
+            speed: 1
         });
     }
 
-    createBottomFlameBlob() {
+    createSecondBlob() {
+        // Второй блоб слева внизу - ближе к первому
         const geometry = new THREE.IcosahedronGeometry(2.5, 128);
 
         const material = new THREE.ShaderMaterial({
@@ -280,17 +284,16 @@ class OrganicBlobs {
         });
 
         const blob = new THREE.Mesh(geometry, material);
-        blob.position.set(-3.5, -5.0, -1.5);
+        blob.position.set(-3.0, -2.5, -1.5);
         blob.rotation.set(0.2, -0.5, 0.4);
-        blob.scale.set(0.9, 1.8, 0.8);
+        blob.scale.set(0.95, 1.8, 0.8);
 
         this.scene.add(blob);
         this.blobs.push({
             mesh: blob,
-            basePos: { x: -3.5, y: -5.0, z: -1.5 },
+            basePos: { x: -3.0, y: -2.5, z: -1.5 },
             baseRot: { x: 0.2, y: -0.5, z: 0.4 },
-            speed: 0.9,
-            section: 'about'
+            speed: 0.9
         });
     }
 
@@ -321,24 +324,19 @@ class OrganicBlobs {
     }
 
     onMouseMove(event) {
-        this.mouse.targetX = (event.clientX / window.innerWidth) * 2 - 1;
-        this.mouse.targetY = -(event.clientY / window.innerHeight) * 2 + 1;
+        const newX = (event.clientX / window.innerWidth) * 2 - 1;
+        const newY = -(event.clientY / window.innerHeight) * 2 + 1;
+
+        // Расчет скорости мыши для эффекта "пинания"
+        this.mouseVelocity.x = (newX - this.mouse.targetX) * 15;
+        this.mouseVelocity.y = (newY - this.mouse.targetY) * 15;
+
+        this.mouse.targetX = newX;
+        this.mouse.targetY = newY;
     }
 
     onScroll() {
-        const scrollY = window.scrollY;
-        const windowHeight = window.innerHeight;
-
-        // Move blobs based on scroll
-        this.blobs.forEach(blob => {
-            if (blob.section === 'hero') {
-                blob.mesh.position.y = blob.basePos.y - scrollY * 0.002;
-            } else if (blob.section === 'about') {
-                const aboutOffset = windowHeight;
-                const relativeScroll = Math.max(0, scrollY - aboutOffset * 0.5);
-                blob.mesh.position.y = blob.basePos.y + relativeScroll * 0.001;
-            }
-        });
+        this.targetScrollY = window.scrollY;
     }
 
     animate() {
@@ -346,34 +344,39 @@ class OrganicBlobs {
 
         this.time += 0.016;
 
-        // Smooth mouse following
-        this.mouse.x += (this.mouse.targetX - this.mouse.x) * 0.05;
-        this.mouse.y += (this.mouse.targetY - this.mouse.y) * 0.05;
+        // Плавный скролл
+        this.scrollY += (this.targetScrollY - this.scrollY) * 0.05;
 
-        // Update blobs
+        // Smooth mouse following (без пинания)
+        this.mouse.x += (this.mouse.targetX - this.mouse.x) * 0.03;
+        this.mouse.y += (this.mouse.targetY - this.mouse.y) * 0.03;
+
+        // Update blobs - эффект "перетекания как в воде"
         this.blobs.forEach((blob, index) => {
             const uniforms = blob.mesh.material.uniforms;
 
             uniforms.uTime.value = this.time * blob.speed;
             uniforms.uMouse.value.set(this.mouse.x, this.mouse.y);
 
-            // Organic floating animation
-            const floatX = Math.sin(this.time * 0.3 + index * 1.5) * 0.08;
-            const floatY = Math.cos(this.time * 0.25 + index * 1.2) * 0.06;
-            const floatZ = Math.sin(this.time * 0.2 + index) * 0.04;
+            // Плавная органическая анимация
+            const floatX = Math.sin(this.time * 0.25 + index * 1.5) * 0.15;
+            const floatY = Math.cos(this.time * 0.2 + index * 1.2) * 0.1;
+            const floatZ = Math.sin(this.time * 0.15 + index) * 0.05;
 
-            blob.mesh.position.x = blob.basePos.x + floatX + this.mouse.x * 0.1;
+            // Эффект "волны" при скролле - блобы плывут как в воде
+            const wavePhase = this.scrollY * 0.003 + index * Math.PI;
+            const waveX = Math.sin(wavePhase) * 0.8;  // Волна по X
+            const waveY = Math.cos(wavePhase * 0.5) * 0.4;  // Волна по Y
+
+            // Финальные позиции - блобы "перетекают" при скролле
+            blob.mesh.position.x = blob.basePos.x + floatX + waveX + this.mouse.x * 0.15;
+            blob.mesh.position.y = blob.basePos.y + floatY + waveY + this.mouse.y * 0.1;
             blob.mesh.position.z = blob.basePos.z + floatZ;
 
-            // Keep Y position updated with scroll-based position
-            if (blob.section === 'hero') {
-                blob.mesh.position.y += floatY;
-            }
-
-            // Gentle rotation
-            blob.mesh.rotation.x = blob.baseRot.x + Math.sin(this.time * 0.15) * 0.1 + this.mouse.y * 0.05;
-            blob.mesh.rotation.y = blob.baseRot.y + this.time * 0.05 + this.mouse.x * 0.05;
-            blob.mesh.rotation.z = blob.baseRot.z + Math.cos(this.time * 0.1) * 0.05;
+            // Плавное вращение
+            blob.mesh.rotation.x = blob.baseRot.x + Math.sin(this.time * 0.1) * 0.08;
+            blob.mesh.rotation.y = blob.baseRot.y + this.time * 0.03;
+            blob.mesh.rotation.z = blob.baseRot.z + Math.cos(this.time * 0.08) * 0.04;
         });
 
         this.renderer.render(this.scene, this.camera);

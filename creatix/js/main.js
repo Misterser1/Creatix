@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initStatsCounter();
     initFormSubmit();
+    initChat();
+    initDnaHelix();
 });
 
 /**
@@ -60,11 +62,6 @@ function initHeroAnimations() {
         opacity: 0,
         duration: 0.8
     }, '-=0.6')
-    .from('.hero-social', {
-        y: 20,
-        opacity: 0,
-        duration: 0.8
-    }, '-=0.5')
     .from('.scroll-indicator', {
         y: 20,
         opacity: 0,
@@ -404,6 +401,102 @@ function initFormSubmit() {
                     btn.disabled = false;
                 }, 3000);
             }, 1500);
+        });
+    }
+}
+
+/**
+ * Chat widget functionality
+ */
+function initChat() {
+    const chatToggle = document.getElementById('chat-toggle');
+    const chatWidget = document.getElementById('chat-widget');
+    const chatClose = document.getElementById('chat-close');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const chatMessages = document.getElementById('chat-messages');
+
+    if (!chatToggle || !chatWidget) return;
+
+    // Toggle chat
+    chatToggle.addEventListener('click', () => {
+        chatWidget.classList.add('active');
+        chatInput.focus();
+    });
+
+    // Close chat
+    chatClose.addEventListener('click', () => {
+        chatWidget.classList.remove('active');
+    });
+
+    // Close on escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && chatWidget.classList.contains('active')) {
+            chatWidget.classList.remove('active');
+        }
+    });
+
+    // Send message
+    chatForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const message = chatInput.value.trim();
+
+        if (!message) return;
+
+        // Add user message
+        addMessage(message, 'user');
+        chatInput.value = '';
+
+        // Simulate bot response
+        setTimeout(() => {
+            addMessage('Спасибо за сообщение! Мы свяжемся с вами в ближайшее время.', 'bot');
+        }, 1000);
+    });
+
+    function addMessage(text, type) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `chat-message ${type}`;
+        messageDiv.innerHTML = `<p>${text}</p>`;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+}
+
+/**
+ * DNA Helix animation
+ */
+function initDnaHelix() {
+    const container = document.getElementById('dna-helix');
+    if (!container) return;
+
+    const numPairs = 14;
+
+    for (let i = 0; i < numPairs; i++) {
+        const pair = document.createElement('div');
+        pair.className = 'dna-pair';
+        pair.style.top = `${(i / numPairs) * 100}%`;
+        pair.style.transform = `rotateY(${i * 25}deg)`;
+
+        pair.innerHTML = `
+            <div class="dna-node"></div>
+            <div class="dna-line"></div>
+            <div class="dna-node right"></div>
+        `;
+
+        container.appendChild(pair);
+    }
+
+    // Add scroll-triggered animation
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.from('.dna-container', {
+            scrollTrigger: {
+                trigger: '.about',
+                start: 'top 80%'
+            },
+            scale: 0,
+            opacity: 0,
+            duration: 1.2,
+            ease: 'back.out(1.7)'
         });
     }
 }

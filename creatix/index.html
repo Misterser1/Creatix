@@ -88,11 +88,11 @@
                         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                     </svg>
                 </a>
-            </div>
-            <div class="hero-social">
-                <a href="#" class="social-link">VK</a>
-                <a href="#" class="social-link">TG</a>
-                <a href="#" class="social-link">WA</a>
+                <button class="btn-round" id="chat-toggle" title="Написать нам">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
             </div>
         </div>
 
@@ -143,6 +143,11 @@
     <section id="about" class="about">
         <!-- Large background text -->
         <div class="about-bg-text">О НАС</div>
+
+        <!-- DNA Helix Animation -->
+        <div class="dna-container">
+            <div class="dna-helix" id="dna-helix"></div>
+        </div>
 
         <div class="about-content">
             <div class="about-label">КТО МЫ</div>
@@ -530,6 +535,39 @@
             </div>
         </div>
     </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chat-widget">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-avatar">
+                    <span class="logo-icon">◆</span>
+                </div>
+                <div class="chat-header-text">
+                    <span class="chat-title">Creatix</span>
+                    <span class="chat-status">Онлайн</span>
+                </div>
+            </div>
+            <button class="chat-close" id="chat-close">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="chat-message bot">
+                <p>Привет! Чем можем помочь?</p>
+            </div>
+        </div>
+        <form class="chat-input-form" id="chat-form">
+            <input type="text" class="chat-input" id="chat-input" placeholder="Введите сообщение..." autocomplete="off">
+            <button type="submit" class="chat-send">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                </svg>
+            </button>
+        </form>
+    </div>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
