@@ -2337,6 +2337,15 @@ body::before {
     .footer-links {
         grid-template-columns: repeat(3, 1fr);
     }
+
+    /* Energy Flow Animation - Tablet */
+    .process-step.energy-active {
+        background: rgba(59, 130, 246, 0.06);
+    }
+
+    .process-step.energy-active .step-number {
+        font-size: 32px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -2401,6 +2410,21 @@ body::before {
         height: 54px;
         bottom: 20px;
         right: 20px;
+    }
+
+    /* Energy Flow Animation - Mobile */
+    .process-step.energy-active {
+        background: rgba(59, 130, 246, 0.1);
+        border-left: 3px solid var(--accent-blue);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+    }
+
+    .process-step.energy-active .step-number {
+        font-size: 24px;
+    }
+
+    .process-step.energy-active + .process-step::before {
+        display: none;
     }
 }
 
@@ -2587,5 +2611,58 @@ body::before {
         right: 15px;
         bottom: 15px;
         max-height: 70vh;
+    }
+
+    /* Process section - small screens */
+    .process {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .process-step {
+        padding: 20px 15px;
+        margin: 0 -10px;
+    }
+
+    .step-number {
+        font-size: 24px;
+    }
+
+    .step-title {
+        font-size: 16px;
+    }
+
+    .step-desc {
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    /* Process tabs - small screens */
+    .process-tabs {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .process-tab {
+        padding: 10px 16px;
+        font-size: 11px;
+    }
+
+    /* Hero - small screens */
+    .hero {
+        padding: 100px 20px 60px;
+    }
+
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    /* Nav contacts - hide on very small */
+    .nav-contacts {
+        display: none;
     }
 }
