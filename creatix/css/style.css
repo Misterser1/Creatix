@@ -1341,6 +1341,85 @@ body::before {
     color: rgba(255, 255, 255, 0.75);
 }
 
+/* ========================================
+   NEON CHARGE - Energy Flow Animation
+   Энергия перетекает от этапа к этапу при скролле
+======================================== */
+.process-step {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.process-step.energy-active {
+    background: rgba(59, 130, 246, 0.08);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow:
+        inset 0 0 30px rgba(59, 130, 246, 0.1),
+        0 0 20px rgba(59, 130, 246, 0.15);
+}
+
+.process-step.energy-active .step-number {
+    color: var(--accent-blue);
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+    animation: neonPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neonPulse {
+    from {
+        text-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+    }
+    to {
+        text-shadow: 0 0 30px rgba(59, 130, 246, 1), 0 0 50px rgba(59, 130, 246, 0.5);
+    }
+}
+
+.process-step.energy-active .step-line {
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.process-step.energy-active .step-line::after {
+    background: var(--accent-cyan);
+    box-shadow: 0 0 15px var(--accent-cyan), 0 0 30px rgba(6, 182, 212, 0.5);
+    animation: dotPulse 1s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+    0%, 100% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-50%) scale(1.3); }
+}
+
+.process-step.energy-active .step-title {
+    color: var(--accent-blue);
+    text-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+}
+
+.process-step.energy-active .step-desc {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Energy connector between steps */
+.process-step.energy-active + .process-step::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 30px;
+    width: 3px;
+    height: 15px;
+    background: linear-gradient(180deg, var(--accent-blue), transparent);
+    animation: energyFlow 0.5s ease-out;
+}
+
+@keyframes energyFlow {
+    from {
+        height: 0;
+        opacity: 0;
+    }
+    to {
+        height: 15px;
+        opacity: 1;
+    }
+}
+
 /* Step Animation Container */
 .step-animation {
     width: 100px;

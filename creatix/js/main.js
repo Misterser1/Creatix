@@ -183,6 +183,8 @@ function initScrollAnimations() {
         duration: 1
     });
 
+    // Energy Flow Animation - активирует этапы при скролле
+    initEnergyFlow();
 
     // Contact section
     gsap.from('.contact-info', {
@@ -214,6 +216,63 @@ function initScrollAnimations() {
         y: 30,
         opacity: 0,
         duration: 1
+    });
+}
+
+/**
+ * Energy Flow Animation
+ * Энергия перетекает от этапа к этапу при скролле (Neon Charge style)
+ */
+function initEnergyFlow() {
+    // Получаем все активные панели с шагами
+    const processSteps = document.querySelectorAll('.process-panel.active .process-step');
+
+    if (processSteps.length === 0) return;
+
+    // Создаём ScrollTrigger для каждого шага
+    processSteps.forEach((step, index) => {
+        ScrollTrigger.create({
+            trigger: step,
+            start: 'top 70%',
+            end: 'bottom 30%',
+            onEnter: () => {
+                // Убираем класс с предыдущих шагов только если это первый шаг
+                // или оставляем их активными для эффекта "заряженности"
+                step.classList.add('energy-active');
+            },
+            onLeave: () => {
+                // Оставляем активным при выходе вверх
+            },
+            onEnterBack: () => {
+                step.classList.add('energy-active');
+            },
+            onLeaveBack: () => {
+                // Убираем класс когда скроллим назад выше этапа
+                step.classList.remove('energy-active');
+            }
+        });
+    });
+
+    // Отслеживаем смену табов и переинициализируем
+    const tabs = document.querySelectorAll('.process-tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Небольшая задержка для смены панели
+            setTimeout(() => {
+                // Убираем все активные классы
+                document.querySelectorAll('.process-step.energy-active').forEach(s => {
+                    s.classList.remove('energy-active');
+                });
+                // Убиваем старые триггеры и создаём новые
+                ScrollTrigger.getAll().forEach(t => {
+                    if (t.trigger && t.trigger.classList && t.trigger.classList.contains('process-step')) {
+                        t.kill();
+                    }
+                });
+                // Переинициализируем для новой активной панели
+                initEnergyFlow();
+            }, 100);
+        });
     });
 }
 
