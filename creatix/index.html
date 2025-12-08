@@ -21,9 +21,9 @@
             <ul class="nav-links">
                 <li><a href="#home" class="nav-link active">Главная</a></li>
                 <li><a href="#about" class="nav-link">О нас</a></li>
-                <li><a href="#services" class="nav-link">Услуги</a></li>
-                <li><a href="#portfolio" class="nav-link">Портфолио</a></li>
                 <li><a href="#process" class="nav-link">Процесс</a></li>
+                <li><a href="#services" class="nav-link">Как это работает</a></li>
+                <li><a href="#portfolio" class="nav-link">Портфолио</a></li>
                 <li><a href="#contact" class="nav-link">Контакты</a></li>
             </ul>
 
@@ -65,9 +65,9 @@
         <ul class="mobile-nav-links">
             <li><a href="#home" class="mobile-nav-link">Главная</a></li>
             <li><a href="#about" class="mobile-nav-link">О нас</a></li>
-            <li><a href="#services" class="mobile-nav-link">Услуги</a></li>
-            <li><a href="#portfolio" class="mobile-nav-link">Портфолио</a></li>
             <li><a href="#process" class="mobile-nav-link">Процесс</a></li>
+            <li><a href="#services" class="mobile-nav-link">Как это работает</a></li>
+            <li><a href="#portfolio" class="mobile-nav-link">Портфолио</a></li>
             <li><a href="#contact" class="mobile-nav-link">Контакты</a></li>
         </ul>
         <a href="#contact" class="btn-opticore mobile-cta">
@@ -246,9 +246,8 @@
             <div class="process-tabs-wrapper">
                 <div class="process-tabs" id="process-tabs">
                     <div class="process-tabs-indicator" id="tabs-indicator"></div>
-                    <button class="process-tab active" data-tab="sites">Сайты</button>
-                    <button class="process-tab" data-tab="apps">Приложения</button>
-                    <button class="process-tab" data-tab="ai">ИИ агенты</button>
+                    <button class="process-tab active" data-tab="ai">CRM/ERP/ИИ агенты</button>
+                    <button class="process-tab" data-tab="sites">Сайты</button>
                     <button class="process-tab" data-tab="consulting">Консалтинг</button>
                 </div>
             </div>
@@ -256,7 +255,7 @@
             <!-- Process Content -->
             <div class="process-content">
                 <!-- Sites -->
-                <div class="process-panel active" data-panel="sites">
+                <div class="process-panel" data-panel="sites">
                     <div class="process-steps">
                         <div class="process-step">
                             <div class="step-number">01</div>
@@ -373,62 +372,8 @@
                     </div>
                 </div>
 
-                <!-- Apps -->
-                <div class="process-panel" data-panel="apps">
-                    <div class="process-steps">
-                        <div class="process-step">
-                            <div class="step-number">01</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Анализ требований</h3>
-                                <p class="step-desc">Функционал, платформы, интеграции</p>
-                            </div>
-                        </div>
-                        <div class="process-step">
-                            <div class="step-number">02</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Проектирование</h3>
-                                <p class="step-desc">Архитектура, база данных, API</p>
-                            </div>
-                        </div>
-                        <div class="process-step">
-                            <div class="step-number">03</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">UX/UI дизайн</h3>
-                                <p class="step-desc">Прототипы, дизайн-система</p>
-                            </div>
-                        </div>
-                        <div class="process-step">
-                            <div class="step-number">04</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Разработка MVP</h3>
-                                <p class="step-desc">Базовый функционал для тестирования</p>
-                            </div>
-                        </div>
-                        <div class="process-step">
-                            <div class="step-number">05</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Тестирование</h3>
-                                <p class="step-desc">QA, бета-тест, исправление багов</p>
-                            </div>
-                        </div>
-                        <div class="process-step">
-                            <div class="step-number">06</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Релиз</h3>
-                                <p class="step-desc">Публикация, мониторинг, обновления</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- AI Agents -->
-                <div class="process-panel" data-panel="ai">
+                <div class="process-panel active" data-panel="ai">
                     <div class="process-steps">
                         <div class="process-step">
                             <div class="step-number">01</div>
@@ -533,93 +478,136 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
+    <!-- How It Works - CRM Demo Section -->
+    <section id="services" class="section crm-demo-section">
         <div class="container">
+            <!-- Header -->
             <div class="section-header">
-                <h2 class="section-title">Наши услуги</h2>
+                <div class="section-label">НАШИ РЕШЕНИЯ В ДЕЙСТВИИ</div>
+                <h2 class="section-title">Как это работает</h2>
+                <p class="section-desc">Попробуйте интерактивные демо наших систем</p>
             </div>
 
-            <div class="services-grid">
-                <!-- Service 1 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <rect x="2" y="3" width="20" height="14" rx="2"/>
-                            <path d="M8 21h8M12 17v4"/>
-                        </svg>
+            <!-- AI Sales System -->
+            <div id="panel-ai-system">
+                <div class="interface-window">
+                    <div class="interface-header">
+                        <div class="interface-dots">
+                            <div class="interface-dot red"></div>
+                            <div class="interface-dot yellow"></div>
+                            <div class="interface-dot green"></div>
+                        </div>
+                        <div class="interface-title">Creatix Sales AI — Автоматизация продаж</div>
                     </div>
-                    <h3 class="service-title">Сайты на заказ</h3>
-                    <p class="service-description">
-                        Лендинги, корпоративные сайты, интернет-магазины.
-                        Адаптивный дизайн, высокая скорость загрузки, SEO-оптимизация.
-                    </p>
-                    <div class="service-tags">
-                        <span>Landing Page</span>
-                        <span>E-commerce</span>
-                        <span>Corporate</span>
-                    </div>
-                </div>
+                    <div class="interface-body">
+                        <div class="sales-system">
+                            <!-- Sidebar -->
+                            <div class="sales-sidebar">
+                                <div class="sidebar-section">
+                                    <div class="sidebar-title">Автоматизация</div>
+                                    <button class="sidebar-btn active" onclick="showPipeline()">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                                        Воронка продаж
+                                        <span class="badge">12</span>
+                                    </button>
+                                    <button class="sidebar-btn" onclick="runDemo()">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                        Запустить демо
+                                    </button>
+                                </div>
+                                <div class="sidebar-section">
+                                    <div class="sidebar-title">ИИ Агенты</div>
+                                    <button class="sidebar-btn">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                        Email бот
+                                    </button>
+                                    <button class="sidebar-btn">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295l.213-3.053 5.56-5.023c.242-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.828.94z"/></svg>
+                                        Telegram бот
+                                    </button>
+                                    <button class="sidebar-btn">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                        Планировщик
+                                    </button>
+                                </div>
+                                <div class="sidebar-section">
+                                    <div class="sidebar-title">Аналитика</div>
+                                    <button class="sidebar-btn">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                        Отчёты
+                                    </button>
+                                </div>
+                            </div>
 
-                <!-- Service 2 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                            <circle cx="9" cy="7" r="4"/>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-                        </svg>
-                    </div>
-                    <h3 class="service-title">CRM системы</h3>
-                    <p class="service-description">
-                        Автоматизация продаж и работы с клиентами.
-                        Интеграция с телефонией, мессенджерами, email-рассылками.
-                    </p>
-                    <div class="service-tags">
-                        <span>Автоматизация</span>
-                        <span>Аналитика</span>
-                        <span>Интеграции</span>
-                    </div>
-                </div>
+                            <!-- Main -->
+                            <div class="sales-main">
+                                <!-- Demo Controls -->
+                                <div class="demo-controls">
+                                    <button class="demo-btn" id="demoBtn" onclick="runDemo()">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                        Запустить симуляцию
+                                    </button>
+                                    <div class="demo-status" id="demoStatus">Нажмите чтобы увидеть автоматизацию в действии</div>
+                                </div>
 
-                <!-- Service 3 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                            <path d="M2 17l10 5 10-5"/>
-                            <path d="M2 12l10 5 10-5"/>
-                        </svg>
-                    </div>
-                    <h3 class="service-title">ERP системы</h3>
-                    <p class="service-description">
-                        Управление ресурсами и процессами предприятия.
-                        Склад, производство, финансы, HR в единой системе.
-                    </p>
-                    <div class="service-tags">
-                        <span>Склад</span>
-                        <span>Производство</span>
-                        <span>Финансы</span>
-                    </div>
-                </div>
+                                <!-- Pipeline -->
+                                <div class="pipeline-container">
+                                    <div class="pipeline-header">
+                                        <div class="pipeline-title">Воронка продаж</div>
+                                        <div class="pipeline-stats">
+                                            <div class="pipeline-stat">Лидов: <span id="totalLeads">0</span></div>
+                                            <div class="pipeline-stat">Конверсия: <span id="conversion">0%</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="pipeline">
+                                        <div class="pipeline-stage" id="stage-new">
+                                            <div class="stage-header">
+                                                <div class="stage-name"><div class="stage-dot new"></div>Новые</div>
+                                                <div class="stage-count" id="count-new">0</div>
+                                            </div>
+                                            <div class="stage-cards" id="cards-new"></div>
+                                        </div>
+                                        <div class="pipeline-stage" id="stage-qualified">
+                                            <div class="stage-header">
+                                                <div class="stage-name"><div class="stage-dot qualified"></div>Квалификация</div>
+                                                <div class="stage-count" id="count-qualified">0</div>
+                                            </div>
+                                            <div class="stage-cards" id="cards-qualified"></div>
+                                        </div>
+                                        <div class="pipeline-stage" id="stage-proposal">
+                                            <div class="stage-header">
+                                                <div class="stage-name"><div class="stage-dot proposal"></div>Предложение</div>
+                                                <div class="stage-count" id="count-proposal">0</div>
+                                            </div>
+                                            <div class="stage-cards" id="cards-proposal"></div>
+                                        </div>
+                                        <div class="pipeline-stage" id="stage-negotiation">
+                                            <div class="stage-header">
+                                                <div class="stage-name"><div class="stage-dot negotiation"></div>Переговоры</div>
+                                                <div class="stage-count" id="count-negotiation">0</div>
+                                            </div>
+                                            <div class="stage-cards" id="cards-negotiation"></div>
+                                        </div>
+                                        <div class="pipeline-stage" id="stage-closed">
+                                            <div class="stage-header">
+                                                <div class="stage-name"><div class="stage-dot closed"></div>Закрыто</div>
+                                                <div class="stage-count" id="count-closed">0</div>
+                                            </div>
+                                            <div class="stage-cards" id="cards-closed"></div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                <!-- Service 4 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <rect x="5" y="2" width="14" height="20" rx="2"/>
-                            <path d="M12 18h.01"/>
-                        </svg>
-                    </div>
-                    <h3 class="service-title">Веб-приложения</h3>
-                    <p class="service-description">
-                        SaaS решения, личные кабинеты, порталы.
-                        Сложная бизнес-логика, высокие нагрузки, масштабирование.
-                    </p>
-                    <div class="service-tags">
-                        <span>SaaS</span>
-                        <span>API</span>
-                        <span>Порталы</span>
+                                <!-- Activity Log -->
+                                <div class="activity-log">
+                                    <div class="activity-title">
+                                        Лог активности ИИ
+                                        <span class="live" id="liveIndicator" style="display: none;">LIVE</span>
+                                    </div>
+                                    <div id="activityList"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -635,39 +623,28 @@
             </div>
 
             <div class="portfolio-grid">
-                <div class="portfolio-item large">
-                    <div class="portfolio-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
-                    <div class="portfolio-overlay">
-                        <span class="portfolio-category">Интернет-магазин</span>
-                        <h3 class="portfolio-title">E-commerce платформа</h3>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
-                    <div class="portfolio-overlay">
-                        <span class="portfolio-category">CRM система</span>
-                        <h3 class="portfolio-title">Sales Automation</h3>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
-                    <div class="portfolio-overlay">
-                        <span class="portfolio-category">Веб-приложение</span>
-                        <h3 class="portfolio-title">SaaS Dashboard</h3>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
-                    <div class="portfolio-overlay">
-                        <span class="portfolio-category">Корпоративный сайт</span>
-                        <h3 class="portfolio-title">Tech Company</h3>
-                    </div>
-                </div>
-                <div class="portfolio-item large">
-                    <div class="portfolio-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"></div>
+                <div class="portfolio-item large emerald-card">
+                    <div class="portfolio-image" style="background: url('images/portfolio/emrld.png') center/contain no-repeat;"></div>
                     <div class="portfolio-overlay">
                         <span class="portfolio-category">ERP система</span>
-                        <h3 class="portfolio-title">Manufacturing ERP</h3>
+                        <h3 class="portfolio-title">EMERALD</h3>
+                        <p class="portfolio-description">Комплексная ERP для мебельного производства. Модули: продажи, проекты, документооборот, производство, монтаж, финансовый учёт. ИИ-ассистент, автоматизация смет, контроль чертежей.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item aicreatix-card">
+                    <div class="portfolio-image" style="background: url('images/portfolio/AICREATIX.png') center/contain no-repeat;"></div>
+                    <div class="portfolio-overlay">
+                        <span class="portfolio-category">ИИ-сервис</span>
+                        <h3 class="portfolio-title">AICreatix</h3>
+                        <p class="portfolio-description">Генерация маркетинговых документов с ИИ. Презентации, брендинг, контент для соцсетей и маркетплейсов. Мгновенное редактирование и экспорт в PDF/DOC.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item large babylon-card">
+                    <div class="portfolio-image" style="background: url('images/portfolio/Babylon.png') center/contain no-repeat;"></div>
+                    <div class="portfolio-overlay">
+                        <span class="portfolio-category">Сайт + Админ-панель</span>
+                        <h3 class="portfolio-title">Babylon</h3>
+                        <p class="portfolio-description">Польская группа компаний. Разработка сайта и админ-панели для 2 проектов: аренда спецтехники и продажа матрасов. Каталог, фильтры, управление контентом.</p>
                     </div>
                 </div>
             </div>
@@ -848,5 +825,175 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
     <script src="js/3d-effects.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- CRM Demo Simulation -->
+    <script>
+        // ==========================================
+        // SALES AUTOMATION DEMO
+        // ==========================================
+        const leads = [
+            { name: 'Алексей Петров', company: 'ТехноСтарт', value: '450K', score: 92 },
+            { name: 'Мария Сидорова', company: 'Retail Pro', value: '280K', score: 78 },
+            { name: 'Дмитрий Козлов', company: 'LogiTech', value: '620K', score: 85 },
+        ];
+
+        let demoRunning = false;
+        let currentLeadIndex = 0;
+
+        function showPipeline() {
+            // Placeholder for pipeline view
+        }
+
+        function runDemo() {
+            if (demoRunning) return;
+            demoRunning = true;
+
+            // Reset
+            document.querySelectorAll('.stage-cards').forEach(c => c.innerHTML = '');
+            document.querySelectorAll('.stage-count').forEach(c => c.textContent = '0');
+            document.getElementById('activityList').innerHTML = '';
+            document.getElementById('totalLeads').textContent = '0';
+            document.getElementById('conversion').textContent = '0%';
+            document.getElementById('liveIndicator').style.display = 'inline';
+            document.getElementById('demoBtn').disabled = true;
+            document.getElementById('demoStatus').textContent = 'Симуляция запущена...';
+            document.getElementById('demoStatus').classList.add('active');
+
+            currentLeadIndex = 0;
+            processNextLead();
+        }
+
+        function processNextLead() {
+            if (currentLeadIndex >= leads.length) {
+                finishDemo();
+                return;
+            }
+
+            const lead = leads[currentLeadIndex];
+
+            // Step 1: New lead arrives
+            setTimeout(() => {
+                addActivity('ai', `🎯 Новая заявка: ${lead.name} из ${lead.company}`);
+                addLeadCard('new', lead);
+                updateCount('new', 1);
+                document.getElementById('totalLeads').textContent = currentLeadIndex + 1;
+            }, 500);
+
+            // Step 2: AI analyzes
+            setTimeout(() => {
+                addActivity('ai', `🤖 ИИ анализирует лид... Скоринг: ${lead.score}/100`);
+            }, 1500);
+
+            // Step 3: Move to qualified
+            setTimeout(() => {
+                moveCard('new', 'qualified', lead);
+                addActivity('ai', `✅ Лид квалифицирован (${lead.score > 80 ? 'HOT' : 'WARM'})`);
+            }, 2500);
+
+            // Step 4: Auto email
+            setTimeout(() => {
+                addActivity('email', `📧 Отправлено персональное КП для ${lead.company}`);
+            }, 3500);
+
+            // Step 5: Move to proposal
+            setTimeout(() => {
+                moveCard('qualified', 'proposal', lead);
+                addActivity('telegram', `📱 Уведомление менеджеру в Telegram`);
+            }, 4500);
+
+            // Step 6: Schedule meeting
+            setTimeout(() => {
+                addActivity('calendar', `📅 Встреча запланирована автоматически`);
+            }, 5500);
+
+            // Step 7: Move to negotiation
+            setTimeout(() => {
+                moveCard('proposal', 'negotiation', lead);
+            }, 6500);
+
+            // Step 8: Close deal
+            setTimeout(() => {
+                moveCard('negotiation', 'closed', lead);
+                addActivity('deal', `🎉 Сделка закрыта! +${lead.value} ₽`);
+                document.getElementById('conversion').textContent = Math.round(((currentLeadIndex + 1) / leads.length) * 100) + '%';
+
+                currentLeadIndex++;
+                setTimeout(() => processNextLead(), 1000);
+            }, 8000);
+        }
+
+        function finishDemo() {
+            demoRunning = false;
+            document.getElementById('demoBtn').disabled = false;
+            document.getElementById('demoStatus').textContent = 'Демо завершено! Нажмите для повтора';
+            document.getElementById('liveIndicator').style.display = 'none';
+        }
+
+        function addLeadCard(stage, lead) {
+            const container = document.getElementById('cards-' + stage);
+            const card = document.createElement('div');
+            card.className = 'lead-card';
+            card.dataset.lead = lead.name;
+            card.innerHTML = `
+                <div class="lead-name">${lead.name}</div>
+                <div class="lead-company">${lead.company}</div>
+                <div class="lead-meta">
+                    <span class="lead-value">${lead.value} ₽</span>
+                    <span class="lead-score">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        ${lead.score}
+                    </span>
+                </div>
+            `;
+            container.appendChild(card);
+            setTimeout(() => card.classList.add('visible'), 50);
+        }
+
+        function moveCard(from, to, lead) {
+            const fromContainer = document.getElementById('cards-' + from);
+            const toContainer = document.getElementById('cards-' + to);
+            const card = fromContainer.querySelector(`[data-lead="${lead.name}"]`);
+
+            if (card) {
+                card.classList.add('highlight');
+                setTimeout(() => {
+                    card.classList.remove('highlight');
+                    fromContainer.removeChild(card);
+                    toContainer.appendChild(card);
+                    updateCount(from, -1);
+                    updateCount(to, 1);
+                }, 500);
+            }
+        }
+
+        function updateCount(stage, delta) {
+            const el = document.getElementById('count-' + stage);
+            el.textContent = parseInt(el.textContent) + delta;
+        }
+
+        function addActivity(type, text) {
+            const list = document.getElementById('activityList');
+            const item = document.createElement('div');
+            item.className = 'activity-item';
+
+            const icons = {
+                ai: '🤖',
+                email: '📧',
+                telegram: '📱',
+                calendar: '📅',
+                deal: '💰'
+            };
+
+            item.innerHTML = `
+                <div class="activity-icon ${type}">${icons[type]}</div>
+                <div>
+                    <div class="activity-text">${text}</div>
+                    <div class="activity-time">Только что</div>
+                </div>
+            `;
+            list.insertBefore(item, list.firstChild);
+            setTimeout(() => item.classList.add('visible'), 50);
+        }
+    </script>
 </body>
 </html>
