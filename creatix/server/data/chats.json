@@ -1,0 +1,335 @@
+[
+  {
+    "id": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+    "visitorId": "visitor_1768911023929_f0xc4nr",
+    "visitorName": "Посетитель",
+    "status": "active",
+    "isOnline": true,
+    "unreadCount": 0,
+    "lastMessageAt": "2026-01-20T13:04:46.069Z",
+    "createdAt": "2026-01-20T12:58:49.339Z",
+    "messages": [
+      {
+        "id": "5a65a0a2-3ed9-4740-a5c9-2d884644a406",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "visitor",
+        "senderName": "Посетитель",
+        "text": "Салам",
+        "isRead": true,
+        "createdAt": "2026-01-20T12:58:49.344Z"
+      },
+      {
+        "id": "1771fa27-ca3f-444a-a4b7-3878a6455252",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "visitor",
+        "senderName": "Посетитель",
+        "text": "как",
+        "isRead": true,
+        "createdAt": "2026-01-20T12:58:50.103Z"
+      },
+      {
+        "id": "de7ece22-8283-49d3-84f8-c6ca1b1ffe28",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "visitor",
+        "senderName": "Посетитель",
+        "text": "дела",
+        "isRead": true,
+        "createdAt": "2026-01-20T12:58:50.781Z"
+      },
+      {
+        "id": "5d2dd510-7c79-4e44-87ea-78c3cd7d288d",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "visitor",
+        "senderName": "Посетитель",
+        "text": "тут",
+        "isRead": true,
+        "createdAt": "2026-01-20T12:58:52.034Z"
+      },
+      {
+        "id": "a9b00e75-553c-4d9f-9d24-e9031ab04aa8",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "visitor",
+        "senderName": "Посетитель",
+        "text": "привет",
+        "isRead": true,
+        "createdAt": "2026-01-20T12:58:52.868Z"
+      },
+      {
+        "id": "6639685a-3a13-4b34-a0cd-0fedfabbbf05",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "visitor",
+        "senderName": "Посетитель",
+        "text": "что",
+        "isRead": true,
+        "createdAt": "2026-01-20T12:58:53.740Z"
+      },
+      {
+        "id": "c38ee799-b985-4f4d-8519-0f1536bfa857",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "visitor",
+        "senderName": "Посетитель",
+        "text": "где",
+        "isRead": true,
+        "createdAt": "2026-01-20T12:58:54.818Z"
+      },
+      {
+        "id": "6cdd8720-345c-4626-a983-bb64bd5b3afc",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "visitor",
+        "senderName": "Посетитель",
+        "text": "когда",
+        "isRead": true,
+        "createdAt": "2026-01-20T12:58:55.615Z"
+      },
+      {
+        "id": "800dc156-8d60-43a0-b330-fa779ef27fe4",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "ыфвфыв",
+        "isRead": true,
+        "createdAt": "2026-01-20T12:59:02.105Z"
+      },
+      {
+        "id": "dcfb0c33-bab5-4611-9158-4acf591289b6",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "фыафыа",
+        "isRead": true,
+        "createdAt": "2026-01-20T12:59:02.706Z"
+      },
+      {
+        "id": "4031389a-c2dd-4823-90b2-9b26bcdd90d6",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "авава",
+        "isRead": true,
+        "createdAt": "2026-01-20T13:04:43.641Z"
+      },
+      {
+        "id": "cd8a1b8d-9971-4816-aebb-15a4e10230a6",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "аы",
+        "isRead": true,
+        "createdAt": "2026-01-20T13:04:43.992Z"
+      },
+      {
+        "id": "2bbcd686-7398-440d-a071-5e2b0fe06032",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "ыва",
+        "isRead": true,
+        "createdAt": "2026-01-20T13:04:44.177Z"
+      },
+      {
+        "id": "71199c5e-88e1-42da-892f-b6b73b49e07c",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "авыа",
+        "isRead": true,
+        "createdAt": "2026-01-20T13:04:44.353Z"
+      },
+      {
+        "id": "2bff0a1d-c0f3-4637-a45b-8d3927d54439",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "ыва",
+        "isRead": true,
+        "createdAt": "2026-01-20T13:04:44.507Z"
+      },
+      {
+        "id": "fec11eca-23b1-4024-99a5-e4a4f1ad3375",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "ыва",
+        "isRead": true,
+        "createdAt": "2026-01-20T13:04:44.646Z"
+      },
+      {
+        "id": "e926870c-7379-4a13-be7d-410f042d4231",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "ывавы",
+        "isRead": true,
+        "createdAt": "2026-01-20T13:04:44.923Z"
+      },
+      {
+        "id": "52022215-6155-4abd-b5f4-d9b4b14c3b66",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "ва",
+        "isRead": true,
+        "createdAt": "2026-01-20T13:04:45.074Z"
+      },
+      {
+        "id": "8020cf77-8bfa-4252-8f5e-a9793231fd6d",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "ыва",
+        "isRead": true,
+        "createdAt": "2026-01-20T13:04:45.223Z"
+      },
+      {
+        "id": "90ed38f8-ccbc-4651-9e7f-5f500e68dbf2",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "ыв",
+        "isRead": true,
+        "createdAt": "2026-01-20T13:04:45.355Z"
+      },
+      {
+        "id": "b27a7902-561f-4616-9f98-f1df9123ef7f",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "аы",
+        "isRead": true,
+        "createdAt": "2026-01-20T13:04:45.539Z"
+      },
+      {
+        "id": "ef5fda4c-8a4b-496e-987e-7efe851fabfa",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "ва",
+        "isRead": true,
+        "createdAt": "2026-01-20T13:04:45.645Z"
+      },
+      {
+        "id": "2aab8ea6-e1d5-46dc-ac59-e383aef1b0b7",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "ыв",
+        "isRead": true,
+        "createdAt": "2026-01-20T13:04:45.789Z"
+      },
+      {
+        "id": "4c5dcf8a-4ee3-48cc-9a6e-c0eb885dceb5",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "аы",
+        "isRead": true,
+        "createdAt": "2026-01-20T13:04:45.926Z"
+      },
+      {
+        "id": "78629ec8-7e28-4db4-8477-286f58bb239f",
+        "chatId": "ec0673b5-0375-41b3-b08a-7c1467b0d0f1",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "аыв",
+        "isRead": true,
+        "createdAt": "2026-01-20T13:04:46.069Z"
+      }
+    ]
+  },
+  {
+    "id": "0e65a614-4826-47ab-8540-75ae2a85b1c2",
+    "visitorId": "visitor_1768911023929_f0xc4nr",
+    "visitorName": "Посетитель",
+    "status": "closed",
+    "isOnline": true,
+    "unreadCount": 0,
+    "lastMessageAt": "2026-01-20T12:54:50.828Z",
+    "createdAt": "2026-01-20T12:47:57.088Z",
+    "messages": [
+      {
+        "id": "1dd9d0e0-4f39-4373-af44-5a16a8f6514f",
+        "chatId": "0e65a614-4826-47ab-8540-75ae2a85b1c2",
+        "sender": "visitor",
+        "senderName": "Посетитель",
+        "text": "Добрый вечер",
+        "isRead": true,
+        "createdAt": "2026-01-20T12:47:57.093Z"
+      },
+      {
+        "id": "5830937a-90f1-49c4-9892-d957d3c2b8cf",
+        "chatId": "0e65a614-4826-47ab-8540-75ae2a85b1c2",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "Добрый",
+        "isRead": true,
+        "createdAt": "2026-01-20T12:48:02.839Z"
+      },
+      {
+        "id": "b0f3d6c7-2ea0-47e0-a786-422d4c04a48c",
+        "chatId": "0e65a614-4826-47ab-8540-75ae2a85b1c2",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "Добрый день, были проблемы помню",
+        "isRead": true,
+        "createdAt": "2026-01-20T12:54:26.501Z"
+      },
+      {
+        "id": "df8f8879-950d-49d2-bd0d-80a4b42dc9a3",
+        "chatId": "0e65a614-4826-47ab-8540-75ae2a85b1c2",
+        "sender": "visitor",
+        "senderName": "Посетитель",
+        "text": "фаыфаыа",
+        "isRead": true,
+        "createdAt": "2026-01-20T12:54:50.828Z"
+      }
+    ]
+  },
+  {
+    "id": "2217636e-9b13-416d-9e85-133b7d74d668",
+    "visitorId": "visitor_1768911023929_f0xc4nr",
+    "visitorName": "Посетитель",
+    "status": "closed",
+    "isOnline": true,
+    "unreadCount": 0,
+    "lastMessageAt": "2026-01-20T12:47:18.302Z",
+    "createdAt": "2026-01-20T12:46:00.516Z",
+    "messages": [
+      {
+        "id": "358e4222-dc96-4ba8-a569-8e41fd1505e1",
+        "chatId": "2217636e-9b13-416d-9e85-133b7d74d668",
+        "sender": "visitor",
+        "senderName": "Посетитель",
+        "text": "Добрый день",
+        "isRead": true,
+        "createdAt": "2026-01-20T12:46:00.519Z"
+      },
+      {
+        "id": "1bac176b-abb4-4d02-8586-603f027bf63e",
+        "chatId": "2217636e-9b13-416d-9e85-133b7d74d668",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "Добрый",
+        "isRead": true,
+        "createdAt": "2026-01-20T12:46:16.107Z"
+      },
+      {
+        "id": "576b2ce8-bc5a-40d8-adc7-6012e2622cc3",
+        "chatId": "2217636e-9b13-416d-9e85-133b7d74d668",
+        "sender": "admin",
+        "senderName": "Администратор",
+        "text": "ввв",
+        "isRead": true,
+        "createdAt": "2026-01-20T12:47:01.112Z"
+      },
+      {
+        "id": "8bf73dc0-9a2e-4680-93a5-58791b6ad200",
+        "chatId": "2217636e-9b13-416d-9e85-133b7d74d668",
+        "sender": "visitor",
+        "senderName": "Посетитель",
+        "text": "ввв",
+        "isRead": true,
+        "createdAt": "2026-01-20T12:47:18.302Z"
+      }
+    ]
+  }
+]

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель - CREATIX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-logo">
+                <span class="logo-icon">◆</span>CREATIX
+            </div>
+
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-section="contacts">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"/>
+                    </svg>
+                    Контакты
+                </button>
+                <button class="nav-item" data-section="submissions">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                    Заявки
+                    <span class="nav-badge" id="submissionsBadge" style="display: none;">0</span>
+                </button>
+                <button class="nav-item" data-section="chats">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    Чаты
+                    <span class="nav-badge" id="chatsBadge" style="display: none;">0</span>
+                </button>
+                <button class="nav-item" data-section="portfolio">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"/>
+                        <rect x="14" y="3" width="7" height="7"/>
+                        <rect x="14" y="14" width="7" height="7"/>
+                        <rect x="3" y="14" width="7" height="7"/>
+                    </svg>
+                    Портфолио
+                </button>
+                <a href="/" class="nav-item" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                    Открыть сайт
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">A</div>
+                    <div>
+                        <div class="user-name">Администратор</div>
+                        <div class="user-role">Полный доступ</div>
+                    </div>
+                </div>
+                <button class="nav-item" id="logoutBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/>
+                        <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                    Выйти
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Contacts Section -->
+            <section id="contacts-section" class="admin-section active">
+                <div class="page-header">
+                    <h1 class="page-title">Контакты</h1>
+                    <p class="page-subtitle">Управление контактной информацией сайта</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Основные контакты</h2>
+                    </div>
+
+                    <form id="contactsForm">
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="phone">Телефон</label>
+                                <input type="text" id="phone" name="phone" placeholder="+7 (999) 999-99-99">
+                            </div>
+                            <div class="input-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="hello@creatix.ru">
+                            </div>
+                        </div>
+
+                        <div class="form-row full">
+                            <div class="input-group">
+                                <label for="address">Адрес</label>
+                                <input type="text" id="address" name="address" placeholder="Москва, Россия">
+                            </div>
+                        </div>
+
+                        <div class="card-header" style="margin-top: 30px;">
+                            <h2 class="card-title">Социальные сети</h2>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="vk">VK</label>
+                                <input type="url" id="vk" name="vk" placeholder="https://vk.com/...">
+                            </div>
+                            <div class="input-group">
+                                <label for="telegram">Telegram</label>
+                                <input type="url" id="telegram" name="telegram" placeholder="https://t.me/...">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="whatsapp">WhatsApp</label>
+                                <input type="text" id="whatsapp" name="whatsapp" placeholder="+7999...">
+                            </div>
+                            <div></div>
+                        </div>
+
+                        <div style="margin-top: 24px;">
+                            <button type="submit" class="btn btn-success">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                                    <polyline points="17 21 17 13 7 13 7 21"/>
+                                    <polyline points="7 3 7 8 15 8"/>
+                                </svg>
+                                Сохранить контакты
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Submissions Section -->
+            <section id="submissions-section" class="admin-section">
+                <div class="page-header">
+                    <h1 class="page-title">Заявки</h1>
+                    <p class="page-subtitle">Заявки с формы обратной связи</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Все заявки</h2>
+                        <div class="submissions-actions">
+                            <button class="btn btn-outline btn-sm" id="markAllRead">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="9 11 12 14 22 4"/>
+                                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                                </svg>
+                                Отметить все прочитанными
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="submissions-filters">
+                        <button class="filter-btn active" data-filter="all">Все</button>
+                        <button class="filter-btn" data-filter="new">Новые</button>
+                        <button class="filter-btn" data-filter="read">Прочитанные</button>
+                    </div>
+
+                    <div id="submissionsList" class="submissions-list">
+                        <!-- Заявки загружаются динамически -->
+                        <div class="submissions-empty">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                            </svg>
+                            <p>Заявок пока нет</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chats Section -->
+            <section id="chats-section" class="admin-section">
+                <div class="page-header">
+                    <h1 class="page-title">Чаты</h1>
+                    <p class="page-subtitle">Общение с посетителями в реальном времени</p>
+                </div>
+
+                <div class="chats-container">
+                    <!-- Chat List Sidebar -->
+                    <div class="chats-list-panel">
+                        <div class="chats-search">
+                            <input type="text" placeholder="Поиск по чатам..." id="chatSearch">
+                        </div>
+                        <div class="chats-filters">
+                            <button class="filter-btn active" data-filter="active">Активные</button>
+                            <button class="filter-btn" data-filter="all">Все</button>
+                        </div>
+                        <div class="chats-list" id="chatsList">
+                            <div class="chats-empty">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                                </svg>
+                                <p>Нет активных чатов</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Detail Panel -->
+                    <div class="chat-detail-panel" id="chatDetailPanel">
+                        <div class="chat-detail-empty" id="chatDetailEmpty">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                            <p>Выберите чат для просмотра</p>
+                        </div>
+
+                        <!-- Active chat view (hidden by default) -->
+                        <div class="chat-detail-content" id="chatDetailContent" style="display: none;">
+                            <div class="chat-detail-header">
+                                <div class="chat-user-info">
+                                    <div class="chat-user-avatar">П</div>
+                                    <div>
+                                        <span class="chat-user-name" id="chatUserName">Посетитель</span>
+                                        <span class="chat-user-status" id="chatUserStatus">Офлайн</span>
+                                    </div>
+                                </div>
+                                <div class="chat-header-actions">
+                                    <button class="btn btn-outline btn-sm" id="closeChatBtn" title="Закрыть чат">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 6L6 18M6 6l12 12"/>
+                                        </svg>
+                                        Закрыть
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" id="deleteChatBtn" title="Удалить чат">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="3 6 5 6 21 6"/>
+                                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="chat-messages-container" id="adminChatMessages">
+                                <!-- Messages rendered here -->
+                            </div>
+                            <div class="chat-typing-indicator" id="visitorTyping" style="display: none;">
+                                <span class="typing-dots"><span></span><span></span><span></span></span>
+                                Посетитель печатает...
+                            </div>
+                            <form class="chat-reply-form" id="adminReplyForm">
+                                <input type="text" id="adminReplyInput" placeholder="Введите ответ..." autocomplete="off">
+                                <button type="submit" class="btn btn-primary">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="22" y1="2" x2="11" y2="13"/>
+                                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio Section -->
+            <section id="portfolio-section" class="admin-section">
+                <div class="page-header">
+                    <h1 class="page-title">Портфолио</h1>
+                    <p class="page-subtitle">Управление проектами</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Проекты</h2>
+                        <button class="btn btn-primary" id="addProjectBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                            Добавить проект
+                        </button>
+                    </div>
+
+                    <div id="portfolioGrid" class="portfolio-admin-grid">
+                        <!-- Проекты загружаются динамически -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Project Modal -->
+    <div class="modal-overlay" id="projectModal">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Добавить проект</h3>
+                <button class="modal-close" id="closeModal">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <form id="projectForm">
+                <div class="modal-body modal-body-scroll">
+                    <input type="hidden" id="projectId" name="projectId">
+
+                    <!-- Tabs -->
+                    <div class="form-tabs">
+                        <button type="button" class="form-tab active" data-tab="basic">Основное</button>
+                        <button type="button" class="form-tab" data-tab="details">Детали проекта</button>
+                        <button type="button" class="form-tab" data-tab="gallery">Галерея</button>
+                    </div>
+
+                    <!-- Basic Tab -->
+                    <div class="form-tab-content active" id="tab-basic">
+                        <div class="input-group">
+                            <label for="projectTitle">Название</label>
+                            <input type="text" id="projectTitle" name="title" required placeholder="Название проекта">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="projectCategory">Категория</label>
+                            <input type="text" id="projectCategory" name="category" required placeholder="ERP система, CRM, Сайт...">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="projectDescription">Краткое описание</label>
+                            <textarea id="projectDescription" name="description" placeholder="Краткое описание для карточки..."></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="projectTheme">Цветовая тема</label>
+                            <select id="projectTheme" name="theme">
+                                <option value="default">По умолчанию</option>
+                                <option value="emerald">Изумрудная</option>
+                                <option value="purple">Фиолетовая</option>
+                                <option value="orange">Оранжевая</option>
+                                <option value="blue">Синяя</option>
+                                <option value="cyan">Бирюзовая</option>
+                                <option value="pink">Розовая</option>
+                                <option value="red">Красная</option>
+                                <option value="yellow">Жёлтая</option>
+                                <option value="teal">Морская волна</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Главное изображение</label>
+                            <div class="file-upload" id="fileUpload">
+                                <svg class="file-upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="17 8 12 3 7 8"/>
+                                    <line x1="12" y1="3" x2="12" y2="15"/>
+                                </svg>
+                                <p class="file-upload-text">Перетащите файл, <span>выберите</span> или <kbd>Ctrl+V</kbd></p>
+                                <input type="file" id="projectImage" name="image" accept="image/*" style="display: none;">
+                            </div>
+                            <div class="file-preview" id="filePreview"></div>
+                        </div>
+                    </div>
+
+                    <!-- Details Tab -->
+                    <div class="form-tab-content" id="tab-details">
+                        <div class="form-section-title">Информация о проекте</div>
+
+                        <div class="form-row form-row-3">
+                            <div class="input-group">
+                                <label for="projectClient">Клиент</label>
+                                <input type="text" id="projectClient" name="client" placeholder="Название компании">
+                            </div>
+                            <div class="input-group">
+                                <label for="projectYear">Год</label>
+                                <input type="text" id="projectYear" name="year" placeholder="2024">
+                            </div>
+                            <div class="input-group">
+                                <label for="projectDuration">Длительность</label>
+                                <input type="text" id="projectDuration" name="duration" placeholder="6 месяцев">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="projectProblem">Проблема клиента</label>
+                            <textarea id="projectProblem" name="problem" placeholder="Какую проблему решали? Что было до проекта?"></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="projectSolution">Решение</label>
+                            <textarea id="projectSolution" name="solution" placeholder="Как решили проблему? Что сделали?"></textarea>
+                        </div>
+
+                        <div class="form-section-title">Результаты</div>
+                        <div class="results-container" id="resultsContainer">
+                            <!-- Results will be added dynamically -->
+                        </div>
+                        <button type="button" class="btn btn-outline btn-sm" id="addResult">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                            Добавить результат
+                        </button>
+
+                        <div class="form-section-title" style="margin-top: 24px;">Технологии</div>
+                        <div class="input-group">
+                            <label for="projectTechnologies">Технологии (через запятую)</label>
+                            <input type="text" id="projectTechnologies" name="technologies" placeholder="React, Node.js, PostgreSQL, Docker">
+                        </div>
+                    </div>
+
+                    <!-- Gallery Tab -->
+                    <div class="form-tab-content" id="tab-gallery">
+                        <div class="form-section-title">Галерея проекта</div>
+                        <p class="form-hint">Добавьте дополнительные изображения для модального окна проекта. Главное изображение добавляется автоматически.</p>
+
+                        <div class="gallery-upload-area" id="galleryUploadArea">
+                            <svg class="file-upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21 15 16 10 5 21"/>
+                            </svg>
+                            <p class="file-upload-text">Перетащите изображения, <span>выберите</span> или <kbd>Ctrl+V</kbd></p>
+                            <input type="file" id="galleryImages" name="galleryImages" accept="image/*" multiple style="display: none;">
+                        </div>
+
+                        <div class="gallery-preview" id="galleryPreview">
+                            <!-- Gallery previews will be added here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" id="cancelModal">Отмена</button>
+                    <button type="submit" class="btn btn-primary" id="saveProject">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Menu Variants - CREATIX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-darker: #05050a;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --text-white: #ffffff;
+            --text-gray: rgba(255, 255, 255, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+
+        .variants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .variant-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .variant-header {
+            padding: 15px 20px;
+            background: rgba(139, 92, 246, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .variant-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-purple);
+        }
+
+        .variant-number {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        .phone-frame {
+            width: 100%;
+            max-width: 375px;
+            height: 667px;
+            margin: 20px auto;
+            background: var(--bg-darker);
+            border-radius: 30px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 25px;
+            background: #000;
+            border-radius: 0 0 20px 20px;
+            z-index: 100;
+        }
+
+        /* ============================================
+           VARIANT 1: Slide from Right with Blur
+        ============================================ */
+        .menu-v1 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            padding: 80px 30px 40px;
+        }
+
+        .menu-v1 .nav-items {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .menu-v1 .nav-item {
+            padding: 20px 25px;
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-white);
+            text-decoration: none;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .menu-v1 .nav-item:hover {
+            background: rgba(139, 92, 246, 0.15);
+            border-color: rgba(139, 92, 246, 0.3);
+            transform: translateX(-5px);
+        }
+
+        .menu-v1 .nav-item .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .menu-v1 .nav-item .arrow {
+            color: var(--text-gray);
+            transition: transform 0.3s;
+        }
+
+        .menu-v1 .nav-item:hover .arrow {
+            transform: translateX(5px);
+            color: var(--accent-purple);
+        }
+
+        .menu-v1 .menu-footer {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .menu-v1 .social-btn {
+            flex: 1;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--text-white);
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .menu-v1 .social-btn:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: var(--accent-purple);
+        }
+
+        /* ============================================
+           VARIANT 2: Full Screen Animated
+        ============================================ */
+        .menu-v2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1025 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 30px;
+        }
+
+        .menu-v2 .logo {
+            position: absolute;
+            top: 50px;
+            left: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .menu-v2 .logo-icon {
+            color: var(--accent-purple);
+        }
+
+        .menu-v2 .nav-items {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu-v2 .nav-item {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .menu-v2 .nav-item:hover {
+            color: var(--text-white);
+        }
+
+        .menu-v2 .nav-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+            transition: width 0.3s ease;
+        }
+
+        .menu-v2 .nav-item:hover::before {
+            width: 20px;
+        }
+
+        .menu-v2 .nav-item.active {
+            color: var(--text-white);
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .menu-v2 .nav-item.active::before {
+            width: 20px;
+        }
+
+        .menu-v2 .menu-cta {
+            position: absolute;
+            bottom: 50px;
+            left: 30px;
+            right: 30px;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 50px;
+            color: white;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .menu-v2 .close-btn {
+            position: absolute;
+            top: 50px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--text-white);
+        }
+
+        /* ============================================
+           VARIANT 3: Side Panel with Categories
+        ============================================ */
+        .menu-v3 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-darker);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-v3 .menu-header {
+            padding: 50px 25px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .menu-v3 .logo {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .menu-v3 .logo-icon {
+            color: var(--accent-purple);
+        }
+
+        .menu-v3 .close-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-white);
+        }
+
+        .menu-v3 .menu-content {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        .menu-v3 .menu-section {
+            margin-bottom: 30px;
+        }
+
+        .menu-v3 .section-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-gray);
+            margin-bottom: 15px;
+            padding-left: 5px;
+        }
+
+        .menu-v3 .nav-items {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .menu-v3 .nav-item {
+            padding: 15px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-white);
+            text-decoration: none;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .menu-v3 .nav-item:hover,
+        .menu-v3 .nav-item.active {
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .menu-v3 .nav-item .icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(139, 92, 246, 0.15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .menu-v3 .nav-item.active .icon {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+        }
+
+        .menu-v3 .menu-footer {
+            padding: 20px 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .menu-v3 .contact-info {
+            font-size: 13px;
+            color: var(--text-gray);
+            margin-bottom: 15px;
+        }
+
+        .menu-v3 .contact-info a {
+            color: var(--accent-purple);
+            text-decoration: none;
+        }
+
+        .menu-v3 .social-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .menu-v3 .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* ============================================
+           VARIANT 4: Bottom Sheet Style
+        ============================================ */
+        .menu-v4-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .menu-v4 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, #1a1025 0%, #0a0a0f 100%);
+            border-radius: 30px 30px 0 0;
+            padding: 20px 25px 40px;
+        }
+
+        .menu-v4 .handle {
+            width: 40px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            margin: 0 auto 25px;
+        }
+
+        .menu-v4 .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .menu-v4 .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .menu-v4 .nav-item:hover {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .menu-v4 .nav-item .icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .menu-v4 .nav-item span {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-white);
+        }
+
+        .menu-v4 .cta-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 16px;
+            color: white;
+            text-align: center;
+            font-weight: 600;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* ============================================
+           VARIANT 5: Morphic Glass
+        ============================================ */
+        .menu-v5 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(139, 92, 246, 0.1) 0%, rgba(10, 10, 15, 0.98) 30%);
+            display: flex;
+            flex-direction: column;
+            padding: 50px 25px 40px;
+        }
+
+        .menu-v5 .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .menu-v5 .logo {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .menu-v5 .logo-icon {
+            color: var(--accent-purple);
+        }
+
+        .menu-v5 .close-btn {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-white);
+            font-size: 18px;
+        }
+
+        .menu-v5 .nav-items {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .menu-v5 .nav-item {
+            padding: 22px 25px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--text-white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .menu-v5 .nav-item:hover {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.3);
+            transform: scale(1.02);
+        }
+
+        .menu-v5 .nav-item .left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu-v5 .nav-item .num {
+            font-size: 12px;
+            color: var(--accent-purple);
+            font-weight: 600;
+        }
+
+        .menu-v5 .nav-item .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-purple);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .menu-v5 .nav-item:hover .dot,
+        .menu-v5 .nav-item.active .dot {
+            opacity: 1;
+        }
+
+        .menu-v5 .menu-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            margin-top: 20px;
+        }
+
+        .menu-v5 .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .menu-v5 .social-link {
+            font-size: 13px;
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .menu-v5 .social-link:hover {
+            color: var(--accent-purple);
+        }
+
+        .menu-v5 .phone {
+            font-size: 14px;
+            color: var(--text-white);
+            font-weight: 500;
+        }
+
+        /* ============================================
+           VARIANT 6: Staggered Cards
+        ============================================ */
+        .menu-v6 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            padding: 50px 20px 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-v6 .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 0 5px;
+        }
+
+        .menu-v6 .logo {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .menu-v6 .logo-icon {
+            color: var(--accent-purple);
+        }
+
+        .menu-v6 .close-btn {
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+        }
+
+        .menu-v6 .close-btn span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-white);
+        }
+
+        .menu-v6 .close-btn span:first-child {
+            transform: rotate(45deg) translateY(1px);
+        }
+
+        .menu-v6 .close-btn span:last-child {
+            transform: rotate(-45deg) translateY(-1px);
+        }
+
+        .menu-v6 .nav-items {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .menu-v6 .nav-item {
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(236, 72, 153, 0.05));
+            border: 1px solid rgba(139, 92, 246, 0.15);
+            border-radius: 20px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-v6 .nav-item:nth-child(1) { margin-left: 0; }
+        .menu-v6 .nav-item:nth-child(2) { margin-left: 15px; }
+        .menu-v6 .nav-item:nth-child(3) { margin-left: 30px; }
+        .menu-v6 .nav-item:nth-child(4) { margin-left: 15px; }
+        .menu-v6 .nav-item:nth-child(5) { margin-left: 0; }
+
+        .menu-v6 .nav-item:hover {
+            transform: translateX(10px);
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.15);
+        }
+
+        .menu-v6 .nav-item .icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .menu-v6 .nav-item .text {
+            flex: 1;
+        }
+
+        .menu-v6 .nav-item .title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-white);
+            margin-bottom: 3px;
+        }
+
+        .menu-v6 .nav-item .subtitle {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        .menu-v6 .menu-footer {
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .menu-v6 .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 35px;
+            background: var(--text-white);
+            color: var(--bg-dark);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mobile Menu Variants</h1>
+    <p class="subtitle">Выбери понравившийся вариант</p>
+
+    <div class="variants-grid">
+        <!-- Variant 1 -->
+        <div class="variant-card">
+            <div class="variant-header">
+                <span class="variant-title">Cards with Icons</span>
+                <span class="variant-number">#1</span>
+            </div>
+            <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="menu-v1">
+                    <div class="nav-items">
+                        <a href="#" class="nav-item">
+                            <div class="icon">🏠</div>
+                            <span>Главная</span>
+                            <span class="arrow">→</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <div class="icon">👥</div>
+                            <span>О нас</span>
+                            <span class="arrow">→</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <div class="icon">⚡</div>
+                            <span>Процесс</span>
+                            <span class="arrow">→</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <div class="icon">💼</div>
+                            <span>Портфолио</span>
+                            <span class="arrow">→</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <div class="icon">📞</div>
+                            <span>Контакты</span>
+                            <span class="arrow">→</span>
+                        </a>
+                    </div>
+                    <div class="menu-footer">
+                        <div class="social-btn">VK</div>
+                        <div class="social-btn">TG</div>
+                        <div class="social-btn">WA</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variant 2 -->
+        <div class="variant-card">
+            <div class="variant-header">
+                <span class="variant-title">Big Typography</span>
+                <span class="variant-number">#2</span>
+            </div>
+            <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="menu-v2">
+                    <div class="logo">
+                        <span class="logo-icon">◆</span>CREATIX
+                    </div>
+                    <div class="close-btn">✕</div>
+                    <div class="nav-items">
+                        <a href="#" class="nav-item active">Главная</a>
+                        <a href="#" class="nav-item">О нас</a>
+                        <a href="#" class="nav-item">Процесс</a>
+                        <a href="#" class="nav-item">Портфолио</a>
+                        <a href="#" class="nav-item">Контакты</a>
+                    </div>
+                    <div class="menu-cta">Начать проект →</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variant 3 -->
+        <div class="variant-card">
+            <div class="variant-header">
+                <span class="variant-title">Categorized Sections</span>
+                <span class="variant-number">#3</span>
+            </div>
+            <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="menu-v3">
+                    <div class="menu-header">
+                        <div class="logo">
+                            <span class="logo-icon">◆</span>CREATIX
+                        </div>
+                        <div class="close-btn">✕</div>
+                    </div>
+                    <div class="menu-content">
+                        <div class="menu-section">
+                            <div class="section-title">Навигация</div>
+                            <div class="nav-items">
+                                <a href="#" class="nav-item active">
+                                    <div class="icon">🏠</div>
+                                    Главная
+                                </a>
+                                <a href="#" class="nav-item">
+                                    <div class="icon">👥</div>
+                                    О нас
+                                </a>
+                                <a href="#" class="nav-item">
+                                    <div class="icon">⚡</div>
+                                    Процесс
+                                </a>
+                            </div>
+                        </div>
+                        <div class="menu-section">
+                            <div class="section-title">Проекты</div>
+                            <div class="nav-items">
+                                <a href="#" class="nav-item">
+                                    <div class="icon">💼</div>
+                                    Портфолио
+                                </a>
+                                <a href="#" class="nav-item">
+                                    <div class="icon">📞</div>
+                                    Контакты
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-footer">
+                        <div class="contact-info">
+                            <a href="tel:+79999999999">+7 999 999-99-99</a>
+                        </div>
+                        <div class="social-row">
+                            <div class="social-icon">VK</div>
+                            <div class="social-icon">TG</div>
+                            <div class="social-icon">WA</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variant 4 -->
+        <div class="variant-card">
+            <div class="variant-header">
+                <span class="variant-title">Bottom Sheet Grid</span>
+                <span class="variant-number">#4</span>
+            </div>
+            <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="menu-v4-bg"></div>
+                <div class="menu-v4">
+                    <div class="handle"></div>
+                    <div class="nav-grid">
+                        <a href="#" class="nav-item">
+                            <div class="icon">🏠</div>
+                            <span>Главная</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <div class="icon">👥</div>
+                            <span>О нас</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <div class="icon">⚡</div>
+                            <span>Процесс</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <div class="icon">💼</div>
+                            <span>Портфолио</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <div class="icon">📞</div>
+                            <span>Контакты</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <div class="icon">💬</div>
+                            <span>Чат</span>
+                        </a>
+                    </div>
+                    <div class="cta-btn">
+                        Начать проект
+                        <span>→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variant 5 -->
+        <div class="variant-card">
+            <div class="variant-header">
+                <span class="variant-title">Morphic Glass</span>
+                <span class="variant-number">#5</span>
+            </div>
+            <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="menu-v5">
+                    <div class="menu-header">
+                        <div class="logo">
+                            <span class="logo-icon">◆</span>CREATIX
+                        </div>
+                        <div class="close-btn">✕</div>
+                    </div>
+                    <div class="nav-items">
+                        <a href="#" class="nav-item active">
+                            <div class="left">
+                                <span class="num">01</span>
+                                <span>Главная</span>
+                            </div>
+                            <span class="dot"></span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <div class="left">
+                                <span class="num">02</span>
+                                <span>О нас</span>
+                            </div>
+                            <span class="dot"></span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <div class="left">
+                                <span class="num">03</span>
+                                <span>Процесс</span>
+                            </div>
+                            <span class="dot"></span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <div class="left">
+                                <span class="num">04</span>
+                                <span>Портфолио</span>
+                            </div>
+                            <span class="dot"></span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <div class="left">
+                                <span class="num">05</span>
+                                <span>Контакты</span>
+                            </div>
+                            <span class="dot"></span>
+                        </a>
+                    </div>
+                    <div class="menu-footer">
+                        <div class="social-links">
+                            <a href="#" class="social-link">VK</a>
+                            <a href="#" class="social-link">Telegram</a>
+                            <a href="#" class="social-link">WhatsApp</a>
+                        </div>
+                        <div class="phone">+7 999 999-99-99</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variant 6 -->
+        <div class="variant-card">
+            <div class="variant-header">
+                <span class="variant-title">Staggered Cards</span>
+                <span class="variant-number">#6</span>
+            </div>
+            <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="menu-v6">
+                    <div class="menu-header">
+                        <div class="logo">
+                            <span class="logo-icon">◆</span>CREATIX
+                        </div>
+                        <div class="close-btn">
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="nav-items">
+                        <a href="#" class="nav-item">
+                            <div class="icon">🏠</div>
+                            <div class="text">
+                                <div class="title">Главная</div>
+                                <div class="subtitle">Вернуться на главную</div>
+                            </div>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <div class="icon">👥</div>
+                            <div class="text">
+                                <div class="title">О нас</div>
+                                <div class="subtitle">Наша команда</div>
+                            </div>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <div class="icon">⚡</div>
+                            <div class="text">
+                                <div class="title">Процесс</div>
+                                <div class="subtitle">Как мы работаем</div>
+                            </div>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <div class="icon">💼</div>
+                            <div class="text">
+                                <div class="title">Портфолио</div>
+                                <div class="subtitle">Наши проекты</div>
+                            </div>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <div class="icon">📞</div>
+                            <div class="text">
+                                <div class="title">Контакты</div>
+                                <div class="subtitle">Связаться с нами</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="menu-footer">
+                        <div class="cta-btn">Начать проект →</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

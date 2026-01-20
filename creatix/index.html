@@ -6,7 +6,7 @@
     <title>CREATIX - Веб-студия разработки</title>
     <meta name="description" content="Creatix - создаём сайты на заказ, CRM и ERP системы, веб-приложения. Комплексная разработка digital-решений для вашего бизнеса.">
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- 3D Canvas Background -->
@@ -22,19 +22,18 @@
                 <li><a href="#home" class="nav-link active">Главная</a></li>
                 <li><a href="#about" class="nav-link">О нас</a></li>
                 <li><a href="#process" class="nav-link">Процесс</a></li>
-                <li><a href="#services" class="nav-link">Как это работает</a></li>
                 <li><a href="#portfolio" class="nav-link">Портфолио</a></li>
                 <li><a href="#contact" class="nav-link">Контакты</a></li>
             </ul>
 
             <!-- Nav Contact Icons (Gradient Glow Style) -->
             <div class="nav-contacts">
-                <a href="tel:+79001234567" class="nav-contact-icon" title="Позвонить">
+                <a href="tel:+79001234567" class="nav-contact-icon" title="Позвонить" data-contact-phone-link>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                     </svg>
                 </a>
-                <a href="mailto:info@creatix.ru" class="nav-contact-icon" title="Написать">
+                <a href="mailto:info@creatix.ru" class="nav-contact-icon" title="Написать" data-contact-email-link>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                         <polyline points="22,6 12,13 2,6"/>
@@ -60,23 +59,23 @@
         </nav>
     </header>
 
-    <!-- Mobile Menu -->
+    <!-- Mobile Menu - Big Typography Style -->
     <div class="mobile-menu">
-        <ul class="mobile-nav-links">
-            <li><a href="#home" class="mobile-nav-link">Главная</a></li>
-            <li><a href="#about" class="mobile-nav-link">О нас</a></li>
-            <li><a href="#process" class="mobile-nav-link">Процесс</a></li>
-            <li><a href="#services" class="mobile-nav-link">Как это работает</a></li>
-            <li><a href="#portfolio" class="mobile-nav-link">Портфолио</a></li>
-            <li><a href="#contact" class="mobile-nav-link">Контакты</a></li>
-        </ul>
-        <a href="#contact" class="btn-opticore mobile-cta">
-            <span class="btn-text">Начать проект</span>
-            <span class="btn-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-            </span>
+        <div class="mobile-menu-logo">
+            <span class="logo-icon">◆</span>CREATIX
+        </div>
+        <nav class="mobile-nav-links">
+            <a href="#home" class="mobile-nav-link active">Главная</a>
+            <a href="#about" class="mobile-nav-link">О нас</a>
+            <a href="#process" class="mobile-nav-link">Процесс</a>
+            <a href="#portfolio" class="mobile-nav-link">Портфолио</a>
+            <a href="#contact" class="mobile-nav-link">Контакты</a>
+        </nav>
+        <a href="#contact" class="mobile-cta-btn">
+            Начать проект
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
         </a>
     </div>
 
@@ -159,6 +158,33 @@
     <section id="about" class="about">
         <!-- Large background text -->
         <div class="about-bg-text">О НАС</div>
+
+        <!-- Constellation Background -->
+        <div class="about-constellation">
+            <!-- Stars -->
+            <div class="about-star"></div>
+            <div class="about-star"></div>
+            <div class="about-star"></div>
+            <div class="about-star"></div>
+            <div class="about-star"></div>
+            <div class="about-star"></div>
+            <div class="about-star"></div>
+            <div class="about-star"></div>
+            <div class="about-star"></div>
+            <div class="about-star"></div>
+            <div class="about-star"></div>
+            <div class="about-star"></div>
+            <!-- Constellation Lines -->
+            <div class="about-constellation-line"></div>
+            <div class="about-constellation-line"></div>
+            <div class="about-constellation-line"></div>
+            <div class="about-constellation-line"></div>
+            <div class="about-constellation-line"></div>
+            <div class="about-constellation-line"></div>
+            <!-- Nebulas -->
+            <div class="about-nebula about-nebula-1"></div>
+            <div class="about-nebula about-nebula-2"></div>
+        </div>
 
         <!-- DNA Helix Animation -->
         <div class="dna-container">
@@ -252,121 +278,64 @@
                 </div>
             </div>
 
-            <!-- Process Content -->
+            <!-- Process Content - Zigzag Layout -->
             <div class="process-content">
                 <!-- Sites -->
                 <div class="process-panel" data-panel="sites">
-                    <div class="process-steps">
-                        <div class="process-step">
-                            <div class="step-number">01</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Цель проекта</h3>
-                                <p class="step-desc">Определяем тип сайта (лендинг, визитка, магазин) и бизнес-задачи: продажи через рекламу, имиджевое присутствие, сбор заявок</p>
+                    <div class="zigzag-steps">
+                        <div class="zigzag-item">
+                            <div class="zigzag-visual"><span class="zigzag-num">01</span></div>
+                            <div class="zigzag-content">
+                                <h3 class="zigzag-title">Цель проекта</h3>
+                                <p class="zigzag-desc">Определяем тип сайта (лендинг, визитка, магазин) и бизнес-задачи: продажи через рекламу, имиджевое присутствие, сбор заявок</p>
                             </div>
-                            <div class="step-animation">
-                                <div class="anim-target">
-                                    <div class="target-ring target-ring-1"></div>
-                                    <div class="target-ring target-ring-2"></div>
-                                    <div class="target-ring target-ring-3"></div>
-                                    <div class="target-center"></div>
-                                    <div class="target-arrow"></div>
-                                </div>
-                            </div>
+                            <div class="zigzag-connector"></div>
                         </div>
-                        <div class="process-step">
-                            <div class="step-number">02</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Анализ конкурентов</h3>
-                                <p class="step-desc">Исследуем рынок: что работает у лидеров ниши, слабые и сильные стороны конкурентов, находим точки роста</p>
+                        <div class="zigzag-item">
+                            <div class="zigzag-visual"><span class="zigzag-num">02</span></div>
+                            <div class="zigzag-content">
+                                <h3 class="zigzag-title">Анализ конкурентов</h3>
+                                <p class="zigzag-desc">Исследуем рынок: что работает у лидеров ниши, слабые и сильные стороны конкурентов, находим точки роста</p>
                             </div>
-                            <div class="step-animation">
-                                <div class="anim-chart">
-                                    <div class="chart-bar chart-bar-1"></div>
-                                    <div class="chart-bar chart-bar-2"></div>
-                                    <div class="chart-bar chart-bar-3"></div>
-                                    <div class="chart-bar chart-bar-4"></div>
-                                </div>
-                            </div>
+                            <div class="zigzag-connector"></div>
                         </div>
-                        <div class="process-step">
-                            <div class="step-number">03</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Заполнение брифа</h3>
-                                <p class="step-desc">Фиксируем структуру, контент, пожелания по дизайну. Собираем материалы: тексты, фото, логотипы</p>
+                        <div class="zigzag-item">
+                            <div class="zigzag-visual"><span class="zigzag-num">03</span></div>
+                            <div class="zigzag-content">
+                                <h3 class="zigzag-title">Заполнение брифа</h3>
+                                <p class="zigzag-desc">Фиксируем структуру, контент, пожелания по дизайну. Собираем материалы: тексты, фото, логотипы</p>
                             </div>
-                            <div class="step-animation">
-                                <div class="anim-brief">
-                                    <div class="brief-doc">
-                                        <div class="brief-line brief-line-1"></div>
-                                        <div class="brief-line brief-line-2"></div>
-                                        <div class="brief-line brief-line-3"></div>
-                                        <div class="brief-line brief-line-4"></div>
-                                        <div class="brief-line brief-line-5"></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="zigzag-connector"></div>
                         </div>
-                        <div class="process-step">
-                            <div class="step-number">04</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Согласование функционала</h3>
-                                <p class="step-desc">Определяем формы связи, интеграции (CRM, аналитика, оплата), функции админки и возможности ИИ-автоматизации</p>
+                        <div class="zigzag-item">
+                            <div class="zigzag-visual"><span class="zigzag-num">04</span></div>
+                            <div class="zigzag-content">
+                                <h3 class="zigzag-title">Согласование функционала</h3>
+                                <p class="zigzag-desc">Определяем формы связи, интеграции (CRM, аналитика, оплата), функции админки и возможности ИИ-автоматизации</p>
                             </div>
-                            <div class="step-animation">
-                                <div class="anim-gears">
-                                    <div class="gear gear-1"></div>
-                                    <div class="gear gear-2"></div>
-                                </div>
-                            </div>
+                            <div class="zigzag-connector"></div>
                         </div>
-                        <div class="process-step">
-                            <div class="step-number">05</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Разработка</h3>
-                                <p class="step-desc">Создаём пилотную версию → согласование → полная разработка. Вёрстка, программирование, наполнение контентом</p>
+                        <div class="zigzag-item">
+                            <div class="zigzag-visual"><span class="zigzag-num">05</span></div>
+                            <div class="zigzag-content">
+                                <h3 class="zigzag-title">Разработка</h3>
+                                <p class="zigzag-desc">Создаём пилотную версию → согласование → полная разработка. Вёрстка, программирование, наполнение контентом</p>
                             </div>
-                            <div class="step-animation">
-                                <div class="anim-code">
-                                    <span class="code-bracket code-bracket-left">&lt;</span>
-                                    <div class="code-slash"></div>
-                                    <span class="code-bracket code-bracket-right">&gt;</span>
-                                </div>
-                            </div>
+                            <div class="zigzag-connector"></div>
                         </div>
-                        <div class="process-step">
-                            <div class="step-number">06</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Тестирование и сдача</h3>
-                                <p class="step-desc">Проверка на всех устройствах и браузерах, исправление замечаний, демонстрация и приёмка заказчиком</p>
+                        <div class="zigzag-item">
+                            <div class="zigzag-visual"><span class="zigzag-num">06</span></div>
+                            <div class="zigzag-content">
+                                <h3 class="zigzag-title">Тестирование и сдача</h3>
+                                <p class="zigzag-desc">Проверка на всех устройствах и браузерах, исправление замечаний, демонстрация и приёмка заказчиком</p>
                             </div>
-                            <div class="step-animation">
-                                <div class="anim-check">
-                                    <div class="check-circle"></div>
-                                    <div class="check-mark"></div>
-                                </div>
-                            </div>
+                            <div class="zigzag-connector"></div>
                         </div>
-                        <div class="process-step">
-                            <div class="step-number">07</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Паспорт проекта</h3>
-                                <p class="step-desc">Передаём все доступы, техническую документацию и инструкцию по управлению сайтом</p>
-                            </div>
-                            <div class="step-animation">
-                                <div class="anim-passport">
-                                    <div class="passport-folder">
-                                        <div class="passport-tab"></div>
-                                        <div class="passport-back"></div>
-                                        <div class="passport-doc"></div>
-                                    </div>
-                                </div>
+                        <div class="zigzag-item">
+                            <div class="zigzag-visual"><span class="zigzag-num">07</span></div>
+                            <div class="zigzag-content">
+                                <h3 class="zigzag-title">Паспорт проекта</h3>
+                                <p class="zigzag-desc">Передаём все доступы, техническую документацию и инструкцию по управлению сайтом</p>
                             </div>
                         </div>
                     </div>
@@ -374,45 +343,44 @@
 
                 <!-- AI Agents -->
                 <div class="process-panel active" data-panel="ai">
-                    <div class="process-steps">
-                        <div class="process-step">
-                            <div class="step-number">01</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Определение задач</h3>
-                                <p class="step-desc">Какие процессы автоматизируем</p>
+                    <div class="zigzag-steps">
+                        <div class="zigzag-item">
+                            <div class="zigzag-visual"><span class="zigzag-num">01</span></div>
+                            <div class="zigzag-content">
+                                <h3 class="zigzag-title">Определение задач</h3>
+                                <p class="zigzag-desc">Анализируем текущие бизнес-процессы, определяем точки автоматизации и формируем чёткие цели проекта</p>
                             </div>
+                            <div class="zigzag-connector"></div>
                         </div>
-                        <div class="process-step">
-                            <div class="step-number">02</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Сбор данных</h3>
-                                <p class="step-desc">Подготовка базы знаний и сценариев</p>
+                        <div class="zigzag-item">
+                            <div class="zigzag-visual"><span class="zigzag-num">02</span></div>
+                            <div class="zigzag-content">
+                                <h3 class="zigzag-title">Сбор данных</h3>
+                                <p class="zigzag-desc">Собираем и структурируем базу знаний, создаём сценарии диалогов и готовим данные для обучения</p>
                             </div>
+                            <div class="zigzag-connector"></div>
                         </div>
-                        <div class="process-step">
-                            <div class="step-number">03</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Настройка модели</h3>
-                                <p class="step-desc">Обучение, промпт-инжиниринг</p>
+                        <div class="zigzag-item">
+                            <div class="zigzag-visual"><span class="zigzag-num">03</span></div>
+                            <div class="zigzag-content">
+                                <h3 class="zigzag-title">Настройка модели</h3>
+                                <p class="zigzag-desc">Настраиваем и обучаем ИИ-модель, проводим промпт-инжиниринг и тестируем результаты</p>
                             </div>
+                            <div class="zigzag-connector"></div>
                         </div>
-                        <div class="process-step">
-                            <div class="step-number">04</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Интеграция</h3>
-                                <p class="step-desc">Подключение к CRM, мессенджерам, сайту</p>
+                        <div class="zigzag-item">
+                            <div class="zigzag-visual"><span class="zigzag-num">04</span></div>
+                            <div class="zigzag-content">
+                                <h3 class="zigzag-title">Интеграция</h3>
+                                <p class="zigzag-desc">Подключаем решение к вашим системам: CRM, мессенджеры, сайт, внутренние сервисы</p>
                             </div>
+                            <div class="zigzag-connector"></div>
                         </div>
-                        <div class="process-step">
-                            <div class="step-number">05</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Оптимизация</h3>
-                                <p class="step-desc">Анализ диалогов, улучшение ответов</p>
+                        <div class="zigzag-item">
+                            <div class="zigzag-visual"><span class="zigzag-num">05</span></div>
+                            <div class="zigzag-content">
+                                <h3 class="zigzag-title">Оптимизация</h3>
+                                <p class="zigzag-desc">Анализируем диалоги, улучшаем качество ответов и масштабируем решение</p>
                             </div>
                         </div>
                     </div>
@@ -420,45 +388,44 @@
 
                 <!-- Consulting -->
                 <div class="process-panel" data-panel="consulting">
-                    <div class="process-steps">
-                        <div class="process-step">
-                            <div class="step-number">01</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Аудит процессов</h3>
-                                <p class="step-desc">Анализ текущего состояния бизнеса</p>
+                    <div class="zigzag-steps">
+                        <div class="zigzag-item">
+                            <div class="zigzag-visual"><span class="zigzag-num">01</span></div>
+                            <div class="zigzag-content">
+                                <h3 class="zigzag-title">Аудит процессов</h3>
+                                <p class="zigzag-desc">Глубокий анализ текущего состояния бизнеса, выявление сильных и слабых сторон</p>
                             </div>
+                            <div class="zigzag-connector"></div>
                         </div>
-                        <div class="process-step">
-                            <div class="step-number">02</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Выявление проблем</h3>
-                                <p class="step-desc">Узкие места, неэффективности, потери</p>
+                        <div class="zigzag-item">
+                            <div class="zigzag-visual"><span class="zigzag-num">02</span></div>
+                            <div class="zigzag-content">
+                                <h3 class="zigzag-title">Выявление проблем</h3>
+                                <p class="zigzag-desc">Определяем узкие места, неэффективности и точки потерь в бизнес-процессах</p>
                             </div>
+                            <div class="zigzag-connector"></div>
                         </div>
-                        <div class="process-step">
-                            <div class="step-number">03</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Разработка решений</h3>
-                                <p class="step-desc">Рекомендации и план внедрения</p>
+                        <div class="zigzag-item">
+                            <div class="zigzag-visual"><span class="zigzag-num">03</span></div>
+                            <div class="zigzag-content">
+                                <h3 class="zigzag-title">Разработка решений</h3>
+                                <p class="zigzag-desc">Формируем детальные рекомендации и план внедрения изменений</p>
                             </div>
+                            <div class="zigzag-connector"></div>
                         </div>
-                        <div class="process-step">
-                            <div class="step-number">04</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Внедрение</h3>
-                                <p class="step-desc">Сопровождение изменений</p>
+                        <div class="zigzag-item">
+                            <div class="zigzag-visual"><span class="zigzag-num">04</span></div>
+                            <div class="zigzag-content">
+                                <h3 class="zigzag-title">Внедрение</h3>
+                                <p class="zigzag-desc">Сопровождаем процесс изменений, обучаем команду и контролируем выполнение</p>
                             </div>
+                            <div class="zigzag-connector"></div>
                         </div>
-                        <div class="process-step">
-                            <div class="step-number">05</div>
-                            <div class="step-line"></div>
-                            <div class="step-info">
-                                <h3 class="step-title">Контроль результатов</h3>
-                                <p class="step-desc">Метрики, корректировка, масштабирование</p>
+                        <div class="zigzag-item">
+                            <div class="zigzag-visual"><span class="zigzag-num">05</span></div>
+                            <div class="zigzag-content">
+                                <h3 class="zigzag-title">Контроль результатов</h3>
+                                <p class="zigzag-desc">Отслеживаем метрики, корректируем подход и масштабируем успешные решения</p>
                             </div>
                         </div>
                     </div>
@@ -478,174 +445,30 @@
         </div>
     </section>
 
-    <!-- How It Works - CRM Demo Section -->
-    <section id="services" class="section crm-demo-section">
-        <div class="container">
-            <!-- Header -->
-            <div class="section-header">
-                <div class="section-label">НАШИ РЕШЕНИЯ В ДЕЙСТВИИ</div>
-                <h2 class="section-title">Как это работает</h2>
-                <p class="section-desc">Попробуйте интерактивные демо наших систем</p>
-            </div>
-
-            <!-- AI Sales System -->
-            <div id="panel-ai-system">
-                <div class="interface-window">
-                    <div class="interface-header">
-                        <div class="interface-dots">
-                            <div class="interface-dot red"></div>
-                            <div class="interface-dot yellow"></div>
-                            <div class="interface-dot green"></div>
-                        </div>
-                        <div class="interface-title">Creatix Sales AI — Автоматизация продаж</div>
-                    </div>
-                    <div class="interface-body">
-                        <div class="sales-system">
-                            <!-- Sidebar -->
-                            <div class="sales-sidebar">
-                                <div class="sidebar-section">
-                                    <div class="sidebar-title">Автоматизация</div>
-                                    <button class="sidebar-btn active" onclick="showPipeline()">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                                        Воронка продаж
-                                        <span class="badge">12</span>
-                                    </button>
-                                    <button class="sidebar-btn" onclick="runDemo()">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                                        Запустить демо
-                                    </button>
-                                </div>
-                                <div class="sidebar-section">
-                                    <div class="sidebar-title">ИИ Агенты</div>
-                                    <button class="sidebar-btn">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                                        Email бот
-                                    </button>
-                                    <button class="sidebar-btn">
-                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295l.213-3.053 5.56-5.023c.242-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.828.94z"/></svg>
-                                        Telegram бот
-                                    </button>
-                                    <button class="sidebar-btn">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                                        Планировщик
-                                    </button>
-                                </div>
-                                <div class="sidebar-section">
-                                    <div class="sidebar-title">Аналитика</div>
-                                    <button class="sidebar-btn">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                                        Отчёты
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Main -->
-                            <div class="sales-main">
-                                <!-- Demo Controls -->
-                                <div class="demo-controls">
-                                    <button class="demo-btn" id="demoBtn" onclick="runDemo()">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                                        Запустить симуляцию
-                                    </button>
-                                    <div class="demo-status" id="demoStatus">Нажмите чтобы увидеть автоматизацию в действии</div>
-                                </div>
-
-                                <!-- Pipeline -->
-                                <div class="pipeline-container">
-                                    <div class="pipeline-header">
-                                        <div class="pipeline-title">Воронка продаж</div>
-                                        <div class="pipeline-stats">
-                                            <div class="pipeline-stat">Лидов: <span id="totalLeads">0</span></div>
-                                            <div class="pipeline-stat">Конверсия: <span id="conversion">0%</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="pipeline">
-                                        <div class="pipeline-stage" id="stage-new">
-                                            <div class="stage-header">
-                                                <div class="stage-name"><div class="stage-dot new"></div>Новые</div>
-                                                <div class="stage-count" id="count-new">0</div>
-                                            </div>
-                                            <div class="stage-cards" id="cards-new"></div>
-                                        </div>
-                                        <div class="pipeline-stage" id="stage-qualified">
-                                            <div class="stage-header">
-                                                <div class="stage-name"><div class="stage-dot qualified"></div>Квалификация</div>
-                                                <div class="stage-count" id="count-qualified">0</div>
-                                            </div>
-                                            <div class="stage-cards" id="cards-qualified"></div>
-                                        </div>
-                                        <div class="pipeline-stage" id="stage-proposal">
-                                            <div class="stage-header">
-                                                <div class="stage-name"><div class="stage-dot proposal"></div>Предложение</div>
-                                                <div class="stage-count" id="count-proposal">0</div>
-                                            </div>
-                                            <div class="stage-cards" id="cards-proposal"></div>
-                                        </div>
-                                        <div class="pipeline-stage" id="stage-negotiation">
-                                            <div class="stage-header">
-                                                <div class="stage-name"><div class="stage-dot negotiation"></div>Переговоры</div>
-                                                <div class="stage-count" id="count-negotiation">0</div>
-                                            </div>
-                                            <div class="stage-cards" id="cards-negotiation"></div>
-                                        </div>
-                                        <div class="pipeline-stage" id="stage-closed">
-                                            <div class="stage-header">
-                                                <div class="stage-name"><div class="stage-dot closed"></div>Закрыто</div>
-                                                <div class="stage-count" id="count-closed">0</div>
-                                            </div>
-                                            <div class="stage-cards" id="cards-closed"></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Activity Log -->
-                                <div class="activity-log">
-                                    <div class="activity-title">
-                                        Лог активности ИИ
-                                        <span class="live" id="liveIndicator" style="display: none;">LIVE</span>
-                                    </div>
-                                    <div id="activityList"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
+        <!-- Geometric Wireframe Background -->
+        <div class="portfolio-wireframe">
+            <div class="portfolio-hex portfolio-hex-1"></div>
+            <div class="portfolio-hex portfolio-hex-2"></div>
+            <div class="portfolio-hex portfolio-hex-3"></div>
+            <div class="portfolio-hex portfolio-hex-4"></div>
+            <div class="portfolio-hex portfolio-hex-5"></div>
+            <div class="portfolio-diagonal portfolio-diagonal-1"></div>
+            <div class="portfolio-diagonal portfolio-diagonal-2"></div>
+            <div class="portfolio-diagonal portfolio-diagonal-3"></div>
+        </div>
+
         <div class="container">
             <div class="section-header">
                 <div class="section-label">НАШИ РАБОТЫ</div>
                 <h2 class="section-title">Портфолио</h2>
             </div>
 
-            <div class="portfolio-grid">
-                <div class="portfolio-item large emerald-card">
-                    <div class="portfolio-image" style="background: url('images/portfolio/emrld.png') center/contain no-repeat;"></div>
-                    <div class="portfolio-overlay">
-                        <span class="portfolio-category">ERP система</span>
-                        <h3 class="portfolio-title">EMERALD</h3>
-                        <p class="portfolio-description">Комплексная ERP для мебельного производства. Модули: продажи, проекты, документооборот, производство, монтаж, финансовый учёт. ИИ-ассистент, автоматизация смет, контроль чертежей.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item aicreatix-card">
-                    <div class="portfolio-image" style="background: url('images/portfolio/AICREATIX.png') center/contain no-repeat;"></div>
-                    <div class="portfolio-overlay">
-                        <span class="portfolio-category">ИИ-сервис</span>
-                        <h3 class="portfolio-title">AICreatix</h3>
-                        <p class="portfolio-description">Генерация маркетинговых документов с ИИ. Презентации, брендинг, контент для соцсетей и маркетплейсов. Мгновенное редактирование и экспорт в PDF/DOC.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item large babylon-card">
-                    <div class="portfolio-image" style="background: url('images/portfolio/Babylon.png') center/contain no-repeat;"></div>
-                    <div class="portfolio-overlay">
-                        <span class="portfolio-category">Сайт + Админ-панель</span>
-                        <h3 class="portfolio-title">Babylon</h3>
-                        <p class="portfolio-description">Польская группа компаний. Разработка сайта и админ-панели для 2 проектов: аренда спецтехники и продажа матрасов. Каталог, фильтры, управление контентом.</p>
-                    </div>
+            <!-- Infinite Scroll Wall -->
+            <div class="scroll-wall-wrapper">
+                <div class="scroll-wall" id="portfolioScrollWall">
+                    <!-- Columns will be generated dynamically -->
                 </div>
             </div>
 
@@ -677,48 +500,60 @@
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                             </svg>
-                            <span>+7 (999) 999-99-99</span>
+                            <span data-contact-phone>+7 (999) 999-99-99</span>
                         </div>
                         <div class="contact-item">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                                 <polyline points="22,6 12,13 2,6"/>
                             </svg>
-                            <span>hello@creatix.ru</span>
+                            <span data-contact-email>hello@creatix.ru</span>
                         </div>
                         <div class="contact-item">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                                 <circle cx="12" cy="10" r="3"/>
                             </svg>
-                            <span>Москва, Россия</span>
+                            <span data-contact-address>Москва, Россия</span>
                         </div>
                     </div>
 
                     <div class="contact-social">
-                        <a href="#" class="social-btn">VK</a>
-                        <a href="#" class="social-btn">TG</a>
-                        <a href="#" class="social-btn">WA</a>
+                        <a href="#" class="social-btn" data-contact-vk>VK</a>
+                        <a href="#" class="social-btn" data-contact-telegram>TG</a>
+                        <a href="#" class="social-btn" data-contact-whatsapp>WA</a>
                     </div>
                 </div>
 
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" name="name" placeholder="Ваше имя" required>
+                <form class="contact-form contact-form-floating">
+                    <div class="form-header">
+                        <span class="form-badge">Бесплатно</span>
+                        <h3 class="form-title">Обсудим <span>ваш проект</span></h3>
                     </div>
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Email" required>
+                    <div class="floating-group">
+                        <input type="text" name="name" class="floating-input" placeholder=" " required>
+                        <label class="floating-label">Ваше имя</label>
+                        <div class="floating-line"></div>
                     </div>
-                    <div class="form-group">
-                        <input type="tel" name="phone" placeholder="Телефон">
+                    <div class="floating-group">
+                        <input type="email" name="email" class="floating-input" placeholder=" " required>
+                        <label class="floating-label">Email</label>
+                        <div class="floating-line"></div>
                     </div>
-                    <div class="form-group">
-                        <textarea name="message" rows="4" placeholder="Расскажите о вашем проекте..." required></textarea>
+                    <div class="floating-group">
+                        <input type="tel" name="phone" class="floating-input" placeholder=" ">
+                        <label class="floating-label">Телефон</label>
+                        <div class="floating-line"></div>
+                    </div>
+                    <div class="floating-group">
+                        <textarea name="message" class="floating-input" placeholder=" " required></textarea>
+                        <label class="floating-label">Сообщение</label>
+                        <div class="floating-line"></div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-submit">
                         Отправить заявку
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </button>
                 </form>
@@ -727,52 +562,58 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer footer-geo">
+        <!-- Geometric shapes -->
+        <div class="geo-shape geo-1"></div>
+        <div class="geo-shape geo-2"></div>
+        <div class="geo-shape geo-3"></div>
+
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
                     <a href="/" class="footer-logo">
                         <span class="logo-icon">◆</span>CREATIX
                     </a>
-                    <p class="footer-tagline">Веб-студия полного цикла.<br>Создаём digital-решения для бизнеса.</p>
+                    <p class="footer-tagline">Веб-студия полного цикла. Разрабатываем сайты, CRM/ERP системы и интеллектуальные решения для бизнеса.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-btn" data-contact-vk>VK</a>
+                        <a href="#" class="social-btn" data-contact-telegram>TG</a>
+                        <a href="#" class="social-btn" data-contact-whatsapp>WA</a>
+                    </div>
                 </div>
-
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Навигация</h4>
-                        <ul>
-                            <li><a href="#home">Главная</a></li>
-                            <li><a href="#about">О нас</a></li>
-                            <li><a href="#services">Услуги</a></li>
-                            <li><a href="#portfolio">Портфолио</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Услуги</h4>
-                        <ul>
-                            <li><a href="#services">Сайты на заказ</a></li>
-                            <li><a href="#services">CRM системы</a></li>
-                            <li><a href="#services">ERP системы</a></li>
-                            <li><a href="#services">Веб-приложения</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Контакты</h4>
-                        <ul>
-                            <li>+7 (999) 999-99-99</li>
-                            <li>hello@creatix.ru</li>
-                            <li>Москва, Россия</li>
-                        </ul>
-                    </div>
+                <div class="footer-column">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#portfolio">Портфолио</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Услуги</h4>
+                    <ul>
+                        <li><a href="#portfolio">Сайты на заказ</a></li>
+                        <li><a href="#portfolio">CRM системы</a></li>
+                        <li><a href="#portfolio">ERP системы</a></li>
+                        <li><a href="#portfolio">ИИ решения</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><span data-contact-phone>+7 (999) 999-99-99</span></li>
+                        <li><span data-contact-email>hello@creatix.ru</span></li>
+                        <li><span data-contact-address>Москва, Россия</span></li>
+                    </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
                 <p class="copyright">© 2024 Creatix. Все права защищены.</p>
-                <div class="footer-social">
-                    <a href="#">VK</a>
-                    <a href="#">TG</a>
-                    <a href="#">WA</a>
+                <div class="footer-legal">
+                    <a href="#">Политика конфиденциальности</a>
+                    <a href="#">Условия</a>
                 </div>
             </div>
         </div>
@@ -819,6 +660,7 @@
     </button>
 
     <!-- Scripts -->
+    <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -995,5 +837,137 @@
             setTimeout(() => item.classList.add('visible'), 50);
         }
     </script>
+
+    <!-- Image Lightbox (fullscreen view) -->
+    <div class="image-lightbox" id="imageLightbox">
+        <button class="lightbox-close" id="closeLightbox">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
+        </button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"/>
+            </svg>
+        </button>
+        <div class="lightbox-content">
+            <img src="" alt="Full size image" id="lightboxImage">
+        </div>
+        <div class="lightbox-counter" id="lightboxCounter">1 / 3</div>
+    </div>
+
+    <!-- Portfolio Project Modal -->
+    <div class="project-modal-overlay" id="projectModal">
+        <div class="project-modal">
+            <button class="project-modal-close" id="closeProjectModal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+
+            <div class="project-modal-content">
+                <!-- Left side - Gallery -->
+                <div class="project-modal-gallery">
+                    <div class="project-gallery-main" id="projectGalleryMain">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Project image" id="projectMainImage">
+                    </div>
+                    <div class="project-gallery-thumbs" id="projectGalleryThumbs">
+                        <!-- Thumbnails will be generated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Right side - Info -->
+                <div class="project-modal-info">
+                    <div class="project-modal-header">
+                        <span class="project-modal-category" id="projectModalCategory"></span>
+                        <h2 class="project-modal-title" id="projectModalTitle"></h2>
+                        <div class="project-modal-meta">
+                            <span class="project-meta-item" id="projectModalClient">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                                <span></span>
+                            </span>
+                            <span class="project-meta-item" id="projectModalYear">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                    <line x1="16" y1="2" x2="16" y2="6"/>
+                                    <line x1="8" y1="2" x2="8" y2="6"/>
+                                    <line x1="3" y1="10" x2="21" y2="10"/>
+                                </svg>
+                                <span></span>
+                            </span>
+                            <span class="project-meta-item" id="projectModalDuration">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                <span></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="project-modal-section">
+                        <h3 class="project-section-title">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                <line x1="12" y1="9" x2="12" y2="13"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                            Проблема
+                        </h3>
+                        <p class="project-section-text" id="projectModalProblem"></p>
+                    </div>
+
+                    <div class="project-modal-section">
+                        <h3 class="project-section-title">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            </svg>
+                            Решение
+                        </h3>
+                        <p class="project-section-text" id="projectModalSolution"></p>
+                    </div>
+
+                    <div class="project-modal-results" id="projectModalResults">
+                        <!-- Results will be generated dynamically -->
+                    </div>
+
+                    <div class="project-modal-section">
+                        <h3 class="project-section-title">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="16 18 22 12 16 6"/>
+                                <polyline points="8 6 2 12 8 18"/>
+                            </svg>
+                            Технологии
+                        </h3>
+                        <div class="project-technologies" id="projectModalTechnologies">
+                            <!-- Technologies will be generated dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="project-modal-cta">
+                        <a href="#contact" class="btn-opticore" id="projectModalCTA">
+                            <span class="btn-text">Хочу такой же проект</span>
+                            <span class="btn-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

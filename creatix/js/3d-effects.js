@@ -239,7 +239,7 @@ class OrganicBlobs {
 
     createMainBlob() {
         // Основной блоб справа вверху
-        const geometry = new THREE.IcosahedronGeometry(2.2, 128);
+        const geometry = new THREE.IcosahedronGeometry(2.2, 48);
 
         const material = new THREE.ShaderMaterial({
             vertexShader: this.getVertexShader(),
@@ -269,7 +269,7 @@ class OrganicBlobs {
 
     createSecondBlob() {
         // Второй блоб слева внизу - ближе к первому
-        const geometry = new THREE.IcosahedronGeometry(2.5, 128);
+        const geometry = new THREE.IcosahedronGeometry(2.5, 48);
 
         const material = new THREE.ShaderMaterial({
             vertexShader: this.getVertexShader(),

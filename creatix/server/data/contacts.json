@@ -1,0 +1,10 @@
+{
+  "phone": "+79788888888",
+  "email": "test@mail.ru",
+  "address": "Москва, Россия",
+  "social": {
+    "vk": "https://vk.com/feed",
+    "telegram": "https://web.telegram.org/",
+    "whatsapp": "+79788888888"
+  }
+}
