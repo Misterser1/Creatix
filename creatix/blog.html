@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Блог Creatix - Статьи о веб-разработке, CRM и ИИ</title>
+    <meta name="title" content="Блог Creatix - Статьи о веб-разработке, CRM и ИИ">
+    <meta name="description" content="Полезные статьи от веб-студии Creatix: тренды веб-разработки, внедрение CRM систем, создание ИИ-агентов, советы по digital-маркетингу.">
+    <meta name="keywords" content="блог веб-разработка, статьи CRM, ИИ агенты, digital маркетинг, создание сайтов, Creatix">
+    <meta name="author" content="Creatix">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://creatix.ru/blog">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://creatix.ru/blog">
+    <meta property="og:title" content="Блог Creatix - Статьи о веб-разработке, CRM и ИИ">
+    <meta property="og:description" content="Полезные статьи от веб-студии Creatix: тренды веб-разработки, внедрение CRM систем, создание ИИ-агентов.">
+    <meta property="og:image" content="https://creatix.ru/og-blog.jpg">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Blog Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Блог Creatix",
+        "description": "Статьи о веб-разработке, CRM системах и ИИ-технологиях",
+        "url": "https://creatix.ru/blog",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Creatix",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://creatix.ru/logo.png"
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Simple Blog Header -->
+    <header class="blog-header">
+        <div class="container">
+            <nav class="blog-nav">
+                <a href="/" class="logo">
+                    <span class="logo-icon">◆</span>CREATIX
+                </a>
+                <a href="/" class="back-to-home">
+                    <span class="icon-wrap">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </span>
+                    На главную
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+        <div class="container">
+            <div class="blog-hero-content">
+                <span class="blog-label">БЛОГ</span>
+                <h1 class="blog-title">Полезные статьи о веб-разработке</h1>
+                <p class="blog-description">
+                    Делимся опытом, рассказываем о трендах и помогаем разобраться в сложных вопросах digital-индустрии
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Categories -->
+    <section class="blog-categories">
+        <div class="container">
+            <div class="categories-wrapper" data-active="0">
+                <div class="category-slider"></div>
+                <button class="category-btn active" data-category="all" data-index="0">Все статьи</button>
+                <button class="category-btn" data-category="web" data-index="1">Веб-разработка</button>
+                <button class="category-btn" data-category="crm" data-index="2">CRM/ERP</button>
+                <button class="category-btn" data-category="ai" data-index="3">ИИ и автоматизация</button>
+                <button class="category-btn" data-category="business" data-index="4">Бизнес</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Grid -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-grid" id="blogGrid">
+                <!-- Articles will be loaded here -->
+            </div>
+
+            <!-- Load More -->
+            <div class="blog-load-more">
+                <button class="btn-outline-light" id="loadMoreBtn" style="display: none;">
+                    Загрузить ещё
+                    <span class="dots">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-card">
+                <div class="newsletter-content">
+                    <h2 class="newsletter-title">Подпишитесь на рассылку</h2>
+                    <p class="newsletter-desc">Получайте полезные статьи и новости digital-индустрии раз в неделю</p>
+                </div>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Ваш email" required>
+                    <button type="submit" class="btn-glass">
+                        Подписаться
+                        <span class="icon-wrap">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer footer-geo">
+        <!-- Geometric shapes -->
+        <div class="geo-shape geo-1"></div>
+        <div class="geo-shape geo-2"></div>
+        <div class="geo-shape geo-3"></div>
+
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="/" class="footer-logo">
+                        <span class="logo-icon">◆</span>CREATIX
+                    </a>
+                    <p class="footer-tagline">Веб-студия полного цикла. Разрабатываем сайты, CRM/ERP системы и интеллектуальные решения для бизнеса.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-btn" data-contact-vk>VK</a>
+                        <a href="#" class="social-btn" data-contact-telegram>TG</a>
+                        <a href="#" class="social-btn" data-contact-whatsapp>WA</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/#about">О нас</a></li>
+                        <li><a href="/#portfolio">Портфолио</a></li>
+                        <li><a href="/blog.html">Блог</a></li>
+                        <li><a href="/#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Услуги</h4>
+                    <ul>
+                        <li><a href="/#portfolio">Сайты на заказ</a></li>
+                        <li><a href="/#portfolio">CRM системы</a></li>
+                        <li><a href="/#portfolio">ERP системы</a></li>
+                        <li><a href="/#portfolio">ИИ решения</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><span data-contact-phone>+7 (999) 999-99-99</span></li>
+                        <li><span data-contact-email>hello@creatix.ru</span></li>
+                        <li><span data-contact-address>Москва, Россия</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright">© 2024 Creatix. Все права защищены.</p>
+                <div class="footer-legal">
+                    <a href="#" id="openPrivacyPolicy">Политика конфиденциальности</a>
+                    <a href="#" id="openTerms">Условия</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div class="legal-modal" id="privacyModal">
+        <div class="legal-modal-content">
+            <button class="legal-modal-close" data-close-modal>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <h2>Политика конфиденциальности</h2>
+            <div class="legal-modal-body">
+                <p class="legal-date">Дата вступления в силу: 1 января 2024 г.</p>
+
+                <h3>1. Общие положения</h3>
+                <p>Настоящая Политика конфиденциальности определяет порядок обработки и защиты персональных данных пользователей сайта Creatix (далее — «Сайт»). Используя Сайт, вы соглашаетесь с условиями данной Политики.</p>
+
+                <h3>2. Какие данные мы собираем</h3>
+                <p>Мы можем собирать следующую информацию:</p>
+                <ul>
+                    <li>Имя и контактные данные (телефон, email)</li>
+                    <li>Информация о компании и проекте</li>
+                    <li>Данные, предоставленные через формы обратной связи и чат</li>
+                    <li>Техническая информация (IP-адрес, тип браузера, cookies)</li>
+                </ul>
+
+                <h3>3. Цели обработки данных</h3>
+                <p>Собранные данные используются для:</p>
+                <ul>
+                    <li>Связи с вами по вопросам сотрудничества</li>
+                    <li>Подготовки коммерческих предложений</li>
+                    <li>Улучшения качества наших услуг</li>
+                    <li>Отправки информационных материалов (с вашего согласия)</li>
+                </ul>
+
+                <h3>4. Защита данных</h3>
+                <p>Мы принимаем все необходимые меры для защиты ваших персональных данных от несанкционированного доступа, изменения, раскрытия или уничтожения. Доступ к данным имеют только уполномоченные сотрудники.</p>
+
+                <h3>5. Передача данных третьим лицам</h3>
+                <p>Мы не продаём и не передаём ваши персональные данные третьим лицам без вашего согласия, за исключением случаев, предусмотренных законодательством РФ.</p>
+
+                <h3>6. Файлы cookies</h3>
+                <p>Сайт использует cookies для улучшения пользовательского опыта. Вы можете отключить cookies в настройках браузера, однако это может повлиять на функциональность сайта.</p>
+
+                <h3>7. Ваши права</h3>
+                <p>Вы имеете право:</p>
+                <ul>
+                    <li>Получить информацию о ваших данных, которые мы храним</li>
+                    <li>Потребовать исправления или удаления ваших данных</li>
+                    <li>Отозвать согласие на обработку данных</li>
+                </ul>
+
+                <h3>8. Контакты</h3>
+                <p>По вопросам, связанным с обработкой персональных данных, вы можете связаться с нами через форму на сайте или по email.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div class="legal-modal" id="termsModal">
+        <div class="legal-modal-content">
+            <button class="legal-modal-close" data-close-modal>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <h2>Условия использования</h2>
+            <div class="legal-modal-body">
+                <p class="legal-date">Дата вступления в силу: 1 января 2024 г.</p>
+
+                <h3>1. Общие положения</h3>
+                <p>Настоящие Условия использования регулируют порядок использования сайта Creatix. Используя сайт, вы принимаете данные условия в полном объёме.</p>
+
+                <h3>2. Интеллектуальная собственность</h3>
+                <p>Все материалы сайта (дизайн, тексты, графика, логотипы, код) являются интеллектуальной собственностью Creatix и защищены законодательством об авторском праве. Копирование, распространение или модификация материалов без письменного разрешения запрещены.</p>
+
+                <h3>3. Услуги</h3>
+                <p>Creatix предоставляет услуги по разработке веб-сайтов, CRM/ERP систем и интеллектуальных решений. Конкретные условия оказания услуг определяются индивидуальным договором с каждым клиентом.</p>
+
+                <h3>4. Ограничение ответственности</h3>
+                <p>Мы прилагаем все усилия для обеспечения точности информации на сайте, однако не гарантируем её полноту и актуальность. Сайт предоставляется «как есть», и мы не несём ответственности за:</p>
+                <ul>
+                    <li>Временную недоступность сайта</li>
+                    <li>Любой ущерб, связанный с использованием сайта</li>
+                    <li>Действия третьих лиц</li>
+                </ul>
+
+                <h3>5. Пользовательский контент</h3>
+                <p>Отправляя нам сообщения через формы или чат, вы подтверждаете, что:</p>
+                <ul>
+                    <li>Предоставленная информация является достоверной</li>
+                    <li>Вы имеете право передавать эту информацию</li>
+                    <li>Контент не нарушает права третьих лиц</li>
+                </ul>
+
+                <h3>6. Внешние ссылки</h3>
+                <p>Сайт может содержать ссылки на сторонние ресурсы. Мы не несём ответственности за содержание и политику конфиденциальности этих сайтов.</p>
+
+                <h3>7. Изменение условий</h3>
+                <p>Мы оставляем за собой право изменять данные Условия в любое время. Изменения вступают в силу с момента публикации на сайте.</p>
+
+                <h3>8. Применимое право</h3>
+                <p>Настоящие Условия регулируются законодательством Российской Федерации. Все споры подлежат разрешению в соответствии с действующим законодательством РФ.</p>
+
+                <h3>9. Контакты</h3>
+                <p>Если у вас есть вопросы относительно данных Условий, свяжитесь с нами через форму обратной связи на сайте.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/blog.js"></script>
+</body>
+</html>

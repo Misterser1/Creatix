@@ -576,49 +576,38 @@ function initFormSubmit() {
 
     // Format phone number on input
     function formatPhoneInput(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        let formatted = '';
+        const input = e.target;
+        let value = input.value.replace(/\D/g, '');
 
+        // Remove leading 7 or 8 for formatting
+        if (value.length > 0 && (value[0] === '7' || value[0] === '8')) {
+            value = value.slice(1);
+        }
+
+        // Limit to 10 digits (after removing country code)
+        value = value.slice(0, 10);
+
+        let formatted = '';
         if (value.length === 0) {
             formatted = '';
-        } else if (value.length <= 1) {
-            // Start with +7
-            if (value === '8' || value === '7') {
-                formatted = '+7';
-            } else {
-                formatted = '+7' + value;
-            }
         } else {
-            // Remove leading 7 or 8
-            if (value[0] === '7' || value[0] === '8') {
-                value = value.slice(1);
-            }
-
-            formatted = '+7';
-            if (value.length > 0) {
-                formatted += ' (' + value.substring(0, 3);
-            }
-            if (value.length >= 3) {
+            formatted = '+7 (' + value.substring(0, 3);
+            if (value.length > 3) {
                 formatted += ') ' + value.substring(3, 6);
             }
-            if (value.length >= 6) {
+            if (value.length > 6) {
                 formatted += '-' + value.substring(6, 8);
             }
-            if (value.length >= 8) {
+            if (value.length > 8) {
                 formatted += '-' + value.substring(8, 10);
             }
         }
 
-        e.target.value = formatted;
+        input.value = formatted;
     }
 
     // Phone input formatting
     phoneInput.addEventListener('input', formatPhoneInput);
-    phoneInput.addEventListener('focus', (e) => {
-        if (!e.target.value) {
-            e.target.value = '+7';
-        }
-    });
     phoneInput.addEventListener('blur', (e) => {
         if (e.target.value === '+7') {
             e.target.value = '';
@@ -1588,16 +1577,50 @@ function openProjectModal(project) {
         thumbsContainer.style.display = gallery.length > 1 ? 'flex' : 'none';
     }
 
+    // Reset scroll position of modal info
+    const modalInfo = modal.querySelector('.project-modal-info');
+    if (modalInfo) {
+        modalInfo.scrollTop = 0;
+    }
+
     // Show modal
     modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+
+    // Block body scroll
+    scrollLock.enable();
 }
+
+// Scroll lock utility
+const scrollLock = {
+    scrollY: 0,
+
+    enable() {
+        this.scrollY = window.scrollY;
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${this.scrollY}px`;
+        document.body.style.left = '0';
+        document.body.style.right = '0';
+    },
+
+    disable() {
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        window.scrollTo(0, this.scrollY);
+    }
+};
 
 function closeProjectModal() {
     const modal = document.getElementById('projectModal');
     if (modal) {
         modal.classList.remove('active');
-        document.body.style.overflow = '';
+
+        // Restore body scroll
+        scrollLock.disable();
+
         currentProjectData = null;
     }
 }
@@ -1874,3 +1897,66 @@ async function loadContacts() {
         console.error('Failed to load contacts:', error);
     }
 }
+
+// ==========================================
+// Legal Modals (Privacy Policy & Terms)
+// ==========================================
+
+function initLegalModals() {
+    const privacyModal = document.getElementById('privacyModal');
+    const termsModal = document.getElementById('termsModal');
+    const openPrivacy = document.getElementById('openPrivacyPolicy');
+    const openTerms = document.getElementById('openTerms');
+
+    if (!privacyModal || !termsModal) return;
+
+    // Open modals
+    openPrivacy?.addEventListener('click', (e) => {
+        e.preventDefault();
+        openLegalModal(privacyModal);
+    });
+
+    openTerms?.addEventListener('click', (e) => {
+        e.preventDefault();
+        openLegalModal(termsModal);
+    });
+
+    // Close buttons
+    document.querySelectorAll('.legal-modal-close').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modal = btn.closest('.legal-modal');
+            closeLegalModal(modal);
+        });
+    });
+
+    // Close on backdrop click
+    [privacyModal, termsModal].forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeLegalModal(modal);
+            }
+        });
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.legal-modal.active').forEach(modal => {
+                closeLegalModal(modal);
+            });
+        }
+    });
+}
+
+function openLegalModal(modal) {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLegalModal(modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', initLegalModals);

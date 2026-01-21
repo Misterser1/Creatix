@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Админ-панель - CREATIX</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/admin.css">
 </head>
@@ -18,7 +19,7 @@
             <nav class="sidebar-nav">
                 <button class="nav-item active" data-section="contacts">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"/>
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                     </svg>
                     Контакты
                 </button>
@@ -48,6 +49,13 @@
                         <rect x="3" y="14" width="7" height="7"/>
                     </svg>
                     Портфолио
+                </button>
+                <button class="nav-item" data-section="blog">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                    </svg>
+                    Блог
                 </button>
                 <a href="/" class="nav-item" target="_blank">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -294,6 +302,37 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Blog Section -->
+            <section id="blog-section" class="admin-section">
+                <div class="page-header">
+                    <h1 class="page-title">Блог</h1>
+                    <p class="page-subtitle">Управление статьями блога</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Статьи</h2>
+                        <button class="btn btn-primary" id="addArticleBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                            Добавить статью
+                        </button>
+                    </div>
+
+                    <div class="blog-filters">
+                        <button class="filter-btn active" data-filter="all">Все</button>
+                        <button class="filter-btn" data-filter="published">Опубликованные</button>
+                        <button class="filter-btn" data-filter="draft">Черновики</button>
+                    </div>
+
+                    <div id="blogGrid" class="blog-admin-grid">
+                        <!-- Статьи загружаются динамически -->
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
 
@@ -442,6 +481,145 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline" id="cancelModal">Отмена</button>
                     <button type="submit" class="btn btn-primary" id="saveProject">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Article Modal -->
+    <div class="modal-overlay" id="articleModal">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h3 class="modal-title" id="articleModalTitle">Добавить статью</h3>
+                <button class="modal-close" id="closeArticleModal">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <form id="articleForm">
+                <div class="modal-body modal-body-scroll">
+                    <input type="hidden" id="articleId" name="articleId">
+
+                    <!-- Tabs -->
+                    <div class="form-tabs">
+                        <button type="button" class="form-tab active" data-tab="article-basic">Основное</button>
+                        <button type="button" class="form-tab" data-tab="article-content">Содержимое</button>
+                        <button type="button" class="form-tab" data-tab="article-seo">SEO и теги</button>
+                    </div>
+
+                    <!-- Basic Tab -->
+                    <div class="form-tab-content active" id="tab-article-basic">
+                        <div class="input-group">
+                            <label for="articleTitle">Заголовок *</label>
+                            <input type="text" id="articleTitle" name="title" required placeholder="Заголовок статьи">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="articleCategory">Категория</label>
+                                <select id="articleCategory" name="category">
+                                    <option value="web">Веб-разработка</option>
+                                    <option value="crm">CRM/ERP</option>
+                                    <option value="ai">ИИ и автоматизация</option>
+                                    <option value="business">Бизнес</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="articleDate">Дата публикации</label>
+                                <input type="date" id="articleDate" name="date">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="articleReadTime">Время чтения</label>
+                                <input type="text" id="articleReadTime" name="readTime" placeholder="5 мин">
+                            </div>
+                            <div class="input-group">
+                                <label for="articleAuthor">Автор</label>
+                                <input type="text" id="articleAuthor" name="author" placeholder="Команда Creatix">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Изображение</label>
+                            <div class="file-upload" id="articleFileUpload">
+                                <svg class="file-upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="17 8 12 3 7 8"/>
+                                    <line x1="12" y1="3" x2="12" y2="15"/>
+                                </svg>
+                                <p class="file-upload-text">Перетащите файл, <span>выберите</span> или <kbd>Ctrl+V</kbd></p>
+                                <input type="file" id="articleImage" name="image" accept="image/*" style="display: none;">
+                            </div>
+                            <div class="file-preview" id="articleFilePreview"></div>
+                        </div>
+
+                        <div class="input-group publish-toggle">
+                            <label class="toggle-label">
+                                <input type="checkbox" id="articlePublished" name="isPublished">
+                                <span class="toggle-switch"></span>
+                                <span class="toggle-text">Опубликовать статью</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Content Tab -->
+                    <div class="form-tab-content" id="tab-article-content">
+                        <div class="input-group">
+                            <label for="articleExcerpt">Краткое описание (для карточки)</label>
+                            <textarea id="articleExcerpt" name="excerpt" rows="3" placeholder="Краткое описание статьи для карточки в списке..."></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="articleContent">Содержимое статьи (HTML)</label>
+                            <div class="editor-toolbar">
+                                <button type="button" class="editor-btn" data-action="bold" title="Жирный"><b>B</b></button>
+                                <button type="button" class="editor-btn" data-action="italic" title="Курсив"><i>I</i></button>
+                                <button type="button" class="editor-btn" data-action="h2" title="Заголовок H2">H2</button>
+                                <button type="button" class="editor-btn" data-action="h3" title="Заголовок H3">H3</button>
+                                <button type="button" class="editor-btn" data-action="ul" title="Список">• •</button>
+                                <button type="button" class="editor-btn" data-action="link" title="Ссылка">🔗</button>
+                                <button type="button" class="editor-btn" data-action="quote" title="Цитата">"</button>
+                                <button type="button" class="editor-btn" data-action="code" title="Код">&lt;/&gt;</button>
+                            </div>
+                            <textarea id="articleContent" name="content" rows="15" placeholder="<h2>Заголовок раздела</h2>
+<p>Текст статьи...</p>
+
+<h3>Подзаголовок</h3>
+<ul>
+  <li>Пункт списка</li>
+  <li>Ещё пункт</li>
+</ul>
+
+<blockquote>Цитата</blockquote>"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- SEO Tab -->
+                    <div class="form-tab-content" id="tab-article-seo">
+                        <div class="input-group">
+                            <label for="articleTags">Теги (через запятую)</label>
+                            <input type="text" id="articleTags" name="tags" placeholder="веб-разработка, тренды, CSS">
+                            <div class="tags-preview" id="tagsPreview"></div>
+                        </div>
+
+                        <div class="form-hint">
+                            <strong>Советы по SEO:</strong>
+                            <ul>
+                                <li>Используйте ключевые слова в заголовке</li>
+                                <li>Добавьте 3-5 релевантных тегов</li>
+                                <li>Краткое описание должно быть 150-160 символов</li>
+                                <li>Используйте H2 и H3 для структуры контента</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" id="cancelArticleModal">Отмена</button>
+                    <button type="submit" class="btn btn-primary" id="saveArticle">Сохранить</button>
                 </div>
             </form>
         </div>

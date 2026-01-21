@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Meta tags will be dynamically updated -->
+    <title>Статья - Блог Creatix</title>
+    <meta name="description" content="">
+    <meta name="author" content="Creatix">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="">
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="article:author" content="Creatix">
+    <meta property="article:published_time" content="">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Article Schema - will be dynamically updated -->
+    <script type="application/ld+json" id="articleSchema">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "",
+        "description": "",
+        "image": "",
+        "author": {
+            "@type": "Organization",
+            "name": "Creatix"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Creatix",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://creatix.ru/logo.png"
+            }
+        },
+        "datePublished": "",
+        "dateModified": ""
+    }
+    </script>
+</head>
+<body>
+    <!-- Simple Blog Header -->
+    <header class="blog-header">
+        <div class="container">
+            <nav class="blog-nav">
+                <a href="/" class="logo">
+                    <span class="logo-icon">◆</span>CREATIX
+                </a>
+                <a href="/blog.html" class="back-to-home">
+                    <span class="icon-wrap">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </span>
+                    Блог
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="article-page">
+        <div class="container">
+            <!-- Breadcrumbs -->
+            <nav class="breadcrumbs">
+                <a href="/">Главная</a>
+                <span class="separator">/</span>
+                <a href="/blog.html">Блог</a>
+                <span class="separator">/</span>
+                <span class="breadcrumb-current">Статья</span>
+            </nav>
+
+            <!-- Article Header -->
+            <header class="article-header">
+                <a href="/blog.html" class="article-category">Категория</a>
+                <h1 class="article-title">Заголовок статьи</h1>
+                <div class="article-meta">
+                    <span class="article-meta-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                        <span class="article-date">1 января 2025</span>
+                    </span>
+                    <span class="article-meta-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        <span class="article-read-time">5 мин чтения</span>
+                    </span>
+                    <span class="article-meta-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        <span class="article-author">Команда Creatix</span>
+                    </span>
+                </div>
+            </header>
+
+            <!-- Article Image -->
+            <div class="article-featured-image">
+                <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&h=600&fit=crop" alt="Статья">
+            </div>
+
+            <!-- Article Body -->
+            <div class="article-body" id="articleBody">
+                <!-- Content will be loaded here -->
+            </div>
+
+            <!-- Article Footer -->
+            <footer class="article-footer">
+                <!-- Tags -->
+                <div class="article-tags" id="articleTags">
+                    <!-- Tags will be loaded here -->
+                </div>
+
+                <!-- Share -->
+                <div class="article-share">
+                    <span>Поделиться:</span>
+                    <div class="share-buttons">
+                        <button class="share-btn" data-network="telegram" title="Telegram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.05-.2-.06-.05-.15-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                            </svg>
+                        </button>
+                        <button class="share-btn" data-network="vk" title="ВКонтакте">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12.785 16.241s.288-.032.436-.194c.136-.148.132-.427.132-.427s-.02-1.304.587-1.496c.596-.19 1.364 1.259 2.177 1.815.616.42 1.084.328 1.084.328l2.175-.03s1.137-.07.598-.964c-.044-.073-.314-.661-1.618-1.869-1.366-1.263-1.183-1.058.462-3.242.999-1.328 1.398-2.139 1.273-2.485-.119-.331-.856-.244-.856-.244l-2.449.015s-.182-.025-.316.056c-.131.078-.216.262-.216.262s-.387 1.028-.903 1.902c-1.088 1.844-1.523 1.942-1.7 1.828-.413-.268-.31-1.075-.31-1.649 0-1.794.272-2.541-.53-2.735-.265-.065-.461-.107-1.14-.114-.872-.009-1.609.003-2.026.208-.278.136-.493.44-.362.457.161.022.527.099.721.363.251.34.242 1.107.242 1.107s.144 2.11-.337 2.372c-.33.18-.783-.187-1.755-1.865-.498-.859-.874-1.81-.874-1.81s-.072-.177-.201-.272c-.156-.115-.374-.151-.374-.151l-2.328.015s-.35.01-.479.162c-.114.135-.009.414-.009.414s1.826 4.276 3.897 6.43c1.899 1.976 4.055 1.847 4.055 1.847h.977z"/>
+                            </svg>
+                        </button>
+                        <button class="share-btn" data-network="twitter" title="Twitter">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </button>
+                        <button class="share-btn" data-network="copy" title="Копировать ссылку">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- Related Articles -->
+            <section class="related-articles">
+                <h2>Читайте также</h2>
+                <div class="related-articles-grid">
+                    <!-- Related articles will be loaded here -->
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="article-cta">
+                <div class="cta-content">
+                    <h2>Нужна разработка?</h2>
+                    <p>Обсудим ваш проект и предложим оптимальное решение</p>
+                    <a href="/#contact" class="btn-glass">
+                        Связаться с нами
+                        <span class="icon-wrap">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer footer-geo">
+        <!-- Geometric shapes -->
+        <div class="geo-shape geo-1"></div>
+        <div class="geo-shape geo-2"></div>
+        <div class="geo-shape geo-3"></div>
+
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="/" class="footer-logo">
+                        <span class="logo-icon">◆</span>CREATIX
+                    </a>
+                    <p class="footer-tagline">Веб-студия полного цикла. Разрабатываем сайты, CRM/ERP системы и интеллектуальные решения для бизнеса.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-btn" data-contact-vk>VK</a>
+                        <a href="#" class="social-btn" data-contact-telegram>TG</a>
+                        <a href="#" class="social-btn" data-contact-whatsapp>WA</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/#about">О нас</a></li>
+                        <li><a href="/#portfolio">Портфолио</a></li>
+                        <li><a href="/blog.html">Блог</a></li>
+                        <li><a href="/#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Услуги</h4>
+                    <ul>
+                        <li><a href="/#portfolio">Сайты на заказ</a></li>
+                        <li><a href="/#portfolio">CRM системы</a></li>
+                        <li><a href="/#portfolio">ERP системы</a></li>
+                        <li><a href="/#portfolio">ИИ решения</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><span data-contact-phone>+7 (999) 999-99-99</span></li>
+                        <li><span data-contact-email>hello@creatix.ru</span></li>
+                        <li><span data-contact-address>Москва, Россия</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright">© 2024 Creatix. Все права защищены.</p>
+                <div class="footer-legal">
+                    <a href="#" id="openPrivacyPolicy">Политика конфиденциальности</a>
+                    <a href="#" id="openTerms">Условия</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div class="legal-modal" id="privacyModal">
+        <div class="legal-modal-content">
+            <button class="legal-modal-close" data-close-modal>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <h2>Политика конфиденциальности</h2>
+            <div class="legal-modal-body">
+                <p class="legal-date">Дата вступления в силу: 1 января 2024 г.</p>
+
+                <h3>1. Общие положения</h3>
+                <p>Настоящая Политика конфиденциальности определяет порядок обработки и защиты персональных данных пользователей сайта Creatix (далее — «Сайт»). Используя Сайт, вы соглашаетесь с условиями данной Политики.</p>
+
+                <h3>2. Какие данные мы собираем</h3>
+                <p>Мы можем собирать следующую информацию:</p>
+                <ul>
+                    <li>Имя и контактные данные (телефон, email)</li>
+                    <li>Информация о компании и проекте</li>
+                    <li>Данные, предоставленные через формы обратной связи и чат</li>
+                    <li>Техническая информация (IP-адрес, тип браузера, cookies)</li>
+                </ul>
+
+                <h3>3. Цели обработки данных</h3>
+                <p>Собранные данные используются для:</p>
+                <ul>
+                    <li>Связи с вами по вопросам сотрудничества</li>
+                    <li>Подготовки коммерческих предложений</li>
+                    <li>Улучшения качества наших услуг</li>
+                    <li>Отправки информационных материалов (с вашего согласия)</li>
+                </ul>
+
+                <h3>4. Защита данных</h3>
+                <p>Мы принимаем все необходимые меры для защиты ваших персональных данных от несанкционированного доступа, изменения, раскрытия или уничтожения. Доступ к данным имеют только уполномоченные сотрудники.</p>
+
+                <h3>5. Передача данных третьим лицам</h3>
+                <p>Мы не продаём и не передаём ваши персональные данные третьим лицам без вашего согласия, за исключением случаев, предусмотренных законодательством РФ.</p>
+
+                <h3>6. Файлы cookies</h3>
+                <p>Сайт использует cookies для улучшения пользовательского опыта. Вы можете отключить cookies в настройках браузера, однако это может повлиять на функциональность сайта.</p>
+
+                <h3>7. Ваши права</h3>
+                <p>Вы имеете право:</p>
+                <ul>
+                    <li>Получить информацию о ваших данных, которые мы храним</li>
+                    <li>Потребовать исправления или удаления ваших данных</li>
+                    <li>Отозвать согласие на обработку данных</li>
+                </ul>
+
+                <h3>8. Контакты</h3>
+                <p>По вопросам, связанным с обработкой персональных данных, вы можете связаться с нами через форму на сайте или по email.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div class="legal-modal" id="termsModal">
+        <div class="legal-modal-content">
+            <button class="legal-modal-close" data-close-modal>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <h2>Условия использования</h2>
+            <div class="legal-modal-body">
+                <p class="legal-date">Дата вступления в силу: 1 января 2024 г.</p>
+
+                <h3>1. Общие положения</h3>
+                <p>Настоящие Условия использования регулируют порядок использования сайта Creatix. Используя сайт, вы принимаете данные условия в полном объёме.</p>
+
+                <h3>2. Интеллектуальная собственность</h3>
+                <p>Все материалы сайта (дизайн, тексты, графика, логотипы, код) являются интеллектуальной собственностью Creatix и защищены законодательством об авторском праве. Копирование, распространение или модификация материалов без письменного разрешения запрещены.</p>
+
+                <h3>3. Услуги</h3>
+                <p>Creatix предоставляет услуги по разработке веб-сайтов, CRM/ERP систем и интеллектуальных решений. Конкретные условия оказания услуг определяются индивидуальным договором с каждым клиентом.</p>
+
+                <h3>4. Ограничение ответственности</h3>
+                <p>Мы прилагаем все усилия для обеспечения точности информации на сайте, однако не гарантируем её полноту и актуальность. Сайт предоставляется «как есть», и мы не несём ответственности за:</p>
+                <ul>
+                    <li>Временную недоступность сайта</li>
+                    <li>Любой ущерб, связанный с использованием сайта</li>
+                    <li>Действия третьих лиц</li>
+                </ul>
+
+                <h3>5. Пользовательский контент</h3>
+                <p>Отправляя нам сообщения через формы или чат, вы подтверждаете, что:</p>
+                <ul>
+                    <li>Предоставленная информация является достоверной</li>
+                    <li>Вы имеете право передавать эту информацию</li>
+                    <li>Контент не нарушает права третьих лиц</li>
+                </ul>
+
+                <h3>6. Внешние ссылки</h3>
+                <p>Сайт может содержать ссылки на сторонние ресурсы. Мы не несём ответственности за содержание и политику конфиденциальности этих сайтов.</p>
+
+                <h3>7. Изменение условий</h3>
+                <p>Мы оставляем за собой право изменять данные Условия в любое время. Изменения вступают в силу с момента публикации на сайте.</p>
+
+                <h3>8. Применимое право</h3>
+                <p>Настоящие Условия регулируются законодательством Российской Федерации. Все споры подлежат разрешению в соответствии с действующим законодательством РФ.</p>
+
+                <h3>9. Контакты</h3>
+                <p>Если у вас есть вопросы относительно данных Условий, свяжитесь с нами через форму обратной связи на сайте.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/blog.js"></script>
+    <script src="js/article.js"></script>
+</body>
+</html>

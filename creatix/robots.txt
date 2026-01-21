@@ -1,0 +1,40 @@
+# Robots.txt for Creatix
+# https://creatix.ru
+
+User-agent: *
+Allow: /
+
+# Disallow admin and server paths
+Disallow: /admin/
+Disallow: /server/
+Disallow: /api/
+Disallow: /node_modules/
+Disallow: /*.json$
+
+# Allow CSS and JS for rendering
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# Sitemap location
+Sitemap: https://creatix.ru/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /server/
+
+User-agent: Yandex
+Allow: /
+Disallow: /admin/
+Disallow: /server/
+Crawl-delay: 2
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /server/

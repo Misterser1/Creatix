@@ -1158,9 +1158,9 @@ function renderSubmissions() {
                 ${submission.phone ? `
                     <a href="tel:${submission.phone.replace(/\D/g, '')}" class="submission-contact">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"/>
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                         </svg>
-                        ${escapeHtml(submission.phone)}
+                        ${formatPhoneNumber(submission.phone)}
                     </a>
                 ` : ''}
             </div>
@@ -1199,6 +1199,35 @@ function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+}
+
+// Форматирование номера телефона
+function formatPhoneNumber(phone) {
+    if (!phone) return '';
+
+    // Убираем все нецифровые символы
+    let digits = phone.replace(/\D/g, '');
+
+    // Если начинается с 8, заменяем на 7
+    if (digits.startsWith('8')) {
+        digits = '7' + digits.slice(1);
+    }
+
+    // Если нет 7 в начале, добавляем
+    if (!digits.startsWith('7')) {
+        digits = '7' + digits;
+    }
+
+    // Форматируем: +7 (XXX) XXX-XX-XX
+    if (digits.length >= 11) {
+        return `+7 (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7, 9)}-${digits.slice(9, 11)}`;
+    } else if (digits.length >= 8) {
+        return `+7 (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7)}`;
+    } else if (digits.length >= 4) {
+        return `+7 (${digits.slice(1, 4)}) ${digits.slice(4)}`;
+    } else {
+        return `+7 ${digits.slice(1)}`;
+    }
 }
 
 function formatDate(dateString) {
@@ -1796,6 +1825,525 @@ function initChats() {
 }
 
 // ========================================
+// БЛОГ
+// ========================================
+
+let blogArticles = [];
+let blogFilter = 'all';
+let currentArticleImage = null;
+
+async function loadBlog() {
+    try {
+        const response = await fetch('/api/blog/admin/all', { credentials: 'include' });
+        const data = await response.json();
+
+        if (response.ok && Array.isArray(data)) {
+            blogArticles = data;
+            renderBlogGrid();
+        } else {
+            console.error('Blog API error:', data);
+            showToast(data.error || 'Ошибка загрузки статей', 'error');
+        }
+    } catch (error) {
+        console.error('Load blog failed:', error);
+        showToast('Ошибка загрузки статей', 'error');
+    }
+}
+
+function renderBlogGrid() {
+    const grid = document.getElementById('blogGrid');
+    if (!grid) return;
+
+    // Фильтрация
+    let filtered = blogArticles;
+    if (blogFilter === 'published') {
+        filtered = blogArticles.filter(a => a.isPublished);
+    } else if (blogFilter === 'draft') {
+        filtered = blogArticles.filter(a => !a.isPublished);
+    }
+
+    if (filtered.length === 0) {
+        grid.innerHTML = `
+            <div class="blog-empty">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+                <p>${blogFilter === 'all' ? 'Статей пока нет. Добавьте первую!' : 'Нет статей в этой категории'}</p>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = filtered.map(article => `
+        <div class="blog-admin-card ${article.isPublished ? '' : 'draft'}">
+            <img src="${article.image || 'https://via.placeholder.com/600x400?text=No+Image'}"
+                 alt="${article.title}" class="blog-card-image">
+            <div class="blog-card-body">
+                <div class="blog-card-header">
+                    <span class="blog-card-category">${article.categoryLabel}</span>
+                    <span class="blog-card-status ${article.isPublished ? 'published' : 'draft'}">
+                        ${article.isPublished ? 'Опубликовано' : 'Черновик'}
+                    </span>
+                </div>
+                <h3 class="blog-card-title">${article.title}</h3>
+                <p class="blog-card-excerpt">${article.excerpt || ''}</p>
+                <div class="blog-card-meta">
+                    <span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                        ${formatBlogDate(article.date)}
+                    </span>
+                    <span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        ${article.readTime}
+                    </span>
+                </div>
+                ${article.tags && article.tags.length > 0 ? `
+                    <div class="blog-card-tags">
+                        ${article.tags.slice(0, 3).map(tag => `<span class="blog-card-tag">${tag}</span>`).join('')}
+                        ${article.tags.length > 3 ? `<span class="blog-card-tag">+${article.tags.length - 3}</span>` : ''}
+                    </div>
+                ` : ''}
+                <div class="blog-card-actions">
+                    <button class="btn btn-outline" onclick="editArticle('${article.id}')">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                        </svg>
+                        Редактировать
+                    </button>
+                    <button class="btn ${article.isPublished ? 'btn-outline' : 'btn-success'}" onclick="toggleArticlePublish('${article.id}')">
+                        ${article.isPublished ? 'Снять' : 'Опубликовать'}
+                    </button>
+                    <button class="btn btn-danger" onclick="deleteArticle('${article.id}')">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"/>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function formatBlogDate(dateStr) {
+    const months = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+    const date = new Date(dateStr);
+    return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+}
+
+function initBlog() {
+    // Фильтры
+    const filterBtns = document.querySelectorAll('#blog-section .filter-btn');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            blogFilter = btn.dataset.filter;
+            renderBlogGrid();
+        });
+    });
+
+    // Добавить статью
+    const addBtn = document.getElementById('addArticleBtn');
+    if (addBtn) {
+        addBtn.addEventListener('click', () => openArticleModal());
+    }
+
+    // Модальное окно
+    initArticleModal();
+}
+
+function initArticleModal() {
+    const modal = document.getElementById('articleModal');
+    const closeBtn = document.getElementById('closeArticleModal');
+    const cancelBtn = document.getElementById('cancelArticleModal');
+    const form = document.getElementById('articleForm');
+
+    // Закрытие модалки
+    [closeBtn, cancelBtn].forEach(btn => {
+        if (btn) {
+            btn.addEventListener('click', () => closeArticleModal());
+        }
+    });
+
+    modal?.addEventListener('click', (e) => {
+        if (e.target === modal) closeArticleModal();
+    });
+
+    // Вкладки
+    const tabs = document.querySelectorAll('#articleModal .form-tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            document.querySelectorAll('#articleModal .form-tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(`tab-${tab.dataset.tab}`)?.classList.add('active');
+        });
+    });
+
+    // Загрузка изображения
+    initArticleImageUpload();
+
+    // Теги preview
+    const tagsInput = document.getElementById('articleTags');
+    tagsInput?.addEventListener('input', () => updateTagsPreview());
+
+    // Очистка ошибок при вводе
+    const articleFieldsToWatch = ['articleTitle', 'articleDate', 'articleExcerpt', 'articleContent'];
+    articleFieldsToWatch.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field) {
+            field.addEventListener('input', () => clearFieldError(fieldId));
+        }
+    });
+    // Для select нужен change event
+    const categorySelect = document.getElementById('articleCategory');
+    if (categorySelect) {
+        categorySelect.addEventListener('change', () => clearFieldError('articleCategory'));
+    }
+
+    // Editor toolbar
+    initEditorToolbar();
+
+    // Сохранение
+    form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await saveArticle();
+    });
+}
+
+function initArticleImageUpload() {
+    const fileUpload = document.getElementById('articleFileUpload');
+    const fileInput = document.getElementById('articleImage');
+
+    if (!fileUpload || !fileInput) return;
+
+    fileUpload.addEventListener('click', () => fileInput.click());
+
+    fileUpload.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        fileUpload.classList.add('dragover');
+    });
+
+    fileUpload.addEventListener('dragleave', () => {
+        fileUpload.classList.remove('dragover');
+    });
+
+    fileUpload.addEventListener('drop', (e) => {
+        e.preventDefault();
+        fileUpload.classList.remove('dragover');
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+            currentArticleImage = file;
+            showArticleFilePreview(file);
+        }
+    });
+
+    fileInput.addEventListener('change', () => {
+        const file = fileInput.files[0];
+        if (file) {
+            currentArticleImage = file;
+            showArticleFilePreview(file);
+        }
+    });
+
+    // Ctrl+V paste
+    document.addEventListener('paste', (e) => {
+        if (!document.getElementById('articleModal')?.classList.contains('active')) return;
+
+        const items = e.clipboardData?.items;
+        for (const item of items) {
+            if (item.type.startsWith('image/')) {
+                const file = item.getAsFile();
+                currentArticleImage = file;
+                showArticleFilePreview(file);
+                break;
+            }
+        }
+    });
+}
+
+function showArticleFilePreview(file) {
+    const preview = document.getElementById('articleFilePreview');
+    if (!preview) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        preview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+    };
+    reader.readAsDataURL(file);
+}
+
+function updateTagsPreview() {
+    const input = document.getElementById('articleTags');
+    const preview = document.getElementById('tagsPreview');
+    if (!input || !preview) return;
+
+    const tags = input.value.split(',').map(t => t.trim()).filter(t => t);
+    preview.innerHTML = tags.map(tag => `<span class="tag-item">${tag}</span>`).join('');
+}
+
+function initEditorToolbar() {
+    const toolbar = document.querySelector('.editor-toolbar');
+    const textarea = document.getElementById('articleContent');
+
+    if (!toolbar || !textarea) return;
+
+    toolbar.querySelectorAll('.editor-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const action = btn.dataset.action;
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const selected = textarea.value.substring(start, end);
+
+            let insert = '';
+            switch (action) {
+                case 'bold':
+                    insert = `<strong>${selected || 'текст'}</strong>`;
+                    break;
+                case 'italic':
+                    insert = `<em>${selected || 'текст'}</em>`;
+                    break;
+                case 'h2':
+                    insert = `<h2>${selected || 'Заголовок'}</h2>`;
+                    break;
+                case 'h3':
+                    insert = `<h3>${selected || 'Подзаголовок'}</h3>`;
+                    break;
+                case 'ul':
+                    insert = `<ul>\n  <li>${selected || 'Пункт'}</li>\n  <li>Пункт</li>\n</ul>`;
+                    break;
+                case 'link':
+                    insert = `<a href="URL">${selected || 'Ссылка'}</a>`;
+                    break;
+                case 'quote':
+                    insert = `<blockquote>${selected || 'Цитата'}</blockquote>`;
+                    break;
+                case 'code':
+                    insert = `<code>${selected || 'код'}</code>`;
+                    break;
+            }
+
+            textarea.value = textarea.value.substring(0, start) + insert + textarea.value.substring(end);
+            textarea.focus();
+            textarea.setSelectionRange(start + insert.length, start + insert.length);
+        });
+    });
+}
+
+function openArticleModal(article = null) {
+    const modal = document.getElementById('articleModal');
+    const title = document.getElementById('articleModalTitle');
+
+    // Сбрасываем форму
+    document.getElementById('articleForm').reset();
+    document.getElementById('articleId').value = '';
+    document.getElementById('articleFilePreview').innerHTML = '';
+    document.getElementById('tagsPreview').innerHTML = '';
+    currentArticleImage = null;
+
+    // Сбрасываем вкладки
+    document.querySelectorAll('#articleModal .form-tab').forEach((t, i) => {
+        t.classList.toggle('active', i === 0);
+    });
+    document.querySelectorAll('#articleModal .form-tab-content').forEach((c, i) => {
+        c.classList.toggle('active', i === 0);
+    });
+
+    if (article) {
+        title.textContent = 'Редактировать статью';
+        document.getElementById('articleId').value = article.id;
+        document.getElementById('articleTitle').value = article.title || '';
+        document.getElementById('articleCategory').value = article.category || 'web';
+        document.getElementById('articleDate').value = article.date || '';
+        document.getElementById('articleReadTime').value = article.readTime || '';
+        document.getElementById('articleAuthor').value = article.author || '';
+        document.getElementById('articleExcerpt').value = article.excerpt || '';
+        document.getElementById('articleContent').value = article.content || '';
+        document.getElementById('articleTags').value = (article.tags || []).join(', ');
+        document.getElementById('articlePublished').checked = article.isPublished;
+
+        if (article.image) {
+            document.getElementById('articleFilePreview').innerHTML = `<img src="${article.image}" alt="Preview">`;
+        }
+
+        updateTagsPreview();
+    } else {
+        title.textContent = 'Добавить статью';
+        // Устанавливаем дату по умолчанию
+        document.getElementById('articleDate').value = new Date().toISOString().split('T')[0];
+    }
+
+    modal.classList.add('active');
+}
+
+function closeArticleModal() {
+    document.getElementById('articleModal')?.classList.remove('active');
+    currentArticleImage = null;
+    clearAllFieldErrors();
+}
+
+async function editArticle(id) {
+    const article = blogArticles.find(a => a.id === id);
+    if (article) {
+        openArticleModal(article);
+    }
+}
+
+function validateArticleForm() {
+    const errors = [];
+
+    // Заголовок
+    const title = document.getElementById('articleTitle').value.trim();
+    if (!title) {
+        errors.push({ field: 'articleTitle', message: 'Укажите заголовок статьи' });
+    } else if (title.length < 5) {
+        errors.push({ field: 'articleTitle', message: 'Заголовок слишком короткий (минимум 5 символов)' });
+    } else if (title.length > 200) {
+        errors.push({ field: 'articleTitle', message: 'Заголовок слишком длинный (максимум 200 символов)' });
+    }
+
+    // Категория
+    const category = document.getElementById('articleCategory').value;
+    if (!category) {
+        errors.push({ field: 'articleCategory', message: 'Выберите категорию' });
+    }
+
+    // Дата
+    const date = document.getElementById('articleDate').value;
+    if (!date) {
+        errors.push({ field: 'articleDate', message: 'Укажите дату публикации' });
+    }
+
+    // Краткое описание
+    const excerpt = document.getElementById('articleExcerpt').value.trim();
+    if (!excerpt) {
+        errors.push({ field: 'articleExcerpt', message: 'Добавьте краткое описание статьи' });
+    } else if (excerpt.length < 20) {
+        errors.push({ field: 'articleExcerpt', message: 'Краткое описание слишком короткое (минимум 20 символов)' });
+    } else if (excerpt.length > 500) {
+        errors.push({ field: 'articleExcerpt', message: 'Краткое описание слишком длинное (максимум 500 символов)' });
+    }
+
+    // Содержимое
+    const content = document.getElementById('articleContent').value.trim();
+    if (!content) {
+        errors.push({ field: 'articleContent', message: 'Добавьте содержимое статьи' });
+    } else if (content.length < 100) {
+        errors.push({ field: 'articleContent', message: 'Содержимое слишком короткое (минимум 100 символов)' });
+    }
+
+    return errors;
+}
+
+// Используем существующие функции showFieldError и clearAllErrors из секции портфолио
+
+async function saveArticle() {
+    // Очищаем предыдущие ошибки
+    clearAllErrors();
+
+    // Валидация
+    const errors = validateArticleForm();
+    if (errors.length > 0) {
+        // Показываем ошибки
+        errors.forEach(err => showFieldError(err.field, err.message));
+
+        // Фокус на первое поле с ошибкой
+        const firstErrorField = document.getElementById(errors[0].field);
+        if (firstErrorField) {
+            firstErrorField.focus();
+            firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        showToast('Заполните обязательные поля', 'error');
+        return;
+    }
+
+    const id = document.getElementById('articleId').value;
+    const formData = new FormData();
+
+    formData.append('title', document.getElementById('articleTitle').value.trim());
+    formData.append('category', document.getElementById('articleCategory').value);
+    formData.append('date', document.getElementById('articleDate').value);
+    formData.append('readTime', document.getElementById('articleReadTime').value || '5 мин');
+    formData.append('author', document.getElementById('articleAuthor').value || 'Команда Creatix');
+    formData.append('excerpt', document.getElementById('articleExcerpt').value.trim());
+    formData.append('content', document.getElementById('articleContent').value.trim());
+    formData.append('tags', document.getElementById('articleTags').value);
+    formData.append('isPublished', document.getElementById('articlePublished').checked);
+
+    if (currentArticleImage) {
+        formData.append('image', currentArticleImage);
+    }
+
+    try {
+        const url = id ? `/api/blog/${id}` : '/api/blog';
+        const method = id ? 'PUT' : 'POST';
+
+        const response = await fetch(url, { method, body: formData, credentials: 'include' });
+        const data = await response.json();
+
+        if (data.success) {
+            showToast(id ? 'Статья обновлена' : 'Статья добавлена');
+            closeArticleModal();
+            loadBlog();
+        } else {
+            showToast(data.error || 'Ошибка сохранения', 'error');
+        }
+    } catch (error) {
+        console.error('Save article error:', error);
+        showToast('Ошибка сохранения статьи', 'error');
+    }
+}
+
+async function toggleArticlePublish(id) {
+    try {
+        const response = await fetch(`/api/blog/${id}/toggle-publish`, { method: 'PUT', credentials: 'include' });
+        const data = await response.json();
+
+        if (data.success) {
+            showToast(data.message);
+            loadBlog();
+        } else {
+            showToast(data.error || 'Ошибка', 'error');
+        }
+    } catch (error) {
+        console.error('Toggle publish error:', error);
+        showToast('Ошибка изменения статуса', 'error');
+    }
+}
+
+async function deleteArticle(id) {
+    if (!confirm('Удалить статью? Это действие нельзя отменить.')) return;
+
+    try {
+        const response = await fetch(`/api/blog/${id}`, { method: 'DELETE', credentials: 'include' });
+        const data = await response.json();
+
+        if (data.success) {
+            showToast('Статья удалена');
+            loadBlog();
+        } else {
+            showToast(data.error || 'Ошибка удаления', 'error');
+        }
+    } catch (error) {
+        console.error('Delete article error:', error);
+        showToast('Ошибка удаления статьи', 'error');
+    }
+}
+
+// ========================================
 // ИНИЦИАЛИЗАЦИЯ
 // ========================================
 
@@ -1809,12 +2357,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     initProjectForm();
     initSubmissions();
     initChats();
+    initBlog();
 
     // Загружаем данные
     loadContacts();
     loadPortfolio();
     loadSubmissions();
     loadChats();
+    loadBlog();
 });
 
 // CSS для секций
