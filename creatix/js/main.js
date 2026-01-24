@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load dynamic data from API
     loadPortfolio();
     loadContacts();
+    loadCases();
 });
 
 /**
@@ -176,6 +177,38 @@ function initScrollAnimations() {
         opacity: 0,
         duration: 0.8,
         stagger: 0.1
+    });
+
+    // Cases section
+    gsap.from('.cases-label', {
+        scrollTrigger: {
+            trigger: '.cases',
+            start: 'top 80%'
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.8
+    });
+
+    gsap.from('.cases-title', {
+        scrollTrigger: {
+            trigger: '.cases',
+            start: 'top 75%'
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1
+    });
+
+    gsap.from('.flip-card', {
+        scrollTrigger: {
+            trigger: '.flip-cases',
+            start: 'top 80%'
+        },
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2
     });
 
     // Process section
@@ -1895,6 +1928,71 @@ async function loadContacts() {
 
     } catch (error) {
         console.error('Failed to load contacts:', error);
+    }
+}
+
+/**
+ * Load cases from API and render flip cards
+ */
+async function loadCases() {
+    const container = document.getElementById('flipCasesContainer');
+    if (!container) return;
+
+    try {
+        const response = await fetch('/api/cases');
+        if (!response.ok) {
+            console.warn('Cases API not available');
+            return;
+        }
+
+        const cases = await response.json();
+        if (!cases || cases.length === 0) return;
+
+        // Icon SVG paths for different industries
+        const iconPaths = {
+            building: '<path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01"/><path d="M9 12v.01"/><path d="M9 15v.01"/><path d="M9 18v.01"/>',
+            cart: '<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>',
+            user: '<path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"/>',
+            factory: '<path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/>',
+            medical: '<path d="M8 19H5c-1 0-2-1-2-2V7c0-1 1-2 2-2h3"/><path d="M16 5h3c1 0 2 1 2 2v10c0 1-1 2-2 2h-3"/><path d="M12 4v16"/><path d="M8 12h8"/>',
+            education: '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>',
+            finance: '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
+            logistics: '<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>'
+        };
+
+        // Render cases
+        container.innerHTML = cases.map(caseItem => `
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="flip-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="url(#caseIconGradient)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                ${iconPaths[caseItem.icon] || iconPaths.building}
+                            </svg>
+                        </div>
+                        <div class="flip-industry">${caseItem.industry}</div>
+                        <div class="flip-problem">${caseItem.problem}</div>
+                        <div class="flip-desc">${caseItem.description || ''}</div>
+                        <div class="flip-hint">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/></svg>
+                            Наведите для результата
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="flip-back-title">${caseItem.resultTitle || 'Результат:'}</div>
+                        ${(caseItem.results || []).map(r => `
+                            <div class="flip-result">
+                                <span class="flip-result-num">${r.value}</span>
+                                <span class="flip-result-text">${r.label}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+    } catch (error) {
+        console.error('Failed to load cases:', error);
     }
 }
 

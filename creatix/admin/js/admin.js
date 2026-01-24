@@ -2344,6 +2344,218 @@ async function deleteArticle(id) {
 }
 
 // ========================================
+// КЕЙСЫ
+// ========================================
+
+let casesData = [];
+
+async function loadCases() {
+    try {
+        const response = await fetch('/api/cases');
+        casesData = await response.json();
+        renderCases();
+    } catch (error) {
+        console.error('Load cases failed:', error);
+        showToast('Ошибка загрузки кейсов', 'error');
+    }
+}
+
+function renderCases() {
+    const grid = document.getElementById('casesGrid');
+    if (!grid) return;
+
+    if (casesData.length === 0) {
+        grid.innerHTML = `
+            <div class="empty-state">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2v6h6"/>
+                    <path d="M9 15l2 2 4-4"/>
+                </svg>
+                <p>Кейсы пока не добавлены</p>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = casesData.map(caseItem => `
+        <div class="case-admin-card" data-id="${caseItem.id}">
+            <div class="case-admin-header">
+                <span class="case-admin-industry">${caseItem.industry}</span>
+                <div class="case-admin-actions">
+                    <button class="btn-icon edit-case" title="Редактировать">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                        </svg>
+                    </button>
+                    <button class="btn-icon delete-case" title="Удалить">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"/>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="case-admin-problem">${caseItem.problem}</div>
+            <div class="case-admin-desc">${caseItem.description || ''}</div>
+            <div class="case-admin-results">
+                ${caseItem.results.map(r => `<span class="case-result-tag">${r.value} ${r.label}</span>`).join('')}
+            </div>
+        </div>
+    `).join('');
+
+    // Добавляем обработчики
+    grid.querySelectorAll('.edit-case').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const card = e.target.closest('.case-admin-card');
+            const id = parseInt(card.dataset.id);
+            openCaseModal(id);
+        });
+    });
+
+    grid.querySelectorAll('.delete-case').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const card = e.target.closest('.case-admin-card');
+            const id = parseInt(card.dataset.id);
+            deleteCase(id);
+        });
+    });
+}
+
+function initCases() {
+    const addBtn = document.getElementById('addCaseBtn');
+    const modal = document.getElementById('caseModal');
+    const closeBtn = document.getElementById('closeCaseModal');
+    const cancelBtn = document.getElementById('cancelCaseModal');
+    const form = document.getElementById('caseForm');
+
+    if (!addBtn || !modal) return;
+
+    addBtn.addEventListener('click', () => openCaseModal());
+
+    closeBtn.addEventListener('click', () => closeCaseModal());
+    cancelBtn.addEventListener('click', () => closeCaseModal());
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeCaseModal();
+    });
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await saveCase();
+    });
+}
+
+function openCaseModal(id = null) {
+    const modal = document.getElementById('caseModal');
+    const title = document.getElementById('caseModalTitle');
+    const form = document.getElementById('caseForm');
+
+    form.reset();
+    document.getElementById('caseId').value = '';
+
+    if (id) {
+        const caseItem = casesData.find(c => c.id === id);
+        if (caseItem) {
+            title.textContent = 'Редактировать кейс';
+            document.getElementById('caseId').value = caseItem.id;
+            document.getElementById('caseIndustry').value = caseItem.industry || '';
+            document.getElementById('caseProblem').value = caseItem.problem || '';
+            document.getElementById('caseDescription').value = caseItem.description || '';
+            document.getElementById('caseIcon').value = caseItem.icon || 'building';
+            document.getElementById('caseResultTitle').value = caseItem.resultTitle || '';
+
+            // Заполняем результаты
+            if (caseItem.results && caseItem.results.length > 0) {
+                caseItem.results.forEach((r, i) => {
+                    const valueInput = form.querySelector(`[name="resultValue${i + 1}"]`);
+                    const labelInput = form.querySelector(`[name="resultLabel${i + 1}"]`);
+                    if (valueInput) valueInput.value = r.value || '';
+                    if (labelInput) labelInput.value = r.label || '';
+                });
+            }
+        }
+    } else {
+        title.textContent = 'Добавить кейс';
+    }
+
+    modal.classList.add('active');
+}
+
+function closeCaseModal() {
+    const modal = document.getElementById('caseModal');
+    modal.classList.remove('active');
+}
+
+async function saveCase() {
+    const form = document.getElementById('caseForm');
+    const id = document.getElementById('caseId').value;
+
+    // Собираем результаты
+    const results = [];
+    for (let i = 1; i <= 3; i++) {
+        const value = form.querySelector(`[name="resultValue${i}"]`).value.trim();
+        const label = form.querySelector(`[name="resultLabel${i}"]`).value.trim();
+        if (value && label) {
+            results.push({ value, label });
+        }
+    }
+
+    const caseData = {
+        industry: document.getElementById('caseIndustry').value.toUpperCase(),
+        problem: document.getElementById('caseProblem').value,
+        description: document.getElementById('caseDescription').value,
+        icon: document.getElementById('caseIcon').value,
+        resultTitle: document.getElementById('caseResultTitle').value,
+        results
+    };
+
+    try {
+        const url = id ? `/api/cases/${id}` : '/api/cases';
+        const method = id ? 'PUT' : 'POST';
+
+        const response = await fetch(url, {
+            method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(caseData)
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            showToast(id ? 'Кейс обновлён' : 'Кейс добавлен');
+            closeCaseModal();
+            loadCases();
+        } else {
+            showToast(data.error || 'Ошибка сохранения', 'error');
+        }
+    } catch (error) {
+        console.error('Save case error:', error);
+        showToast('Ошибка сохранения кейса', 'error');
+    }
+}
+
+async function deleteCase(id) {
+    if (!confirm('Удалить этот кейс?')) return;
+
+    try {
+        const response = await fetch(`/api/cases/${id}`, { method: 'DELETE' });
+        const data = await response.json();
+
+        if (data.success) {
+            showToast('Кейс удалён');
+            loadCases();
+        } else {
+            showToast(data.error || 'Ошибка удаления', 'error');
+        }
+    } catch (error) {
+        console.error('Delete case error:', error);
+        showToast('Ошибка удаления кейса', 'error');
+    }
+}
+
+// ========================================
 // ИНИЦИАЛИЗАЦИЯ
 // ========================================
 
@@ -2358,6 +2570,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initSubmissions();
     initChats();
     initBlog();
+    initCases();
 
     // Загружаем данные
     loadContacts();
@@ -2365,6 +2578,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadSubmissions();
     loadChats();
     loadBlog();
+    loadCases();
 });
 
 // CSS для секций

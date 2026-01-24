@@ -2464,6 +2464,124 @@ body::before {
     overflow: hidden;
 }
 
+/* Hero Marquee - Бегущий текст */
+.marquee-hero {
+    overflow: hidden;
+    padding: 50px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.marquee-hero-track {
+    display: flex;
+    gap: 20px;
+    animation: marquee-scroll 40s linear infinite;
+    width: max-content;
+}
+
+.marquee-hero-item {
+    flex-shrink: 0;
+    font-size: 52px;
+    font-weight: 700;
+    white-space: nowrap;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(139, 92, 246, 0.4);
+    transition: all 0.4s ease;
+    cursor: default;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.marquee-hero:hover .marquee-hero-item {
+    color: #8b5cf6;
+    -webkit-text-stroke: 1px #8b5cf6;
+    text-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+}
+
+.marquee-hero-item .dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+@keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Reverse direction for bottom marquee */
+.marquee-hero-reverse .marquee-hero-track {
+    animation: marquee-scroll-reverse 40s linear infinite;
+}
+
+@keyframes marquee-scroll-reverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+/* Responsive marquee */
+@media (max-width: 1024px) {
+    .marquee-hero-item {
+        font-size: 36px;
+        gap: 15px;
+    }
+    .marquee-hero-item .dot {
+        width: 10px;
+        height: 10px;
+    }
+    .marquee-hero-track {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .marquee-hero {
+        padding: 25px 0;
+    }
+    .marquee-hero-item {
+        font-size: 24px;
+        gap: 12px;
+        -webkit-text-stroke: 1px rgba(139, 92, 246, 0.35);
+    }
+    .marquee-hero-item .dot {
+        width: 6px;
+        height: 6px;
+    }
+    .marquee-hero-track {
+        gap: 12px;
+        animation-duration: 30s;
+    }
+    .marquee-hero-reverse .marquee-hero-track {
+        animation-duration: 30s;
+    }
+}
+
+@media (max-width: 480px) {
+    .marquee-hero {
+        padding: 20px 0;
+    }
+    .marquee-hero-item {
+        font-size: 18px;
+        gap: 10px;
+        -webkit-text-stroke: 1px rgba(139, 92, 246, 0.3);
+    }
+    .marquee-hero-item .dot {
+        width: 5px;
+        height: 5px;
+    }
+    .marquee-hero-track {
+        gap: 10px;
+        animation-duration: 25s;
+    }
+    .marquee-hero-reverse .marquee-hero-track {
+        animation-duration: 25s;
+    }
+}
+
 /* Geometric Wireframe Background */
 .portfolio-wireframe {
     position: absolute;
@@ -3034,6 +3152,308 @@ body::before {
     );
     filter: blur(4px);
     z-index: 9;
+}
+
+/* ========================================
+   CASES SECTION - FLIP CARDS
+======================================== */
+.cases {
+    position: relative;
+    padding: 100px 50px;
+    background: var(--bg-dark);
+    overflow: hidden;
+    z-index: 10;
+}
+
+/* Light Rays Background Effect */
+.cases-rays {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.ray {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1px;
+    height: 250%;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.06), transparent);
+    transform-origin: center top;
+    animation: rayRotate 50s linear infinite;
+}
+
+.ray-1 { animation-delay: 0s; }
+.ray-2 { animation-delay: -6.25s; }
+.ray-3 { animation-delay: -12.5s; }
+.ray-4 { animation-delay: -18.75s; }
+.ray-5 { animation-delay: -25s; }
+.ray-6 { animation-delay: -31.25s; }
+.ray-7 { animation-delay: -37.5s; }
+.ray-8 { animation-delay: -43.75s; }
+
+.ray-1, .ray-5 {
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.08), transparent);
+}
+
+@keyframes rayRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.cases > .container {
+    position: relative;
+    z-index: 5;
+}
+
+.cases-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.cases-label {
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: var(--accent-purple);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.cases-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(32px, 4.5vw, 48px);
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+.flip-cases {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.flip-card {
+    height: 420px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.flip-card-front {
+    background: linear-gradient(135deg, #12121a, #1a1a2e);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.flip-card-back {
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    transform: rotateY(180deg);
+    justify-content: center;
+}
+
+.flip-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.flip-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.flip-industry {
+    color: var(--accent-purple);
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.flip-problem {
+    color: var(--text-white);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.flip-desc {
+    color: var(--text-light-gray);
+    font-size: 14px;
+    flex-grow: 1;
+    line-height: 1.6;
+}
+
+.flip-hint {
+    color: var(--text-gray);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.flip-back-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.flip-result {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.flip-result-num {
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.flip-result-text {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Card Connectors - attached to cards for accurate positioning */
+.flip-card {
+    position: relative;
+}
+
+.flip-card:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 3px;
+    background: linear-gradient(90deg, #8b5cf6, #ec4899);
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+    z-index: 5;
+    transition: opacity 0.3s ease, transform 0.3s ease, width 0.3s ease;
+}
+
+/* Hide connector when card is flipped */
+.flip-card:not(:last-child):hover::after {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0);
+}
+
+/* Pulsing dot in the middle of connector */
+.flip-card:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    right: -19px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.8);
+    z-index: 6;
+    animation: dotPulse 2s ease-in-out infinite;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Hide pulsing dot when card is flipped */
+.flip-card:not(:last-child):hover::before {
+    opacity: 0;
+    transform: translateY(-50%) scale(0);
+}
+
+/* Also hide connector of previous card when next card is hovered */
+.flip-card:not(:last-child):has(+ .flip-card:hover)::after,
+.flip-card:not(:last-child):has(+ .flip-card:hover)::before {
+    opacity: 0;
+    transform: translateY(-50%) scale(0);
+}
+
+@keyframes dotPulse {
+    0%, 100% {
+        transform: translateY(-50%) scale(1);
+        box-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+    }
+    50% {
+        transform: translateY(-50%) scale(1.3);
+        box-shadow: 0 0 20px rgba(236, 72, 153, 0.9);
+    }
+}
+
+/* Cases Responsive */
+@media (max-width: 1024px) {
+    .flip-cases {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    /* Hide connectors when grid changes */
+    .flip-card:not(:last-child)::after,
+    .flip-card:not(:last-child)::before {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .cases {
+        padding: 80px 20px;
+    }
+
+    .flip-cases {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+
+    .flip-card {
+        height: 380px;
+    }
+
+    .flip-problem {
+        font-size: 18px;
+    }
+
+    .flip-result-num {
+        font-size: 36px;
+    }
 }
 
 /* ========================================

@@ -44,12 +44,16 @@ const contactsRoutes = require('./routes/contacts');
 const portfolioRoutes = require('./routes/portfolio');
 const submissionsRoutes = require('./routes/submissions');
 const chatsRoutes = require('./routes/chats');
+const blogRoutes = require('./routes/blog');
+const casesRoutes = require('./routes/cases');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/contacts', contactsRoutes);
 app.use('/api/portfolio', portfolioRoutes);
 app.use('/api/submissions', submissionsRoutes);
 app.use('/api/chats', chatsRoutes);
+app.use('/api/blog', blogRoutes);
+app.use('/api/cases', casesRoutes);
 
 // Socket.IO handlers
 require('./socket/chatSocket')(io);
@@ -88,6 +92,7 @@ const defaultData = {
     'portfolio.json': [],
     'submissions.json': [],
     'chats.json': [],
+    'blog.json': [],
     'admin.json': {
         username: 'admin',
         // пароль: admin123 (хэшированный)

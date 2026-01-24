@@ -50,6 +50,14 @@
                     </svg>
                     Портфолио
                 </button>
+                <button class="nav-item" data-section="cases">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <path d="M14 2v6h6"/>
+                        <path d="M9 15l2 2 4-4"/>
+                    </svg>
+                    Кейсы
+                </button>
                 <button class="nav-item" data-section="blog">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
@@ -299,6 +307,31 @@
 
                     <div id="portfolioGrid" class="portfolio-admin-grid">
                         <!-- Проекты загружаются динамически -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cases Section -->
+            <section id="cases-section" class="admin-section">
+                <div class="page-header">
+                    <h1 class="page-title">Кейсы</h1>
+                    <p class="page-subtitle">Управление кейсами клиентов</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Кейсы</h2>
+                        <button class="btn btn-primary" id="addCaseBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                            Добавить кейс
+                        </button>
+                    </div>
+
+                    <div id="casesGrid" class="cases-admin-grid">
+                        <!-- Кейсы загружаются динамически -->
                     </div>
                 </div>
             </section>
@@ -620,6 +653,80 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline" id="cancelArticleModal">Отмена</button>
                     <button type="submit" class="btn btn-primary" id="saveArticle">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Case Modal -->
+    <div class="modal-overlay" id="caseModal">
+        <div class="modal modal-medium">
+            <div class="modal-header">
+                <h3 class="modal-title" id="caseModalTitle">Добавить кейс</h3>
+                <button class="modal-close" id="closeCaseModal">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <form id="caseForm">
+                <div class="modal-body modal-body-scroll">
+                    <input type="hidden" id="caseId" name="caseId">
+
+                    <div class="input-group">
+                        <label for="caseIndustry">Отрасль *</label>
+                        <input type="text" id="caseIndustry" name="industry" required placeholder="СТРОИТЕЛЬСТВО, РИТЕЙЛ...">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="caseProblem">Проблема клиента *</label>
+                        <input type="text" id="caseProblem" name="problem" required placeholder="Теряли 70% заявок...">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="caseDescription">Описание проблемы</label>
+                        <textarea id="caseDescription" name="description" rows="2" placeholder="Подробное описание проблемы..."></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="caseIcon">Иконка</label>
+                        <select id="caseIcon" name="icon">
+                            <option value="building">Здание (строительство)</option>
+                            <option value="cart">Корзина (ритейл)</option>
+                            <option value="user">Пользователь (консалтинг)</option>
+                            <option value="factory">Завод (производство)</option>
+                            <option value="medical">Медицина</option>
+                            <option value="education">Образование</option>
+                            <option value="finance">Финансы</option>
+                            <option value="logistics">Логистика</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="caseResultTitle">Заголовок результата</label>
+                        <input type="text" id="caseResultTitle" name="resultTitle" placeholder="Результат за 2 месяца:">
+                    </div>
+
+                    <div class="form-section-title">Результаты (до 3-х)</div>
+                    <div class="case-results-container" id="caseResultsContainer">
+                        <div class="case-result-row">
+                            <input type="text" name="resultValue1" placeholder="Значение (+340%)" class="result-value">
+                            <input type="text" name="resultLabel1" placeholder="Описание (рост продаж)" class="result-label">
+                        </div>
+                        <div class="case-result-row">
+                            <input type="text" name="resultValue2" placeholder="Значение" class="result-value">
+                            <input type="text" name="resultLabel2" placeholder="Описание" class="result-label">
+                        </div>
+                        <div class="case-result-row">
+                            <input type="text" name="resultValue3" placeholder="Значение" class="result-value">
+                            <input type="text" name="resultLabel3" placeholder="Описание" class="result-label">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" id="cancelCaseModal">Отмена</button>
+                    <button type="submit" class="btn btn-primary" id="saveCase">Сохранить</button>
                 </div>
             </form>
         </div>
