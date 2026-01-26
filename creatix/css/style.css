@@ -138,6 +138,7 @@ ul {
     display: flex;
     align-items: center;
     gap: 6px;
+    font-family: 'Rubik', sans-serif;
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 3px;
@@ -155,10 +156,11 @@ ul {
 }
 
 .nav-link {
+    font-family: 'Rubik', sans-serif;
     font-size: 13px;
     font-weight: 400;
     color: var(--text-gray);
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     position: relative;
     padding: 8px 16px;
     text-transform: capitalize;
@@ -277,6 +279,7 @@ ul {
 }
 
 .btn-opticore .btn-text {
+    font-family: 'Rubik', sans-serif;
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 1px;
