@@ -1973,6 +1973,14 @@ async function loadCases() {
                         <div class="flip-industry">${caseItem.industry}</div>
                         <div class="flip-problem">${caseItem.problem}</div>
                         <div class="flip-desc">${caseItem.description || ''}</div>
+                        ${caseItem.solutions && caseItem.solutions.length > 0 ? `
+                        <div class="flip-solutions">
+                            <div class="flip-solutions-title">Что сделали:</div>
+                            <ul class="flip-solutions-list">
+                                ${caseItem.solutions.map(s => `<li>${s}</li>`).join('')}
+                            </ul>
+                        </div>
+                        ` : ''}
                         <div class="flip-hint">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/></svg>
                             Наведите для результата

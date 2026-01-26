@@ -2463,6 +2463,7 @@ function openCaseModal(id = null) {
             document.getElementById('caseIndustry').value = caseItem.industry || '';
             document.getElementById('caseProblem').value = caseItem.problem || '';
             document.getElementById('caseDescription').value = caseItem.description || '';
+            document.getElementById('caseSolutions').value = (caseItem.solutions || []).join('\n');
             document.getElementById('caseIcon').value = caseItem.icon || 'building';
             document.getElementById('caseResultTitle').value = caseItem.resultTitle || '';
 
@@ -2502,10 +2503,15 @@ async function saveCase() {
         }
     }
 
+    // Собираем решения
+    const solutionsText = document.getElementById('caseSolutions').value.trim();
+    const solutions = solutionsText ? solutionsText.split('\n').filter(s => s.trim()) : [];
+
     const caseData = {
         industry: document.getElementById('caseIndustry').value.toUpperCase(),
         problem: document.getElementById('caseProblem').value,
         description: document.getElementById('caseDescription').value,
+        solutions,
         icon: document.getElementById('caseIcon').value,
         resultTitle: document.getElementById('caseResultTitle').value,
         results
