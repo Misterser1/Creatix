@@ -1952,11 +1952,11 @@ async function loadCases() {
         const iconPaths = {
             building: '<path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01"/><path d="M9 12v.01"/><path d="M9 15v.01"/><path d="M9 18v.01"/>',
             cart: '<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>',
-            user: '<path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"/>',
-            factory: '<path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/>',
+            user: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+            factory: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
             medical: '<path d="M8 19H5c-1 0-2-1-2-2V7c0-1 1-2 2-2h3"/><path d="M16 5h3c1 0 2 1 2 2v10c0 1-1 2-2 2h-3"/><path d="M12 4v16"/><path d="M8 12h8"/>',
             education: '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>',
-            finance: '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
+            finance: '<circle cx="12" cy="12" r="10"/><path d="M12 6v12"/><path d="M15 9.5c0-1.5-1.5-2.5-3-2.5s-3 1-3 2.5 1.5 2 3 2.5 3 1 3 2.5-1.5 2.5-3 2.5-3-1-3-2.5"/>',
             logistics: '<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>'
         };
 
@@ -1999,9 +1999,142 @@ async function loadCases() {
             </div>
         `).join('');
 
+        // Initialize slider after cases are loaded
+        initCasesSlider(cases.length);
+
     } catch (error) {
         console.error('Failed to load cases:', error);
     }
+}
+
+/**
+ * Cases Slider functionality
+ */
+function initCasesSlider(totalCases) {
+    const container = document.getElementById('flipCasesContainer');
+    const prevBtn = document.getElementById('casesPrev');
+    const nextBtn = document.getElementById('casesNext');
+    const dotsContainer = document.getElementById('casesSliderDots');
+
+    if (!container || !prevBtn || !nextBtn) return;
+
+    let currentIndex = 0;
+    let cardsPerView = getCardsPerView();
+    let maxIndex = Math.max(0, totalCases - cardsPerView);
+
+    // Get cards per view based on screen width
+    function getCardsPerView() {
+        if (window.innerWidth <= 768) return 1;
+        if (window.innerWidth <= 1024) return 2;
+        return 3;
+    }
+
+    // Create dots
+    function createDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = '';
+        const totalDots = Math.ceil(totalCases / cardsPerView);
+
+        for (let i = 0; i < totalDots; i++) {
+            const dot = document.createElement('button');
+            dot.className = `cases-slider-dot${i === 0 ? ' active' : ''}`;
+            dot.addEventListener('click', () => goToSlide(i * cardsPerView));
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    // Update dots
+    function updateDots() {
+        if (!dotsContainer) return;
+        const activeDotIndex = Math.floor(currentIndex / cardsPerView);
+        dotsContainer.querySelectorAll('.cases-slider-dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === activeDotIndex);
+        });
+    }
+
+    // Update slider position
+    function updateSlider() {
+        const cards = container.querySelectorAll('.flip-card');
+        if (!cards.length) return;
+
+        // Limit so last visible cards align with container end
+        const maxVisibleIndex = Math.max(0, totalCases - cardsPerView);
+        const clampedIndex = Math.min(currentIndex, maxVisibleIndex);
+
+        // Get actual position of target card using offsetLeft
+        const targetCard = cards[clampedIndex];
+        const offset = targetCard ? targetCard.offsetLeft : 0;
+
+        container.style.transform = `translateX(-${offset}px)`;
+
+        // Update buttons state
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex >= maxVisibleIndex;
+
+        updateDots();
+    }
+
+    // Go to specific slide
+    function goToSlide(index) {
+        currentIndex = Math.max(0, Math.min(index, maxIndex));
+        updateSlider();
+    }
+
+    // Event listeners
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateSlider();
+        }
+    });
+
+    nextBtn.addEventListener('click', () => {
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+            updateSlider();
+        }
+    });
+
+    // Recalculate on resize
+    window.addEventListener('resize', () => {
+        cardsPerView = getCardsPerView();
+        maxIndex = Math.max(0, totalCases - cardsPerView);
+        currentIndex = Math.min(currentIndex, maxIndex);
+        createDots();
+        updateSlider();
+    });
+
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    container.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    container.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0 && currentIndex < maxIndex) {
+                currentIndex++;
+                updateSlider();
+            } else if (diff < 0 && currentIndex > 0) {
+                currentIndex--;
+                updateSlider();
+            }
+        }
+    }
+
+    // Initialize
+    createDots();
+    updateSlider();
 }
 
 // ==========================================

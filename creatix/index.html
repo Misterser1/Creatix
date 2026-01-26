@@ -575,9 +575,29 @@
                 </defs>
             </svg>
 
-            <div class="flip-cases" id="flipCasesContainer">
-                <!-- Кейсы загружаются динамически из API -->
+            <!-- Cases Slider -->
+            <div class="cases-slider-wrapper">
+                <button class="cases-slider-btn cases-slider-prev" id="casesPrev">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+
+                <div class="cases-slider-container">
+                    <div class="flip-cases" id="flipCasesContainer">
+                        <!-- Кейсы загружаются динамически из API -->
+                    </div>
+                </div>
+
+                <button class="cases-slider-btn cases-slider-next" id="casesNext">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
             </div>
+
+            <!-- Slider Dots -->
+            <div class="cases-slider-dots" id="casesSliderDots"></div>
         </div>
     </section>
 
