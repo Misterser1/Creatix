@@ -5044,6 +5044,32 @@ textarea.floating-input {
     display: none;
 }
 
+/* Mobile header phone button */
+.mobile-header-phone {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+    align-items: center;
+    justify-content: center;
+    color: var(--text-white);
+    transition: var(--transition);
+    margin-right: 10px;
+}
+
+.mobile-header-phone:hover {
+    border-color: rgba(139, 92, 246, 0.5);
+    background: rgba(139, 92, 246, 0.1);
+}
+
+@media (max-width: 768px) {
+    .mobile-header-phone {
+        display: flex;
+    }
+}
+
 /* Navigation links - Big Typography */
 .mobile-nav-links {
     display: flex;
@@ -5075,6 +5101,7 @@ textarea.floating-input {
 .mobile-menu.active .mobile-nav-link:nth-child(3) { transition-delay: 0.2s; }
 .mobile-menu.active .mobile-nav-link:nth-child(4) { transition-delay: 0.25s; }
 .mobile-menu.active .mobile-nav-link:nth-child(5) { transition-delay: 0.3s; }
+.mobile-menu.active .mobile-nav-link:nth-child(6) { transition-delay: 0.35s; }
 
 .mobile-nav-link:hover,
 .mobile-nav-link.active {
