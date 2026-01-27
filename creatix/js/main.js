@@ -2022,6 +2022,42 @@ function initCasesSlider(totalCases) {
     let cardsPerView = getCardsPerView();
     let maxIndex = Math.max(0, totalCases - cardsPerView);
 
+    // Auto-play carousel for mobile
+    let autoPlayInterval = null;
+    const autoPlayDelay = 4000; // 4 seconds between slides
+    const isMobile = () => window.innerWidth <= 768;
+
+    // Start auto-play on mobile
+    function startAutoPlay() {
+        if (!isMobile()) return;
+        stopAutoPlay();
+
+        autoPlayInterval = setInterval(() => {
+            if (currentIndex >= maxIndex) {
+                currentIndex = 0; // Loop back to start
+            } else {
+                currentIndex++;
+            }
+            updateSlider();
+        }, autoPlayDelay);
+    }
+
+    // Stop auto-play
+    function stopAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+        }
+    }
+
+    // Restart auto-play after user interaction
+    function restartAutoPlay() {
+        stopAutoPlay();
+        setTimeout(() => {
+            startAutoPlay();
+        }, 3000); // Resume after 3 seconds
+    }
+
     // Get cards per view based on screen width
     function getCardsPerView() {
         if (window.innerWidth <= 768) return 1;
@@ -2041,6 +2077,36 @@ function initCasesSlider(totalCases) {
             dot.addEventListener('click', () => goToSlide(i * cardsPerView));
             dotsContainer.appendChild(dot);
         }
+
+        // Add swipe hint for mobile
+        createSwipeHint();
+    }
+
+    // Create swipe hint for mobile
+    function createSwipeHint() {
+        if (window.innerWidth > 768) return;
+
+        // Remove existing hint
+        const existingHint = document.querySelector('.cases-swipe-hint');
+        if (existingHint) existingHint.remove();
+
+        // Create swipe hint
+        const hint = document.createElement('div');
+        hint.className = 'cases-swipe-hint';
+        hint.innerHTML = `
+            <span>Свайпните или подождите</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        `;
+        dotsContainer.parentNode.insertBefore(hint, dotsContainer.nextSibling);
+
+        // Hide hint after first interaction
+        container.addEventListener('touchend', function hideHint() {
+            hint.style.opacity = '0';
+            setTimeout(() => hint.remove(), 300);
+            container.removeEventListener('touchend', hideHint);
+        }, { once: true });
     }
 
     // Update dots
@@ -2085,6 +2151,7 @@ function initCasesSlider(totalCases) {
         if (currentIndex > 0) {
             currentIndex--;
             updateSlider();
+            restartAutoPlay();
         }
     });
 
@@ -2092,6 +2159,7 @@ function initCasesSlider(totalCases) {
         if (currentIndex < maxIndex) {
             currentIndex++;
             updateSlider();
+            restartAutoPlay();
         }
     });
 
@@ -2102,39 +2170,72 @@ function initCasesSlider(totalCases) {
         currentIndex = Math.min(currentIndex, maxIndex);
         createDots();
         updateSlider();
+
+        // Restart auto-play based on new screen size
+        if (isMobile()) {
+            startAutoPlay();
+        } else {
+            stopAutoPlay();
+        }
     });
 
-    // Touch/swipe support
+    // Touch/swipe support with visual feedback
     let touchStartX = 0;
-    let touchEndX = 0;
+    let touchCurrentX = 0;
+    let isDragging = false;
+    let startOffset = 0;
 
     container.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
+        touchStartX = e.changedTouches[0].clientX;
+        isDragging = true;
+        container.style.transition = 'none';
+        stopAutoPlay(); // Pause auto-play on touch
+
+        // Get current offset
+        const cards = container.querySelectorAll('.flip-card');
+        if (cards[currentIndex]) {
+            startOffset = cards[currentIndex].offsetLeft;
+        }
+    }, { passive: true });
+
+    container.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        touchCurrentX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchCurrentX;
+
+        // Visual feedback - move cards while swiping
+        const newOffset = startOffset + diff;
+        container.style.transform = `translateX(-${newOffset}px)`;
     }, { passive: true });
 
     container.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    }, { passive: true });
+        if (!isDragging) return;
+        isDragging = false;
+        container.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
 
-    function handleSwipe() {
-        const swipeThreshold = 50;
+        const touchEndX = e.changedTouches[0].clientX;
         const diff = touchStartX - touchEndX;
+        const swipeThreshold = 50;
 
         if (Math.abs(diff) > swipeThreshold) {
             if (diff > 0 && currentIndex < maxIndex) {
                 currentIndex++;
-                updateSlider();
             } else if (diff < 0 && currentIndex > 0) {
                 currentIndex--;
-                updateSlider();
             }
         }
-    }
+        updateSlider();
+        restartAutoPlay(); // Resume auto-play after swipe
+    }, { passive: true });
+
+    // Pause auto-play on hover (desktop)
+    container.addEventListener('mouseenter', stopAutoPlay);
+    container.addEventListener('mouseleave', startAutoPlay);
 
     // Initialize
     createDots();
     updateSlider();
+    startAutoPlay(); // Start auto-carousel on mobile
 }
 
 // ==========================================

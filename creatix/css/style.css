@@ -3594,17 +3594,19 @@ body::before {
     }
 
     .cases-slider-wrapper {
-        gap: 10px;
+        gap: 0;
+        padding: 0 15px;
     }
 
+    /* Hide navigation buttons on mobile - use swipe */
     .cases-slider-btn {
-        width: 36px;
-        height: 36px;
+        display: none;
     }
 
-    .cases-slider-btn svg {
-        width: 18px;
-        height: 18px;
+    .cases-slider-container {
+        overflow: hidden;
+        touch-action: pan-x;
+        -webkit-overflow-scrolling: touch;
     }
 
     .flip-card {
@@ -3626,6 +3628,34 @@ body::before {
 
     .cases-slider-dots {
         margin-top: 20px;
+    }
+
+    /* Swipe hint for mobile */
+    .cases-swipe-hint {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 13px;
+        margin-top: 15px;
+        animation: swipeHintPulse 2s ease-in-out infinite;
+    }
+
+    .cases-swipe-hint svg {
+        width: 20px;
+        height: 20px;
+        animation: swipeArrow 1.5s ease-in-out infinite;
+    }
+
+    @keyframes swipeHintPulse {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 0.8; }
+    }
+
+    @keyframes swipeArrow {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(5px); }
     }
 }
 
